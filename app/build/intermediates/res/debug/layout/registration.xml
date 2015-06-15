@@ -51,4 +51,4 @@
 		<Button android:id="@+id/RegisterButton"
 			android:text="Register" />
 	</TableRow>
-</TableLayout><!-- From: file:/Users/hongzhang/Desktop/AndriodCN3_Update1/app/src/main/res/layout/registration.xml -->
+</TableLayout><!-- From: file:/Users/hongzhang/Desktop/UMAP2015/app/src/main/res/layout/registration.xml -->

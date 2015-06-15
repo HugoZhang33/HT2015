@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/hongzhang/Desktop/AndriodCN3_Update1/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/hongzhang/Desktop/UMAP2015/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string-array name="conference_array">  
         <item>UMAP2015</item>
         <item>iConference2015</item>
     </string-array>
-    <!-- From: file:/Users/hongzhang/Desktop/AndriodCN3_Update1/app/src/main/res/values/color.xml -->
+    <!-- From: file:/Users/hongzhang/Desktop/UMAP2015/app/src/main/res/values/color.xml -->
     <eat-comment/>
     <drawable name="AliceBlue">#f0f8ff</drawable>
     <drawable name="AntiqueWhite">#faebd7</drawable>
@@ -138,7 +138,7 @@
     <drawable name="YellowGreen">#9acd32</drawable>
     <drawable name="darkblue">#42426F</drawable>
     <drawable name="lightblue">#ADD8E6</drawable>
-    <!-- From: file:/Users/hongzhang/Desktop/AndriodCN3_Update1/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/hongzhang/Desktop/UMAP2015/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="app_name">UMAP 2015</string>
     <string name="hello">Hello World!</string>

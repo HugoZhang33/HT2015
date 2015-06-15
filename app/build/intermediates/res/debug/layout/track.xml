@@ -30,4 +30,4 @@
         android:layout_below="@+id/FrameLayout01"
         android:background="@drawable/White">
     </ListView>
-</RelativeLayout><!-- From: file:/Users/hongzhang/Desktop/AndriodCN3_Update1/app/src/main/res/layout/track.xml -->
+</RelativeLayout><!-- From: file:/Users/hongzhang/Desktop/UMAP2015/app/src/main/res/layout/track.xml -->

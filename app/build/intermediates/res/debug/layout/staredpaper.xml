@@ -29,4 +29,4 @@
 		android:layout_toLeftOf="@+id/ImageButton02" android:id="@+id/View02"
 		android:background="@drawable/DarkSlateGray"></View>
 </RelativeLayout>
-<!-- From: file:/Users/hongzhang/Desktop/AndriodCN3_Update1/app/src/main/res/layout/staredpaper.xml -->
+<!-- From: file:/Users/hongzhang/Desktop/UMAP2015/app/src/main/res/layout/staredpaper.xml -->
