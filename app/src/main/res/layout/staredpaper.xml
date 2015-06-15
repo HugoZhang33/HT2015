@@ -1,0 +1,31 @@
+<RelativeLayout android:id="@+id/RelativeLayout01"
+	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:background="@drawable/White">
+	<TextView android:text="@+id/TextView01" android:id="@+id/TextView01"
+		android:layout_height="wrap_content" android:layout_width="fill_parent"
+		android:textColor="@drawable/Brown" android:layout_marginLeft="12dip" android:textSize="8pt"></TextView>
+	<TextView android:text="@+id/TextView02" android:layout_width="wrap_content"
+		android:layout_below="@+id/TextView01" android:id="@+id/TextView02"
+		android:layout_height="wrap_content" android:textSize="8pt" android:textColor="@drawable/SteelBlue" android:layout_marginLeft="12dip"></TextView>
+	<View android:layout_height="fill_parent" android:id="@+id/View03"
+		android:layout_width="10dip" android:layout_alignTop="@id/TextView01"
+		android:layout_alignBottom="@id/TextView02" android:background="#ffff0000"></View>
+	<ImageButton android:layout_above="@+id/TextView02"
+		android:layout_height="fill_parent" android:layout_width="wrap_content"
+		android:id="@+id/ImageButton01" android:layout_alignParentRight="true"
+		android:src="@drawable/no_schedule" android:paddingRight="5dip" android:paddingLeft="5dip" android:background="@drawable/White"></ImageButton>
+	<View android:layout_above="@+id/TextView02"
+		android:layout_height="fill_parent" android:layout_width="2px"
+		android:layout_toLeftOf="@+id/ImageButton01" android:id="@+id/View01"
+		android:background="@drawable/DarkSlateGray"></View>
+	<ImageButton android:layout_above="@+id/TextView02"
+		android:layout_height="fill_parent" android:layout_width="wrap_content"
+		android:id="@+id/ImageButton02" android:layout_toLeftOf="@+id/View01"
+		android:src="@drawable/no_star"
+		android:paddingRight="5dip" android:paddingLeft="5dip" android:background="@drawable/White"></ImageButton>
+	<View android:layout_above="@+id/TextView02"
+		android:layout_height="fill_parent" android:layout_width="2px"
+		android:layout_toLeftOf="@+id/ImageButton02" android:id="@+id/View02"
+		android:background="@drawable/DarkSlateGray"></View>
+</RelativeLayout>

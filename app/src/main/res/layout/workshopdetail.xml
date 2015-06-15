@@ -1,0 +1,69 @@
+<LinearLayout android:id="@+id/RelativeLayout01"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:background="@drawable/White">
+	<FrameLayout android:id="@+id/FrameLayout01"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:background="@drawable/rectshape">
+	<TextView android:id="@+id/TextView"
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent"
+		android:gravity="center" 
+		android:textSize="10pt" 
+		android:textStyle="bold"
+		android:text="Workshop" 
+		android:textColor="@drawable/White">
+	</TextView>
+	</FrameLayout>
+	<TextView android:id="@+id/TextView01"
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent"
+		android:layout_below="@+id/FrameLayout01"
+		android:textStyle="bold"
+		android:textColor="@drawable/darkblue"
+		android:textSize="8pt"
+		android:padding="5pt">
+	</TextView>
+	<TextView android:id="@+id/TextView02" 
+		android:layout_height="wrap_content" 
+		android:layout_below="@+id/TextView01"
+		android:layout_width="fill_parent" 
+		android:paddingLeft="5pt"
+		android:paddingRight="5pt"
+		android:textColor="@drawable/Gray">
+	</TextView>
+	<LinearLayout android:id="@+id/LinearLayout01"
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:layout_below="@id/TextView02"
+		android:orientation="horizontal"
+		android:paddingLeft="5pt"
+		android:paddingRight="5pt"
+		android:paddingBottom="5pt">
+	<TextView android:id="@+id/TextView03" 
+		android:text="AT "
+		android:layout_height="wrap_content" 
+		android:layout_width="wrap_content"
+		android:paddingRight="5pt"  
+		android:textColor="@drawable/Gray">
+	</TextView>
+	<TextView android:id="@+id/TextView04" 
+		android:layout_height="wrap_content" 
+		android:layout_width="wrap_content"
+		android:paddingRight="5pt"
+		android:textColor="@drawable/SteelBlue">
+	</TextView>
+	</LinearLayout>
+	<View android:id="@+id/view"   
+    	android:layout_width="fill_parent"  
+    	android:layout_height="2px"  
+    	android:background="?android:attr/listDivider"  
+	/>
+	<ExpandableListView android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:id="@+id/ListView01">
+	</ExpandableListView>
+</LinearLayout>

@@ -1,0 +1,87 @@
+<RelativeLayout android:id="@+id/RelativeLayout01"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:background="@drawable/White">
+	<TextView android:id="@+id/date"  
+        android:layout_width="fill_parent"  
+        android:layout_height="wrap_content"  
+        android:background="@drawable/darkblue"
+        android:textColor="@drawable/White"
+        android:visibility="gone">  
+    </TextView> 	
+<LinearLayout android:orientation="vertical"
+		android:id="@+id/LinearLayout04"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/date"
+		android:background="@drawable/White">
+	<TextView android:id="@+id/title" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:background="@drawable/Beige" 
+		android:textColor="@drawable/darkblue"
+		android:textSize="15dip">
+	</TextView>
+	<TextView    android:id="@+id/recommend"
+               android:layout_height="wrap_content"   
+               android:layout_width="wrap_content"   
+               android:text="Recommended"
+               android:visibility="gone"
+               android:textColor="@drawable/darkblue"
+               android:background="@drawable/lightblue">  
+	</TextView>
+	<RelativeLayout android:id="@+id/RelativeLayout04"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:background="@drawable/White">
+	<LinearLayout android:orientation="vertical"
+		android:id="@+id/LinearLayout02"
+		android:layout_width="wrap_content"
+		android:layout_height="fill_parent"
+		android:layout_below="@id/title"
+		android:layout_alignLeft="@id/title"
+		android:gravity="center_vertical"
+		android:background="@drawable/White">
+	<ImageButton android:id="@+id/ImageButton01"
+		android:layout_height="wrap_content" 
+		android:layout_width="wrap_content"
+		android:src="@drawable/no_schedule"
+
+        android:background="@drawable/White"></ImageButton>
+	<ImageButton android:id="@+id/ImageButton02"
+		android:layout_height="wrap_content" 
+		android:layout_width="wrap_content"
+		android:src="@drawable/no_star"
+
+        android:background="@drawable/White"></ImageButton>
+	</LinearLayout>
+	<LinearLayout android:orientation="vertical"
+		android:id="@+id/LinearLayout01"
+		android:layout_width="wrap_content"
+		android:layout_height="fill_parent"
+		android:layout_below="@id/title"
+		android:layout_toRightOf="@id/LinearLayout02"
+		android:background="@drawable/White">
+	<TextView    android:id="@+id/time"
+               android:layout_height="wrap_content"   
+               android:layout_width="wrap_content"   
+               android:layout_toRightOf="@id/TextView01"
+               android:textColor="@drawable/darkblue">  
+	</TextView>
+	<TextView    android:id="@+id/author"
+               android:layout_height="wrap_content"   
+               android:layout_width="wrap_content"   
+               android:layout_toRightOf="@id/TextView02"
+               android:textColor="@drawable/darkblue"
+               android:background="@drawable/White">  
+	</TextView>
+	<TextView    android:id="@+id/type"
+               android:layout_height="wrap_content"   
+               android:layout_width="wrap_content"   
+               android:layout_toRightOf="@id/TextView03"
+               android:textColor="@drawable/darkblue"
+               android:background="@drawable/White">  
+	</TextView>
+	</LinearLayout>
+	</RelativeLayout>
+	</LinearLayout>
+</RelativeLayout>

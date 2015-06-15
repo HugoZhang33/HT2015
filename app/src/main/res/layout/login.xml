@@ -1,0 +1,42 @@
+<LinearLayout android:id="@+id/LinearLayout01"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:background="@drawable/SteelBlue"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical">
+
+	<TextView android:text="Email:" android:id="@+id/TextView01"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:textSize="26px" android:textColor="@drawable/White"></TextView>
+	<EditText android:text="" android:id="@+id/EmailText"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:textSize="26px" android:singleLine="true"></EditText>
+	<TextView android:text="Password:" android:id="@+id/TextView02" android:textColor="@drawable/White"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:textSize="26px"></TextView>
+	<EditText android:text="" android:id="@+id/PasswordText"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:textSize="26px" android:password="true" android:singleLine="true"></EditText>
+
+<RelativeLayout android:id="@+id/RelativeLayout02"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:background="@drawable/SteelBlue">
+		<Button android:text="  Login  " android:id="@+id/LoginButton"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:textSize="24px" android:layout_gravity="right" android:layout_alignParentRight="true"></Button>
+		<TextView android:id="@+id/TextView03" android:layout_height="wrap_content" android:gravity="center" android:textColor="@drawable/White" android:layout_width="fill_parent" android:layout_centerVertical="true" android:textSize="6pt" android:layout_toLeftOf="@+id/LoginButton" android:text="Schedule papers &amp; Sync schedule"></TextView>
+		
+	</RelativeLayout>
+
+
+	
+
+	<RelativeLayout android:id="@+id/RelativeLayout01"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:background="@drawable/SteelBlue">
+		<Button android:text="Sign Up" android:id="@+id/SignupButton" 
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textSize="24px" android:layout_alignParentRight="true"></Button>
+		<TextView android:id="@+id/TextView03" android:layout_height="wrap_content" android:gravity="center" android:textColor="@drawable/White" android:layout_toLeftOf="@+id/SignupButton" android:layout_width="fill_parent" android:text="Don't have an account yet?" android:layout_centerVertical="true" android:textSize="6pt"></TextView>
+		
+	</RelativeLayout>
+</LinearLayout>

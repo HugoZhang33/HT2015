@@ -1,0 +1,44 @@
+<RelativeLayout android:id="@+id/RelativeLayout01"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:background="@drawable/White">
+<LinearLayout android:orientation="vertical"
+		android:id="@+id/LinearLayout04"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="10pt"
+		android:background="@drawable/White">
+	<TextView android:id="@+id/title" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:background="@drawable/Beige" 
+		android:textColor="@drawable/darkblue">
+	</TextView>
+	<RelativeLayout android:id="@+id/RelativeLayout03"
+	android:layout_width="fill_parent" 
+	android:layout_height="wrap_content"
+	android:background="@drawable/White">
+	<TextView    android:id="@+id/TextView02"
+               android:layout_height="wrap_content"    
+               android:layout_width="wrap_content"  
+               android:text="By:"
+               android:textColor="@drawable/darkblue"
+               android:background="@drawable/White">  
+	</TextView>
+	<TextView    android:id="@+id/author"
+               android:layout_height="wrap_content"   
+               android:layout_width="wrap_content"   
+               android:layout_toRightOf="@id/TextView02"
+               android:textColor="@drawable/darkblue"
+               android:background="@drawable/White">  
+	</TextView>
+	</RelativeLayout>
+	</LinearLayout>
+<TextView android:id="@+id/trackimage"
+		android:layout_width="10pt"
+		android:layout_height="30pt"
+		android:background="@drawable/track"
+		android:gravity="center_horizontal|top"
+		android:textColor="@drawable/White">
+</TextView>
+</RelativeLayout>

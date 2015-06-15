@@ -1,0 +1,27 @@
+<RelativeLayout android:id="@+id/RelativeLayout01"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:background="@drawable/White">
+	<TextView android:id="@+id/TextView01" 
+		android:layout_height="wrap_content"
+		android:textColor="@drawable/White" 
+		android:textSize="10pt"
+		android:textStyle="bold" 
+		android:background="@drawable/SteelBlue"
+		android:layout_width="fill_parent" 
+		android:text="Workshops"
+		android:gravity="center"></TextView>
+	<TextView android:layout_height="wrap_content" 
+		android:id="@+id/TextView02"
+		android:layout_below="@+id/TextView01"
+		android:layout_width="fill_parent" 
+		android:background="@drawable/lightblue" 
+		android:textColor="@drawable/darkblue" 
+		android:text="Monday, Feb 25, 2013" 
+		android:gravity="center">
+	</TextView>		
+	<ListView android:id="@+id/ListView01" android:layout_height="fill_parent"
+		android:layout_width="fill_parent" android:background="@drawable/White"
+		android:layout_below="@+id/TextView02">
+	</ListView>
+</RelativeLayout>

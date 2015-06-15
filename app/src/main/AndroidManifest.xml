@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="hypertext2014.com"
+    android:versionCode="5"
+    android:versionName="3.2">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:icon="@drawable/icon"
+        android:label="@string/app_name">
+        <activity
+            android:name="hypertext2014.com.iConference2012"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="hypertext2014.com.UpdateOption" />
+        <activity android:name="hypertext2014.com.MainInterface" />
+        <activity android:name="hypertext2014.com.ConferenceInfo" />
+        <activity android:name="hypertext2014.com.KeyNote" />
+        <activity android:name="hypertext2014.com.KeynoteDetail" />
+        <activity android:name="hypertext2014.com.ProgramByDay" />
+        <activity android:name="hypertext2014.com.PaperInSession" />
+        <activity android:name="hypertext2014.com.UserDetail" />
+        <activity android:name="hypertext2014.com.PaperInfo" />
+        <activity android:name="hypertext2014.com.PaperAttending" />
+        <activity android:name="hypertext2014.com.PaperSimilar" />
+        <activity android:name="hypertext2014.com.PaperDetail" />
+        <activity android:name="hypertext2014.com.MyScheduledPapers" />
+        <activity android:name="hypertext2014.com.MyStaredPapers" />
+        <activity android:name="hypertext2014.com.MyRecommendedPapers" />
+        <activity android:name="hypertext2014.com.Signin" />
+        <activity android:name="hypertext2014.com.Signup" />
+        <activity android:name="hypertext2014.com.Workshops" />
+        <activity android:name="hypertext2014.com.WorkshopDetail" />
+        <activity android:name="hypertext2014.com.Posters" />
+        <activity android:name="hypertext2014.com.PosterDetail" />
+        <activity android:name="hypertext2014.com.ProceedingsByAuthor" />
+        <activity android:name="hypertext2014.com.ProceedingsByName" />
+        <activity android:name="hypertext2014.com.ProceedingsByType" />
+        <activity android:name="hypertext2014.com.Proceedings" />
+    </application>
+    <uses-sdk android:minSdkVersion="4" />
+</manifest>
