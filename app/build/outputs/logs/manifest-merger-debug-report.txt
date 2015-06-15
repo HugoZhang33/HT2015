@@ -27,7 +27,7 @@ ADDED from AndroidManifest.xml:10:5
 		ADDED from AndroidManifest.xml:12:9
 	android:icon
 		ADDED from AndroidManifest.xml:11:9
-activity#hypertext2014.com.iConference2012
+activity#edu.pitt.is.UMAP2015.iConference2012
 ADDED from AndroidManifest.xml:13:9
 	android:label
 		ADDED from AndroidManifest.xml:15:13
@@ -43,103 +43,103 @@ category#android.intent.category.LAUNCHER
 ADDED from AndroidManifest.xml:18:17
 	android:name
 		ADDED from AndroidManifest.xml:18:27
-activity#hypertext2014.com.UpdateOption
+activity#edu.pitt.is.UMAP2015.UpdateOption
 ADDED from AndroidManifest.xml:21:9
 	android:name
 		ADDED from AndroidManifest.xml:21:19
-activity#hypertext2014.com.MainInterface
+activity#edu.pitt.is.UMAP2015.MainInterface
 ADDED from AndroidManifest.xml:22:9
 	android:name
 		ADDED from AndroidManifest.xml:22:19
-activity#hypertext2014.com.ConferenceInfo
+activity#edu.pitt.is.UMAP2015.ConferenceInfo
 ADDED from AndroidManifest.xml:23:9
 	android:name
 		ADDED from AndroidManifest.xml:23:19
-activity#hypertext2014.com.KeyNote
+activity#edu.pitt.is.UMAP2015.KeyNote
 ADDED from AndroidManifest.xml:24:9
 	android:name
 		ADDED from AndroidManifest.xml:24:19
-activity#hypertext2014.com.KeynoteDetail
+activity#edu.pitt.is.UMAP2015.KeynoteDetail
 ADDED from AndroidManifest.xml:25:9
 	android:name
 		ADDED from AndroidManifest.xml:25:19
-activity#hypertext2014.com.ProgramByDay
+activity#edu.pitt.is.UMAP2015.ProgramByDay
 ADDED from AndroidManifest.xml:26:9
 	android:name
 		ADDED from AndroidManifest.xml:26:19
-activity#hypertext2014.com.PaperInSession
+activity#edu.pitt.is.UMAP2015.PaperInSession
 ADDED from AndroidManifest.xml:27:9
 	android:name
 		ADDED from AndroidManifest.xml:27:19
-activity#hypertext2014.com.UserDetail
+activity#edu.pitt.is.UMAP2015.UserDetail
 ADDED from AndroidManifest.xml:28:9
 	android:name
 		ADDED from AndroidManifest.xml:28:19
-activity#hypertext2014.com.PaperInfo
+activity#edu.pitt.is.UMAP2015.PaperInfo
 ADDED from AndroidManifest.xml:29:9
 	android:name
 		ADDED from AndroidManifest.xml:29:19
-activity#hypertext2014.com.PaperAttending
+activity#edu.pitt.is.UMAP2015.PaperAttending
 ADDED from AndroidManifest.xml:30:9
 	android:name
 		ADDED from AndroidManifest.xml:30:19
-activity#hypertext2014.com.PaperSimilar
+activity#edu.pitt.is.UMAP2015.PaperSimilar
 ADDED from AndroidManifest.xml:31:9
 	android:name
 		ADDED from AndroidManifest.xml:31:19
-activity#hypertext2014.com.PaperDetail
+activity#edu.pitt.is.UMAP2015.PaperDetail
 ADDED from AndroidManifest.xml:32:9
 	android:name
 		ADDED from AndroidManifest.xml:32:19
-activity#hypertext2014.com.MyScheduledPapers
+activity#edu.pitt.is.UMAP2015.MyScheduledPapers
 ADDED from AndroidManifest.xml:33:9
 	android:name
 		ADDED from AndroidManifest.xml:33:19
-activity#hypertext2014.com.MyStaredPapers
+activity#edu.pitt.is.UMAP2015.MyStaredPapers
 ADDED from AndroidManifest.xml:34:9
 	android:name
 		ADDED from AndroidManifest.xml:34:19
-activity#hypertext2014.com.MyRecommendedPapers
+activity#edu.pitt.is.UMAP2015.MyRecommendedPapers
 ADDED from AndroidManifest.xml:35:9
 	android:name
 		ADDED from AndroidManifest.xml:35:19
-activity#hypertext2014.com.Signin
+activity#edu.pitt.is.UMAP2015.Signin
 ADDED from AndroidManifest.xml:36:9
 	android:name
 		ADDED from AndroidManifest.xml:36:19
-activity#hypertext2014.com.Signup
+activity#edu.pitt.is.UMAP2015.Signup
 ADDED from AndroidManifest.xml:37:9
 	android:name
 		ADDED from AndroidManifest.xml:37:19
-activity#hypertext2014.com.Workshops
+activity#edu.pitt.is.UMAP2015.Workshops
 ADDED from AndroidManifest.xml:38:9
 	android:name
 		ADDED from AndroidManifest.xml:38:19
-activity#hypertext2014.com.WorkshopDetail
+activity#edu.pitt.is.UMAP2015.WorkshopDetail
 ADDED from AndroidManifest.xml:39:9
 	android:name
 		ADDED from AndroidManifest.xml:39:19
-activity#hypertext2014.com.Posters
+activity#edu.pitt.is.UMAP2015.Posters
 ADDED from AndroidManifest.xml:40:9
 	android:name
 		ADDED from AndroidManifest.xml:40:19
-activity#hypertext2014.com.PosterDetail
+activity#edu.pitt.is.UMAP2015.PosterDetail
 ADDED from AndroidManifest.xml:41:9
 	android:name
 		ADDED from AndroidManifest.xml:41:19
-activity#hypertext2014.com.ProceedingsByAuthor
+activity#edu.pitt.is.UMAP2015.ProceedingsByAuthor
 ADDED from AndroidManifest.xml:42:9
 	android:name
 		ADDED from AndroidManifest.xml:42:19
-activity#hypertext2014.com.ProceedingsByName
+activity#edu.pitt.is.UMAP2015.ProceedingsByName
 ADDED from AndroidManifest.xml:43:9
 	android:name
 		ADDED from AndroidManifest.xml:43:19
-activity#hypertext2014.com.ProceedingsByType
+activity#edu.pitt.is.UMAP2015.ProceedingsByType
 ADDED from AndroidManifest.xml:44:9
 	android:name
 		ADDED from AndroidManifest.xml:44:19
-activity#hypertext2014.com.Proceedings
+activity#edu.pitt.is.UMAP2015.Proceedings
 ADDED from AndroidManifest.xml:45:9
 	android:name
 		ADDED from AndroidManifest.xml:45:19
