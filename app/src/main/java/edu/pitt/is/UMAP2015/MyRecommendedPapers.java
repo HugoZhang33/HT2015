@@ -129,42 +129,6 @@ public class MyRecommendedPapers extends Activity implements Runnable{
 								} 
 								}).show();
 		}
-		
-		
-		
-		syncB = (ImageButton) findViewById(edu.pitt.is.UMAP2015.R.id.ImageButton01);
-		
-		syncB.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View view) {
-				if(isConnect(MyRecommendedPapers.this)){
-				try {
-					//Conference.userID = getUserID();
-					if(Conference.userID.compareTo("")!=0)
-					{
-						Conference.userSignin = true;
-						threadid = 1;
-						callThread();
-					} else {
-						CallSignin();
-					}
-				}
-				catch (Exception e) {
-				}
-			}
-				else
-					new AlertDialog.Builder(MyRecommendedPapers.this) 
-		          .setMessage("This porcess requires internet connection, please check your internet connection.") 
-		          .setPositiveButton("close", 
-		                         new DialogInterface.OnClickListener(){ 
-		                                 public void onClick(DialogInterface dialoginterface, int i){ 
-		                             dialoginterface.cancel();
-		                                  } 
-		                          }) 
-		          .show(); 
-			}
-		});
-		
-		
 	}
 
 	public String getUserID()
