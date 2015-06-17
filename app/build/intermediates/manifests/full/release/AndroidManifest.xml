@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="edu.pitt.is.UMAP2015"
+    android:versionCode="5"
+    android:versionName="3.2" >
+
+    <uses-sdk
+        android:minSdkVersion="4"
+        android:targetSdkVersion="4" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:icon="@drawable/icon"
+        android:label="@string/app_name" >
+        <activity
+            android:name="edu.pitt.is.UMAP2015.iConference2012"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="edu.pitt.is.UMAP2015.UpdateOption"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.MainInterface"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.ConferenceInfo"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.KeyNote"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.KeynoteDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.ProgramByDay"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.PaperInSession"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.UserDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.PaperInfo"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.PaperAttending"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.PaperSimilar"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.PaperDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.MyScheduledPapers"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.MyStaredPapers"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.MyRecommendedPapers"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.Signin"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.Signup"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.Workshops"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.WorkshopDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.Posters"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.PosterDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.ProceedingsByAuthor"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.ProceedingsByName"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.ProceedingsByType"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.pitt.is.UMAP2015.Proceedings"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>

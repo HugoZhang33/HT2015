@@ -2,7 +2,7 @@ package data;
 
 public final class Conference {
 	
-	public static String  id = "";
+	public static String  id = "134";
 	public static String  title  = "";
 
 	public static String  startDate  = "";
@@ -15,7 +15,7 @@ public final class Conference {
 
 	public static boolean userSignin = false;
 	public static String  userID = "";
-	public static String  timstamp = "2015-06-29 00:00:00.0";
+	public static String  timstamp = "2015-06-01 00:00:00.0";
 
 	public static String  twitter_item  = "";
 	public static String  twitter_item_active  = "";

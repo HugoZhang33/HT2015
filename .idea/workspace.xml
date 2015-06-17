@@ -17,7 +17,15 @@
           <theme>@android:style/Theme</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/update.xml">
+        <config>
+          <theme>@android:style/Theme</theme>
+        </config>
+      </layout>
     </layouts>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="++++" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0477750f-4df6-4fbb-a9d5-ae8289094e9a" name="Default" comment="" />
@@ -60,114 +68,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49586776">
-              <caret line="16" column="68" selection-start-line="16" selection-start-column="68" selection-end-line="16" selection-end-column="68" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FriendsDetail.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/FriendsDetail.java">
+      <file leaf-file-name="CheckDBUpdate.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/data/CheckDBUpdate.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.0">
+              <caret line="43" column="17" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Conference.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/data/Conference.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#3273#3274#0" expanded="false" />
-                <element signature="e#3301#3302#0" expanded="false" />
-                <element signature="e#3437#3438#0" expanded="false" />
-                <element signature="e#3485#3486#0" expanded="false" />
-                <element signature="e#5970#6970#0" expanded="false" />
-                <element signature="e#6969#6970#0" expanded="false" />
-                <element signature="e#8981#9980#0" expanded="false" />
-                <element signature="e#9979#9980#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HeaderView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/HeaderView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainInterface.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/MainInterface.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1864#2201#0" expanded="false" />
-                <element signature="e#2200#2201#0" expanded="false" />
-                <element signature="e#2678#3787#0" expanded="false" />
-                <element signature="e#3786#3787#0" expanded="false" />
-                <element signature="e#4268#5977#0" expanded="false" />
-                <element signature="e#5976#5977#0" expanded="false" />
-                <element signature="e#6318#7215#0" expanded="false" />
-                <element signature="e#7214#7215#0" expanded="false" />
-                <element signature="e#7599#7600#0" expanded="false" />
-                <element signature="e#7632#7633#0" expanded="false" />
-                <element signature="e#8381#8382#0" expanded="false" />
-                <element signature="e#8428#8429#0" expanded="false" />
-                <element signature="e#8475#8476#0" expanded="false" />
-                <element signature="e#8514#8515#0" expanded="false" />
-                <element signature="e#8561#8562#0" expanded="false" />
-                <element signature="e#8600#8601#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyRecommendedPapers.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/MyRecommendedPapers.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.703704">
-              <caret line="409" column="58" selection-start-line="409" selection-start-column="56" selection-end-line="409" selection-end-column="69" />
+              <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyScheduledPapers.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/MyScheduledPapers.java">
+      <file leaf-file-name="login.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/login.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="36.592594">
-              <caret line="549" column="38" selection-start-line="549" selection-start-column="16" selection-end-line="549" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="myscheduledpapers.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/myscheduledpapers.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.724138">
-              <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scheduleexpandable.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/scheduleexpandable.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.379311">
-              <caret line="22" column="19" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.58022386">
+              <caret line="73" column="44" selection-start-line="73" selection-start-column="44" selection-end-line="73" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -179,33 +114,19 @@
       <file leaf-file-name="UpdateOption.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/UpdateOption.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="337" column="60" selection-start-line="337" selection-start-column="39" selection-end-line="337" selection-end-column="60" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#2213#4490#0" expanded="false" />
-                <element signature="e#2735#3205#0" expanded="false" />
-                <element signature="e#3204#3205#0" expanded="false" />
-                <element signature="e#3260#3657#0" expanded="false" />
-                <element signature="e#3656#3657#0" expanded="false" />
-                <element signature="e#4017#4409#0" expanded="false" />
-                <element signature="e#4408#4409#0" expanded="false" />
-                <element signature="e#4489#4490#0" expanded="false" />
-                <element signature="e#4654#4655#0" expanded="false" />
-                <element signature="e#4682#4683#0" expanded="false" />
-                <element signature="e#8622#8631#0" expanded="false" />
-                <element signature="e#8689#8696#0" expanded="false" />
-                <element signature="e#8762#8776#0" expanded="false" />
-                <element signature="e#8837#8846#0" expanded="false" />
-                <element signature="e#8907#8915#0" expanded="false" />
-                <element signature="e#8977#8985#0" expanded="false" />
-                <element signature="e#9047#9055#0" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="-4.2222223">
+              <caret line="204" column="58" selection-start-line="204" selection-start-column="58" selection-end-line="204" selection-end-column="58" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="GenerateSignedApkSettings">
+    <option name="KEY_STORE_PATH" value="$USER_HOME$/Downloads/ht-release-key.keystore" />
+    <option name="KEY_ALIAS" value="hypertext" />
+    <option name="REMEMBER_PASSWORDS" value="true" />
   </component>
   <component name="GradleLocalSettings">
     <option name="availableProjects">
@@ -1525,7 +1446,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/KeynoteDetail.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/MainInterface.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/MyFriends.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/MyScheduledPapers.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/PaperAttending.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/PaperDetail.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/PaperInfo.java" />
@@ -1537,7 +1457,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/ProceedingsByName.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/ProgramByDay.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/Signin.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/UpdateOption.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/UserDetail.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/WorkshopDetail.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/Workshops.java" />
@@ -1550,8 +1469,13 @@
         <option value="$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/FriendsDetail.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/MyRecommendedPapers.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/scheduleexpandable.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/myscheduledpapers.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/MyScheduledPapers.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/scheduleexpandable.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/UpdateOption.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/data/Conference.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/data/CheckDBUpdate.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/login.xml" />
       </list>
     </option>
   </component>
@@ -1594,8 +1518,8 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
@@ -1622,6 +1546,10 @@
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -1639,6 +1567,20 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="layout" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UMAP2015" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1703,8 +1645,13 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="04e9b4f0571436d8" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="emulator-5554" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_21" />
+    <property name="FullScreen" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/ht-release-key.keystore" />
+    <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/app" />
+    <property name="ExportApk.Flavors" value="" />
+    <property name="ExportApk.BuildType" value="release" />
   </component>
   <component name="RunManager" selected="Android Application.app">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -1894,6 +1841,10 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+    <supportedVersion>125</supportedVersion>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="0477750f-4df6-4fbb-a9d5-ae8289094e9a" name="Default" comment="" />
@@ -1909,9 +1860,9 @@
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22617124" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1365936" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25801012" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1920,7 +1871,7 @@
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32715008" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20236088" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5227656" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21647818" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1936,27 +1887,31 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/ConferenceInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="99" column="8" selection-start-line="99" selection-start-column="8" selection-end-line="99" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/FirstLoading.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="361" column="26" selection-start-line="361" selection-start-column="26" selection-end-line="361" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1970,10 +1925,6 @@
             <element signature="e#3301#3302#0" expanded="false" />
             <element signature="e#3437#3438#0" expanded="false" />
             <element signature="e#3485#3486#0" expanded="false" />
-            <element signature="e#5970#6970#0" expanded="false" />
-            <element signature="e#6969#6970#0" expanded="false" />
-            <element signature="e#8981#9980#0" expanded="false" />
-            <element signature="e#9979#9980#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1982,9 +1933,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1994,14 +1943,6 @@
           <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="false" />
-            <element signature="e#1864#2201#0" expanded="false" />
-            <element signature="e#2200#2201#0" expanded="false" />
-            <element signature="e#2678#3787#0" expanded="false" />
-            <element signature="e#3786#3787#0" expanded="false" />
-            <element signature="e#4268#5977#0" expanded="false" />
-            <element signature="e#5976#5977#0" expanded="false" />
-            <element signature="e#6318#7215#0" expanded="false" />
-            <element signature="e#7214#7215#0" expanded="false" />
             <element signature="e#7599#7600#0" expanded="false" />
             <element signature="e#7632#7633#0" expanded="false" />
             <element signature="e#8381#8382#0" expanded="false" />
@@ -2018,7 +1959,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="611" column="0" selection-start-line="611" selection-start-column="0" selection-end-line="611" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#10022#10023#0" expanded="false" />
+            <element signature="e#10045#10046#0" expanded="false" />
+            <element signature="e#10070#10071#0" expanded="false" />
+            <element signature="e#10094#10095#0" expanded="false" />
+            <element signature="e#10133#10134#0" expanded="false" />
+            <element signature="e#10153#10154#0" expanded="false" />
+            <element signature="e#10192#10193#0" expanded="false" />
+            <element signature="e#10212#10213#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2045,26 +1996,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="337" column="60" selection-start-line="337" selection-start-column="39" selection-end-line="337" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2213#4490#0" expanded="false" />
-            <element signature="e#2735#3205#0" expanded="false" />
-            <element signature="e#3204#3205#0" expanded="false" />
-            <element signature="e#3260#3657#0" expanded="false" />
-            <element signature="e#3656#3657#0" expanded="false" />
-            <element signature="e#4017#4409#0" expanded="false" />
-            <element signature="e#4408#4409#0" expanded="false" />
-            <element signature="e#4489#4490#0" expanded="false" />
-            <element signature="e#4654#4655#0" expanded="false" />
-            <element signature="e#4682#4683#0" expanded="false" />
-            <element signature="e#8622#8631#0" expanded="false" />
-            <element signature="e#8689#8696#0" expanded="false" />
-            <element signature="e#8762#8776#0" expanded="false" />
-            <element signature="e#8837#8846#0" expanded="false" />
-            <element signature="e#8907#8915#0" expanded="false" />
-            <element signature="e#8977#8985#0" expanded="false" />
-            <element signature="e#9047#9055#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2093,9 +2025,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="28" selection-start-line="0" selection-start-column="28" selection-end-line="0" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2103,7 +2032,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="23" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2111,9 +2039,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="28" selection-start-line="0" selection-start-column="28" selection-end-line="0" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2121,11 +2046,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="23" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2925#3184#0" expanded="false" />
-            <element signature="e#3183#3184#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2133,7 +2053,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="23" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2141,7 +2060,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="440" column="0" selection-start-line="440" selection-start-column="0" selection-end-line="440" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2149,7 +2067,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="23" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2157,7 +2074,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="23" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2165,9 +2081,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="23" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2175,9 +2088,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="23" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
-          <folding>
-            <element signature="e#19515#19523#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2185,12 +2095,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="23" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#18168#18176#0" expanded="false" />
-            <element signature="e#32151#33040#0" expanded="false" />
-            <element signature="e#33039#33040#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2198,11 +2102,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="125.4">
           <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#12287#12296#0" expanded="true" />
-            <element signature="e#12542#12549#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2232,10 +2131,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.219212">
           <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-          <folding>
-            <element signature="e#1813#2466#0" expanded="false" />
-            <element signature="e#2465#2466#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2243,16 +2138,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="47.4">
           <caret line="0" column="23" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1449#1467#0" expanded="false" />
-            <element signature="e#4184#4693#0" expanded="false" />
-            <element signature="e#4692#4693#0" expanded="false" />
-            <element signature="e#5048#5057#0" expanded="false" />
-            <element signature="e#5281#5288#0" expanded="false" />
-            <element signature="e#18520#19063#0" expanded="false" />
-            <element signature="e#19062#19063#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2260,7 +2145,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.4">
           <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2282,9 +2166,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.296296">
           <caret line="147" column="13" selection-start-line="147" selection-start-column="13" selection-end-line="147" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2292,11 +2173,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.962963">
           <caret line="286" column="40" selection-start-line="286" selection-start-column="33" selection-end-line="286" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#15388#16277#0" expanded="false" />
-            <element signature="e#16276#16277#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2304,10 +2180,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="777" column="53" selection-start-line="777" selection-start-column="53" selection-end-line="777" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#18106#18114#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2315,19 +2187,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="28" selection-start-line="0" selection-start-column="28" selection-end-line="0" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#13102#13846#0" expanded="false" />
-            <element signature="e#13845#13846#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/FirstLoading.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="361" column="26" selection-start-line="361" selection-start-column="26" selection-end-line="361" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2335,14 +2194,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3510#3519#0" expanded="true" />
-            <element signature="e#3647#3655#0" expanded="true" />
-            <element signature="e#3709#3716#0" expanded="true" />
-            <element signature="e#3772#3781#0" expanded="true" />
-            <element signature="e#3843#3857#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2352,14 +2203,6 @@
           <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="false" />
-            <element signature="e#1864#2201#0" expanded="false" />
-            <element signature="e#2200#2201#0" expanded="false" />
-            <element signature="e#2678#3787#0" expanded="false" />
-            <element signature="e#3786#3787#0" expanded="false" />
-            <element signature="e#4268#5977#0" expanded="false" />
-            <element signature="e#5976#5977#0" expanded="false" />
-            <element signature="e#6318#7215#0" expanded="false" />
-            <element signature="e#7214#7215#0" expanded="false" />
             <element signature="e#7599#7600#0" expanded="false" />
             <element signature="e#7632#7633#0" expanded="false" />
             <element signature="e#8381#8382#0" expanded="false" />
@@ -2382,10 +2225,6 @@
             <element signature="e#3301#3302#0" expanded="false" />
             <element signature="e#3437#3438#0" expanded="false" />
             <element signature="e#3485#3486#0" expanded="false" />
-            <element signature="e#5970#6970#0" expanded="false" />
-            <element signature="e#6969#6970#0" expanded="false" />
-            <element signature="e#8981#9980#0" expanded="false" />
-            <element signature="e#9979#9980#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2394,16 +2233,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/data/Conference.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08108108">
-          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -2412,51 +2241,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="99" column="8" selection-start-line="99" selection-start-column="8" selection-end-line="99" selection-end-column="8" />
-          <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/UpdateOption.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="337" column="60" selection-start-line="337" selection-start-column="39" selection-end-line="337" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2213#4490#0" expanded="false" />
-            <element signature="e#2735#3205#0" expanded="false" />
-            <element signature="e#3204#3205#0" expanded="false" />
-            <element signature="e#3260#3657#0" expanded="false" />
-            <element signature="e#3656#3657#0" expanded="false" />
-            <element signature="e#4017#4409#0" expanded="false" />
-            <element signature="e#4408#4409#0" expanded="false" />
-            <element signature="e#4489#4490#0" expanded="false" />
-            <element signature="e#4654#4655#0" expanded="false" />
-            <element signature="e#4682#4683#0" expanded="false" />
-            <element signature="e#8622#8631#0" expanded="false" />
-            <element signature="e#8689#8696#0" expanded="false" />
-            <element signature="e#8762#8776#0" expanded="false" />
-            <element signature="e#8837#8846#0" expanded="false" />
-            <element signature="e#8907#8915#0" expanded="false" />
-            <element signature="e#8977#8985#0" expanded="false" />
-            <element signature="e#9047#9055#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/scheduleexpandable.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.379311">
-          <caret line="22" column="19" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/myscheduledpapers.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.724138">
+        <state vertical-scroll-proportion="0.0">
           <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
           <folding />
         </state>
@@ -2467,26 +2257,101 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/MyRecommendedPapers.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.703704">
+        <state vertical-scroll-proportion="0.0">
           <caret line="409" column="58" selection-start-line="409" selection-start-column="56" selection-end-line="409" selection-end-column="69" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#10022#10023#0" expanded="false" />
+            <element signature="e#10045#10046#0" expanded="false" />
+            <element signature="e#10070#10071#0" expanded="false" />
+            <element signature="e#10094#10095#0" expanded="false" />
+            <element signature="e#10133#10134#0" expanded="false" />
+            <element signature="e#10153#10154#0" expanded="false" />
+            <element signature="e#10192#10193#0" expanded="false" />
+            <element signature="e#10212#10213#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/update.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.344828">
+          <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/MyScheduledPapers.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="36.592594">
-          <caret line="549" column="38" selection-start-line="549" selection-start-column="16" selection-end-line="549" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="207" column="0" selection-start-line="207" selection-start-column="0" selection-end-line="207" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/scheduleexpandable.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.172414">
+          <caret line="33" column="48" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/FirstLoading.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="193" column="12" selection-start-line="193" selection-start-column="12" selection-end-line="193" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/data/Conference.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/pitt/is/UMAP2015/UpdateOption.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.2222223">
+          <caret line="204" column="58" selection-start-line="204" selection-start-column="58" selection-end-line="204" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/data/CheckDBUpdate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.0">
+          <caret line="43" column="17" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49586776">
-          <caret line="16" column="68" selection-start-line="16" selection-start-column="68" selection-end-line="16" selection-end-column="68" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/login.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.58022386">
+          <caret line="73" column="44" selection-start-line="73" selection-start-column="44" selection-end-line="73" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
   </component>

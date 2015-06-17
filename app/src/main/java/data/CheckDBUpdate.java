@@ -52,7 +52,7 @@ public class CheckDBUpdate {
 			System.out.print("exception" + e);
 		}
 
-		return true;
+		return needUpdate;
 	}
 }
 
