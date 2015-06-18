@@ -122,7 +122,7 @@ public class DBAdapter {
 
     public void getConferenceInfo() {
         Cursor cursor = mDb.query("conference", new String[]{"ID", "title",
-                        "startDate", "endDate", "location", "description"}, null,
+                        "startDate", "endDate", "location", "description", "timestamp"}, null,
                 null, null, null, null);
 
         if (cursor.moveToFirst()) {
@@ -132,6 +132,7 @@ public class DBAdapter {
             Conference.endDate = cursor.getString(3);
             Conference.location = cursor.getString(4);
             Conference.description = cursor.getString(5);
+            Conference.timstamp = cursor.getString(6);
         }
         if (cursor != null && !cursor.isClosed()) {
             cursor.close();

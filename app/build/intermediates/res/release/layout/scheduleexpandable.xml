@@ -22,6 +22,15 @@
             android:textStyle="bold">
         </TextView>
 
+        <ImageButton
+            android:id="@+id/ImageButton01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:layout_gravity="right"
+            android:src="@drawable/update"
+            android:background="@android:color/transparent"/>
+
     </FrameLayout>
 
     <TabHost

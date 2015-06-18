@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="Email:"
         android:textColor="@drawable/White"
-        android:textSize="40px"></TextView>
+        android:textSize="60px"></TextView>
 
     <EditText
         android:id="@+id/EmailText"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:singleLine="true"
         android:text=""
-        android:textSize="40px"></EditText>
+        android:textSize="60px"></EditText>
 
     <TextView
         android:id="@+id/TextView02"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:text="Password:"
         android:textColor="@drawable/White"
-        android:textSize="40px"></TextView>
+        android:textSize="60px"></TextView>
 
     <EditText
         android:id="@+id/PasswordText"
@@ -37,7 +37,7 @@
         android:password="true"
         android:singleLine="true"
         android:text=""
-        android:textSize="40px"></EditText>
+        android:textSize="60px"></EditText>
 
     <RelativeLayout
         android:id="@+id/RelativeLayout02"
@@ -63,7 +63,7 @@
             android:gravity="center"
             android:text="Schedule papers &amp; Sync schedule"
             android:textColor="@drawable/White"
-            android:textSize="6pt"></TextView>
+            android:textSize="8pt"></TextView>
 
     </RelativeLayout>
 
@@ -91,7 +91,7 @@
             android:gravity="center"
             android:text="Don't have an account yet?"
             android:textColor="@drawable/White"
-            android:textSize="6pt"></TextView>
+            android:textSize="8pt"></TextView>
 
     </RelativeLayout>
 </LinearLayout>

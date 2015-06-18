@@ -4,6 +4,7 @@ package edu.pitt.is.UMAP2015;
 import java.util.ArrayList;
 
 
+import data.CheckDBUpdate;
 import data.Conference;
 import data.ConferenceInfoParser;
 import data.DBAdapter;

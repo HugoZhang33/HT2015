@@ -172,38 +172,38 @@ public class MyScheduledPapers extends Activity implements Runnable {
         }
 
 
-//        syncB = (ImageButton) findViewById(edu.pitt.is.UMAP2015.R.id.ImageButton01);
-//
-//        syncB.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (isConnect(MyScheduledPapers.this)) {
-//                    try {
-//
-//                        //Conference.userID = getUserID();
-//                        if (Conference.userID.compareTo("") != 0) {
-//                            Conference.userSignin = true;
-//                            threadid = 1;
-//                            callThread();
-//                        } else {
-//                            CallSignin();
-//                        }
-//                    } catch (Exception e) {
-//                        System.out.print(e);
-//                    }
-//                } else
-//                    new AlertDialog.Builder(MyScheduledPapers.this)
-//                            .setMessage("This porcess requires internet connection, please check your internet connection.")
-//                            .setPositiveButton("close",
-//                                    new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface dialoginterface, int i) {
-//                                            dialoginterface.cancel();
-//                                        }
-//                                    })
-//                            .show();
-//            }
-//        });
+        syncB = (ImageButton) findViewById(edu.pitt.is.UMAP2015.R.id.ImageButton01);
+
+        syncB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isConnect(MyScheduledPapers.this)) {
+                    try {
+
+                        //Conference.userID = getUserID();
+                        if (Conference.userID.compareTo("") != 0) {
+                            Conference.userSignin = true;
+                            threadid = 1;
+                            callThread();
+                        } else {
+                            CallSignin();
+                        }
+                    } catch (Exception e) {
+                        System.out.print(e);
+                    }
+                } else
+                    new AlertDialog.Builder(MyScheduledPapers.this)
+                            .setMessage("This porcess requires internet connection, please check your internet connection.")
+                            .setPositiveButton("close",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialoginterface, int i) {
+                                            dialoginterface.cancel();
+                                        }
+                                    })
+                            .show();
+            }
+        });
 
 
     }
@@ -872,12 +872,12 @@ public class MyScheduledPapers extends Activity implements Runnable {
             synchronizeScheduledPaper();
 
         }
-        if (threadid == 2) {
+        else if (threadid == 2) {
             paperStatus = us2s.DeleteScheduledPaper2Sever(paperID);
 				/*if(paperStatus != "yes" && paperStatus !="no"){
 					showToast("Fail to connect to sever, please try again.");
 				}*/
-        } else {
+        } else if (threadid == 3){
             paperStatus = us2s.addScheduledPaper2Sever(paperID);
 				/*if(paperStatus != "yes" && paperStatus !="no"){
 					showToast("Fail to connect to sever, please try again.");
@@ -958,7 +958,7 @@ public class MyScheduledPapers extends Activity implements Runnable {
                     /*******************/
                     reGene();
                 }
-                if (paperStatus.compareTo("no") == 0) {
+                else if (paperStatus.compareTo("no") == 0) {
                     ib.setImageResource(edu.pitt.is.UMAP2015.R.drawable.no_schedule);
                     updateUserPaperStatus(paperID, "no", "schedule");
                     deleteMyScheduledPaper(paperID);

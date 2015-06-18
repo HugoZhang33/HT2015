@@ -11,6 +11,7 @@ import data.Conference;
 import data.DBAdapter;
 import data.Paper;
 import data.UserScheduledToServer;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -35,457 +36,436 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class MyStaredPapers extends Activity implements Runnable {
-	private ArrayList<Paper> pList;
-	private DBAdapter db;
-	private ListView lv;
-	private TextView tx2;
-	private boolean starClicked, scheduleClicked;
-	private UserScheduledToServer us2s;
-	private String paperStatus;
-	private int show;
-	private ProgressDialog pd;
-	private ImageButton ib;
-	private String paperID;
-	private Hashtable idTotrackName;
-	private Hashtable<String, Drawable> idTotrackImage;
-	//private Hashtable pTable;
-	private ListViewAdapter adapter;
-	private int pos;
-	
-	private final int MENU_HOME = Menu.FIRST;
-	private final int MENU_TRACK = Menu.FIRST + 1;
-	private final int MENU_SESSION = Menu.FIRST + 2;
-	private final int MENU_SCHEDULE = Menu.FIRST + 3;
-	private final int MENU_RECOMMEND = Menu.FIRST+4;
+    private ArrayList<Paper> pList;
+    private DBAdapter db;
+    private ListView lv;
+    private TextView tx2;
+    private UserScheduledToServer us2s;
+    private String paperStatus;
+    private int show;
+    private ProgressDialog pd;
+    private ImageButton ib;
+    private String paperID;
+    private Hashtable idTotrackName;
+    private Hashtable<String, Drawable> idTotrackImage;
+    //private Hashtable pTable;
+    private ListViewAdapter adapter;
+    private int pos;
 
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    private final int MENU_HOME = Menu.FIRST;
+    private final int MENU_TRACK = Menu.FIRST + 1;
+    private final int MENU_SESSION = Menu.FIRST + 2;
+    private final int MENU_SCHEDULE = Menu.FIRST + 3;
+    private final int MENU_RECOMMEND = Menu.FIRST + 4;
 
-		setContentView(edu.pitt.is.UMAP2015.R.layout.mystaredpapers);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-		tx2 = (TextView) findViewById(edu.pitt.is.UMAP2015.R.id.TextView02);
+        setContentView(edu.pitt.is.UMAP2015.R.layout.mystaredpapers);
 
-		us2s = new UserScheduledToServer();
-		
-		pList = getData();
+        tx2 = (TextView) findViewById(edu.pitt.is.UMAP2015.R.id.TextView02);
 
-		adapter = new ListViewAdapter(pList);
-		lv = (ListView) findViewById(edu.pitt.is.UMAP2015.R.id.ListView01);
-		lv.setAdapter(adapter);
+        us2s = new UserScheduledToServer();
 
-		starClicked = scheduleClicked = false;
-		if(pList.size() != 0){
-			show +=1;
-		}
-		if (show == 0) {
-			tx2.setVisibility(View.VISIBLE);
-		} else
-			tx2.setVisibility(View.GONE);
-	}
-	public ArrayList<Paper> getData(){
-		ArrayList<Paper> p;
-		db = new DBAdapter(this);
-		db.open();
-		p = db.getPapersByStared();
-		db.close();
-		
-		return p;
-	}
-	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(0, MENU_HOME, 0, "Home").setIcon(edu.pitt.is.UMAP2015.R.drawable.home);
-		menu.add(0, MENU_TRACK, 0, "Proceedings").setIcon(edu.pitt.is.UMAP2015.R.drawable.proceedings);
-		menu.add(0, MENU_SESSION, 0, "Schedule").setIcon(edu.pitt.is.UMAP2015.R.drawable.session);
-		menu.add(0, MENU_SCHEDULE, 0, "My Schedule").setIcon(edu.pitt.is.UMAP2015.R.drawable.schedule);
-		menu.add(0, MENU_RECOMMEND, 0, "Recommendation").setIcon(edu.pitt.is.UMAP2015.R.drawable.recommends);
-		return true;
-	}
+        pList = getData();
 
-	public boolean onOptionsItemSelected(MenuItem item) {
-		Intent itemintent = new Intent();
-		switch (item.getItemId()) {
-		case MENU_HOME:
-			this.finish();
-			itemintent.setClass(MyStaredPapers.this, MainInterface.class);
-			startActivity(itemintent);
-			return true;
-		case MENU_SESSION:
-			this.finish();
-			itemintent.setClass(MyStaredPapers.this, ProgramByDay.class);
-			startActivity(itemintent);
-			return true;
-		case MENU_TRACK:
-			this.finish();
-			itemintent.setClass(MyStaredPapers.this, Proceedings.class);
-			startActivity(itemintent);
-			return true;
-		case MENU_SCHEDULE:
-			this.finish();
-			itemintent.setClass(MyStaredPapers.this, MyScheduledPapers.class);
-			startActivity(itemintent);
-			return true;
-		case MENU_RECOMMEND:
-			this.finish();
-			itemintent.setClass(MyStaredPapers.this, MyRecommendedPapers.class);
-			startActivity(itemintent);
-			return true;
-		}
-		return false;
-	}
-	
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-			
-			//this.finish(); this.onStop(); this.onDestroy();
-			this.finish();
-			Intent in = new Intent(MyStaredPapers.this, MainInterface.class);
-			startActivity(in);
-		}
+        adapter = new ListViewAdapter(pList);
+        lv = (ListView) findViewById(edu.pitt.is.UMAP2015.R.id.ListView01);
+        lv.setAdapter(adapter);
 
-		return super.onKeyDown(keyCode, event);
-	}
+        if (pList.size() != 0) {
+            show += 1;
+        }
+        if (show == 0) {
+            tx2.setVisibility(View.VISIBLE);
+        } else
+            tx2.setVisibility(View.GONE);
+    }
 
-	public void updateUserPaperStatus(String paperID, String status,
-			String which) {
-		db = new DBAdapter(this);
-		db.open();
-		if (which.compareTo("schedule") == 0)
-			db.updatePaperBySchedule(paperID, status);
-		if (which.compareTo("star") == 0)
-			db.updatePaperByStar(paperID, status);
-		db.close();
-	}
+    public ArrayList<Paper> getData() {
+        ArrayList<Paper> p;
+        db = new DBAdapter(this);
+        db.open();
+        p = db.getPapersByStared();
+        db.close();
 
-	public String getPaperScheduled(String paperID) {
-		String status;
-		db = new DBAdapter(this);
-		db.open();
+        return p;
+    }
 
-		status = db.getPaperScheduledStatus(paperID);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(0, MENU_HOME, 0, "Home").setIcon(edu.pitt.is.UMAP2015.R.drawable.home);
+        menu.add(0, MENU_TRACK, 0, "Proceedings").setIcon(edu.pitt.is.UMAP2015.R.drawable.proceedings);
+        menu.add(0, MENU_SESSION, 0, "Schedule").setIcon(edu.pitt.is.UMAP2015.R.drawable.session);
+        menu.add(0, MENU_SCHEDULE, 0, "My Schedule").setIcon(edu.pitt.is.UMAP2015.R.drawable.schedule);
+        menu.add(0, MENU_RECOMMEND, 0, "Recommendation").setIcon(edu.pitt.is.UMAP2015.R.drawable.recommends);
+        return true;
+    }
 
-		db.close();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent itemintent = new Intent();
+        switch (item.getItemId()) {
+            case MENU_HOME:
+                this.finish();
+                itemintent.setClass(MyStaredPapers.this, MainInterface.class);
+                startActivity(itemintent);
+                return true;
+            case MENU_SESSION:
+                this.finish();
+                itemintent.setClass(MyStaredPapers.this, ProgramByDay.class);
+                startActivity(itemintent);
+                return true;
+            case MENU_TRACK:
+                this.finish();
+                itemintent.setClass(MyStaredPapers.this, Proceedings.class);
+                startActivity(itemintent);
+                return true;
+            case MENU_SCHEDULE:
+                this.finish();
+                itemintent.setClass(MyStaredPapers.this, MyScheduledPapers.class);
+                startActivity(itemintent);
+                return true;
+            case MENU_RECOMMEND:
+                this.finish();
+                itemintent.setClass(MyStaredPapers.this, MyRecommendedPapers.class);
+                startActivity(itemintent);
+                return true;
+        }
+        return false;
+    }
 
-		return status;
-	}
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
 
-	public String getPaperStarred(String paperID) {
-		String status;
-		db = new DBAdapter(this);
-		db.open();
+            //this.finish(); this.onStop(); this.onDestroy();
+            this.finish();
+            Intent in = new Intent(MyStaredPapers.this, MainInterface.class);
+            startActivity(in);
+        }
 
-		status = db.getPaperStarredStatus(paperID);
+        return super.onKeyDown(keyCode, event);
+    }
 
-		db.close();
+    public void updateUserPaperStatus(String paperID, String status,
+                                      String which) {
+        db = new DBAdapter(this);
+        db.open();
+        if (which.compareTo("schedule") == 0)
+            db.updatePaperBySchedule(paperID, status);
+        if (which.compareTo("star") == 0)
+            db.updatePaperByStar(paperID, status);
+        db.close();
+    }
 
-		return status;
-	}
+    public String getPaperScheduled(String paperID) {
+        String status;
+        db = new DBAdapter(this);
+        db.open();
 
-	public void insertMyScheduledPaper(String paperID) {
-		db = new DBAdapter(this);
-		db.open();
-		db.insertMyScheduledPaper(paperID);
-		db.close();
-	}
+        status = db.getPaperScheduledStatus(paperID);
 
-	public void deleteMyScheduledPaper(String paperID) {
-		db = new DBAdapter(this);
-		db.open();
-		db.deleteMyScheduledPaper(paperID);
-		db.close();
-	}
+        db.close();
 
-	public void insertMyStarredPaper(String paperID) {
-		db = new DBAdapter(this);
-		db.open();
-		db.insertMyStarredPaper(paperID);
-		db.close();
-	}
+        return status;
+    }
 
-	public void deleteMyStarredPaper(String paperID) {
-		db = new DBAdapter(this);
-		db.open();
-		db.deleteMyStarredPaper(paperID);
-		db.close();
-	}
+    public String getPaperStarred(String paperID) {
+        String status;
+        db = new DBAdapter(this);
+        db.open();
 
-	private void CallSignin() {
-		Intent in = new Intent(MyStaredPapers.this, Signin.class);
-		in.putExtra("activity", "MyStaredPapers");
-		in.putExtra("paperID", paperID);
-		startActivity(in);
-	}
-	
-	public String getUserID()
-	{
-		String id = "";
-		
+        status = db.getPaperStarredStatus(paperID);
+
+        db.close();
+
+        return status;
+    }
+
+    public void insertMyScheduledPaper(String paperID) {
+        db = new DBAdapter(this);
+        db.open();
+        db.insertMyScheduledPaper(paperID);
+        db.close();
+    }
+
+    public void deleteMyScheduledPaper(String paperID) {
+        db = new DBAdapter(this);
+        db.open();
+        db.deleteMyScheduledPaper(paperID);
+        db.close();
+    }
+
+    public void insertMyStarredPaper(String paperID) {
+        db = new DBAdapter(this);
+        db.open();
+        db.insertMyStarredPaper(paperID);
+        db.close();
+    }
+
+    public void deleteMyStarredPaper(String paperID) {
+        db = new DBAdapter(this);
+        db.open();
+        db.deleteMyStarredPaper(paperID);
+        db.close();
+    }
+
+    private void CallSignin() {
+        Intent in = new Intent(MyStaredPapers.this, Signin.class);
+        in.putExtra("activity", "MyStaredPapers");
+        in.putExtra("paperID", paperID);
+        startActivity(in);
+    }
+
+    public String getUserID() {
+        String id = "";
+
 		/*
 		db = new DBAdapter(this);
 		db.open();
 		id = db.getUserID();
 		db.close();
 		*/
-		
-		try
-		{
-			SharedPreferences getUserID = getSharedPreferences("userinfo", 0);
-			id = getUserID.getString("userID", "");
-		}
-		catch(Exception e){}
-		
-		if(id.compareTo("")!=0)
-			Conference.userSignin = true;
-		return id;
-	}
 
-	static class ViewHolder {
-		TextView t1, t2,t3,tr,type,date;
-		ImageButton star, schedule;
-	}
+        try {
+            SharedPreferences getUserID = getSharedPreferences("userinfo", 0);
+            id = getUserID.getString("userID", "");
+        } catch (Exception e) {
+        }
 
-	private class ListViewAdapter extends BaseAdapter implements
-	OnClickListener {
+        if (id.compareTo("") != 0)
+            Conference.userSignin = true;
+        return id;
+    }
 
-ArrayList<Paper> pList;
+    static class ViewHolder {
+        TextView t1, t2, t3, tr, type, date;
+        ImageButton star, schedule;
+    }
 
-public ListViewAdapter(ArrayList pList) {
-	this.pList = pList;
-}
+    private class ListViewAdapter extends BaseAdapter implements
+            OnClickListener {
 
-public int getCount() {
-	return pList.size();
-}
+        ArrayList<Paper> paperList;
 
-public Object getItem(int position) {
-	return position;
-}
+        public ListViewAdapter(ArrayList pList) {
+            this.paperList = pList;
+        }
 
-public long getItemId(int position) {
-	return position;
-}
+        public int getCount() {
+            return paperList.size();
+        }
 
-public View getView(int position, View convertView, ViewGroup parent) {
-	ViewHolder vh = null;
-	SimpleDateFormat sdfSource = new SimpleDateFormat("HH:mm");
-	SimpleDateFormat sdfDestination = new SimpleDateFormat("h:mm a");
-	Date beginDate, endDate;
-	String begTime, endTime;
-	if (convertView == null) {
-		LayoutInflater li = getLayoutInflater();
-		convertView = li.inflate(edu.pitt.is.UMAP2015.R.layout.list_item, null);
-		vh = new ViewHolder();
-		vh.t1 = (TextView) convertView.findViewById(edu.pitt.is.UMAP2015.R.id.time);
-		vh.t2 = (TextView) convertView.findViewById(edu.pitt.is.UMAP2015.R.id.title);
+        public Object getItem(int position) {
+            return position;
+        }
 
-		vh.t3 = (TextView) convertView.findViewById(edu.pitt.is.UMAP2015.R.id.author);
-		vh.type = (TextView) convertView.findViewById(edu.pitt.is.UMAP2015.R.id.type);
-		//vh.tr = (TextView) convertView.findViewById(R.id.trackimage);
-		vh.date = (TextView) convertView.findViewById(edu.pitt.is.UMAP2015.R.id.text_first_char_hint);
+        public long getItemId(int position) {
+            return position;
+        }
 
-		vh.schedule = (ImageButton) convertView
-				.findViewById(edu.pitt.is.UMAP2015.R.id.ImageButton01);
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder vh = null;
+            SimpleDateFormat sdfSource = new SimpleDateFormat("HH:mm");
+            SimpleDateFormat sdfDestination = new SimpleDateFormat("h:mm a");
+            Date beginDate, endDate;
+            String begTime, endTime;
+            if (convertView == null) {
+                LayoutInflater li = getLayoutInflater();
+                convertView = li.inflate(edu.pitt.is.UMAP2015.R.layout.list_item, null);
+                vh = new ViewHolder();
+                vh.t1 = (TextView) convertView.findViewById(edu.pitt.is.UMAP2015.R.id.time);
+                vh.t2 = (TextView) convertView.findViewById(edu.pitt.is.UMAP2015.R.id.title);
 
-		vh.star = (ImageButton) convertView
-				.findViewById(edu.pitt.is.UMAP2015.R.id.ImageButton02);
+                vh.t3 = (TextView) convertView.findViewById(edu.pitt.is.UMAP2015.R.id.author);
+                vh.type = (TextView) convertView.findViewById(edu.pitt.is.UMAP2015.R.id.type);
+                //vh.tr = (TextView) convertView.findViewById(R.id.trackimage);
+                vh.date = (TextView) convertView.findViewById(edu.pitt.is.UMAP2015.R.id.text_first_char_hint);
+
+                vh.schedule = (ImageButton) convertView
+                        .findViewById(edu.pitt.is.UMAP2015.R.id.ImageButton01);
+
+                vh.star = (ImageButton) convertView
+                        .findViewById(edu.pitt.is.UMAP2015.R.id.ImageButton02);
 
 
-		convertView.setTag(vh);
-	} else {
-		vh = (ViewHolder) convertView.getTag();
-	}
+                convertView.setTag(vh);
+            } else {
+                vh = (ViewHolder) convertView.getTag();
+            }
 
-	if (pList.get(position).scheduled.compareTo("yes") == 0)
-		vh.schedule.setImageResource(edu.pitt.is.UMAP2015.R.drawable.yes_schedule);
-	else
-		vh.schedule.setImageResource(edu.pitt.is.UMAP2015.R.drawable.no_schedule);
+            if (pList.get(position).scheduled.compareTo("yes") == 0) {
+                System.out.println("}}}}}}}}}}}}}}}}}}}}}}}}" + pList.get(position).title);
+                vh.schedule.setImageResource(edu.pitt.is.UMAP2015.R.drawable.yes_schedule);
+            }
+            else
+                vh.schedule.setImageResource(edu.pitt.is.UMAP2015.R.drawable.no_schedule);
 
-	vh.schedule.setOnClickListener(this);
-	vh.schedule.setTag(pList.get(position).id+";"+position);
+            vh.schedule.setOnClickListener(this);
+            vh.schedule.setTag(pList.get(position).id + ";" + position);
 
-	if (pList.get(position).starred.compareTo("yes") == 0)
-		vh.star.setImageResource(edu.pitt.is.UMAP2015.R.drawable.yes_star);
-	else
-		vh.star.setImageResource(edu.pitt.is.UMAP2015.R.drawable.no_star);
+            if (pList.get(position).starred.compareTo("yes") == 0)
+                vh.star.setImageResource(edu.pitt.is.UMAP2015.R.drawable.yes_star);
+            else
+                vh.star.setImageResource(edu.pitt.is.UMAP2015.R.drawable.no_star);
 
-	vh.star.setOnClickListener(this);
-	vh.star.setTag(pList.get(position).presentationID+";"+position);
-	if (pList.get(position).recommended.compareTo("yes") == 0)
-		vh.t2.setText(Html.fromHtml(pList.get(position).title+"<font color=\"#ff0000\"> &lt;Recommended&gt; </font>"));
-		else
-			vh.t2.setText(pList.get(position).title);
-	vh.t2.setOnClickListener(this);
-	vh.t2.setTag(position);
-	vh.t3.setText(pList.get(position).authors);
-	vh.type.setText(pList.get(position).type);
-	//vh.tr.setText(idTotrackName.get(pList.get(position).trackID).toString());
-	//vh.tr.setBackgroundDrawable(getResources().getDrawable(R.drawable.track));
+            vh.star.setOnClickListener(this);
+            vh.star.setTag(pList.get(position).presentationID + ";" + position);
+            if (pList.get(position).recommended.compareTo("yes") == 0)
+                vh.t2.setText(Html.fromHtml(pList.get(position).title + "<font color=\"#ff0000\"> &lt;Recommended&gt; </font>"));
+            else
+                vh.t2.setText(pList.get(position).title);
+            vh.t2.setOnClickListener(this);
+            vh.t2.setTag(position);
+            vh.t3.setText(pList.get(position).authors);
+            vh.type.setText(pList.get(position).type);
+            //vh.tr.setText(idTotrackName.get(pList.get(position).trackID).toString());
+            //vh.tr.setBackgroundDrawable(getResources().getDrawable(R.drawable.track));
 	
 	/*
 	 * vh.t1.setText(pList.get(position).exactbeginTime + " - " +
 	 * pList.get(position).exactendTime);
 	 */
 
-	try {
-		beginDate = sdfSource.parse(pList.get(position).exactbeginTime);
-		endDate = sdfSource.parse(pList.get(position).exactendTime);
-		begTime = sdfDestination.format(beginDate);
-		endTime = sdfDestination.format(endDate);
-		vh.t1.setText(begTime + " - " + endTime);
-	} catch (Exception e) {
-		System.out.println("Date Exception");
-	}
-	int idx = position - 1;   
-	String previewChar;
-	if(idx >=0){
-	previewChar = pList.get(idx).date;
-	}
-	else
-	previewChar = " ";
-	
-    String currentChar = pList.get(position).date; 
+            try {
+                beginDate = sdfSource.parse(pList.get(position).exactbeginTime);
+                endDate = sdfSource.parse(pList.get(position).exactendTime);
+                begTime = sdfDestination.format(beginDate);
+                endTime = sdfDestination.format(endDate);
+                vh.t1.setText(begTime + " - " + endTime);
+            } catch (Exception e) {
+                System.out.println("Date Exception");
+            }
+            int idx = position - 1;
+            String previewChar;
+            if (idx >= 0) {
+                previewChar = pList.get(idx).date;
+            } else
+                previewChar = " ";
 
-    String newPreviewChar = previewChar;  
-    String newCurrentChar = currentChar;  
-    if (newCurrentChar.compareTo(newPreviewChar) != 0) {   
-        vh.date.setVisibility(View.VISIBLE);   
-        vh.date.setText(newCurrentChar.toString());   
-    } else {   
-       
-        vh.date.setVisibility(View.GONE);   
-    }   
-	return convertView;
-}
+            String currentChar = pList.get(position).date;
 
-public void onClick(View v) {
-	// TODO Auto-generated method stub
-	TextView tv;
-	int index;
-	switch (v.getId()) {
-	case edu.pitt.is.UMAP2015.R.id.title:
-		tv = (TextView) v;
-		index = Integer.parseInt(tv.getTag().toString());
-		MyStaredPapers.this.finish();
-		Intent in = new Intent(MyStaredPapers.this, PaperDetail.class);
-		in.putExtra("id", pList.get(index).id);
-		in.putExtra("title", pList.get(index).title);
-		in.putExtra("authors", pList.get(index).authors);
-		in.putExtra("date", pList.get(index).date);
-		in.putExtra("abstract", pList.get(index).paperAbstract);
-		in.putExtra("contentlink", pList.get(index).contentlink);
+            String newPreviewChar = previewChar;
+            String newCurrentChar = currentChar;
+            if (newCurrentChar.compareTo(newPreviewChar) != 0) {
+                vh.date.setVisibility(View.VISIBLE);
+                vh.date.setText(newCurrentChar.toString());
+            } else {
 
-		in.putExtra("room", pList.get(index).room);
-		in.putExtra("bTime", pList.get(index).exactbeginTime);
-		in.putExtra("eTime", pList.get(index).exactendTime);
-		in.putExtra("presentationID", pList.get(index).presentationID);
-		in.putExtra("activity","MyStaredPapers");
-		in.putExtra("key","no");
-		startActivity(in);
-		break;
-	case edu.pitt.is.UMAP2015.R.id.ImageButton01:
-		ib = (ImageButton) v;
-		String s = ib.getTag().toString();
-		String[] st = s.split(";");
-		paperID = st[0];
-		pos = Integer.parseInt(st[1]);
-		Conference.userID = getUserID();
-		if (Conference.userSignin) {
-			paperStatus = "";
-			callThread();
-			//paperStatus = us2s.addScheduledPaper2Sever(paperID);
-			// if (getPaperScheduled(paperID).compareTo("no") == 0) {
-			/*
-			if (paperStatus.compareTo("yes") == 0) {
-				ib.setImageResource(R.drawable.yes_schedule);
-				updateUserPaperStatus(paperID, "yes", "schedule");
-				insertMyScheduledPaper(paperID);
-				scheduleClicked = true;
-			}
-			if (paperStatus.compareTo("no") == 0) {
-				ib.setImageResource(R.drawable.no_schedule);
-				updateUserPaperStatus(paperID, "no", "schedule");
-				deleteMyScheduledPaper(paperID);
-				scheduleClicked = false;
-			}
-			*/
-		} else {
-			CallSignin();
-		}
+                vh.date.setVisibility(View.GONE);
+            }
+            return convertView;
+        }
 
-		break;
-	case edu.pitt.is.UMAP2015.R.id.ImageButton02:
-		ib = (ImageButton) v;
-		String s1 = ib.getTag().toString();
-		String[] st1 = s1.split(";");
-		paperID = st1[0];
-		pos = Integer.parseInt(st1[1]);
+        public void onClick(View v) {
+            // TODO Auto-generated method stub
+            TextView tv;
+            int index;
+            switch (v.getId()) {
+                case edu.pitt.is.UMAP2015.R.id.title:
+                    tv = (TextView) v;
+                    index = Integer.parseInt(tv.getTag().toString());
+                    MyStaredPapers.this.finish();
+                    Intent in = new Intent(MyStaredPapers.this, PaperDetail.class);
+                    in.putExtra("id", paperList.get(index).id);
+                    in.putExtra("title", paperList.get(index).title);
+                    in.putExtra("authors", paperList.get(index).authors);
+                    in.putExtra("date", paperList.get(index).date);
+                    in.putExtra("abstract", paperList.get(index).paperAbstract);
+                    in.putExtra("contentlink", paperList.get(index).contentlink);
 
-		if (getPaperStarred(paperID).compareTo("no") == 0) {
-			ib.setImageResource(edu.pitt.is.UMAP2015.R.drawable.yes_star);
-			updateUserPaperStatus(paperID, "yes", "star");
-			insertMyStarredPaper(paperID);
-			pList= getData();
-			adapter.notifyDataSetChanged();
-			starClicked = true;
-		} else {
-			ib.setImageResource(edu.pitt.is.UMAP2015.R.drawable.no_star);
-			updateUserPaperStatus(paperID, "no", "star");
-			deleteMyStarredPaper(paperID);
-			pList= getData();
-			adapter.notifyDataSetChanged();
-			starClicked = false;
-		}
+                    in.putExtra("room", paperList.get(index).room);
+                    in.putExtra("bTime", paperList.get(index).exactbeginTime);
+                    in.putExtra("eTime", paperList.get(index).exactendTime);
+                    in.putExtra("presentationID", paperList.get(index).presentationID);
+                    in.putExtra("activity", "MyStaredPapers");
+                    in.putExtra("key", "no");
+                    startActivity(in);
+                    break;
+                case edu.pitt.is.UMAP2015.R.id.ImageButton01:
+                    ib = (ImageButton) v;
+                    String s = ib.getTag().toString();
+                    String[] st = s.split(";");
+                    paperID = st[0];
+                    pos = Integer.parseInt(st[1]);
+                    Conference.userID = getUserID();
+                    if (Conference.userSignin) {
+                        paperStatus = "";
+                        callThread();
+                    } else {
+                        CallSignin();
+                    }
 
-		break;
-	default:
-		break;
-	}
+                    break;
+                case edu.pitt.is.UMAP2015.R.id.ImageButton02:
+                    ib = (ImageButton) v;
+                    String s1 = ib.getTag().toString();
+                    String[] st1 = s1.split(";");
+                    paperID = st1[0];
+                    pos = Integer.parseInt(st1[1]);
 
-}
-}
+                    if (getPaperStarred(paperID).compareTo("no") == 0) {
+                        ib.setImageResource(edu.pitt.is.UMAP2015.R.drawable.yes_star);
+                        updateUserPaperStatus(paperID, "yes", "star");
+                        insertMyStarredPaper(paperID);
+                        paperList = getData();
+                        pList = paperList;
+                        adapter.notifyDataSetChanged();
+                    } else {
+                        ib.setImageResource(edu.pitt.is.UMAP2015.R.drawable.no_star);
+                        updateUserPaperStatus(paperID, "no", "star");
+                        deleteMyStarredPaper(paperID);
+                        paperList = getData();
+                        pList = paperList;
+                        adapter.notifyDataSetChanged();
+                    }
 
-	public void run() {
-		// TODO Auto-generated method stub
-		if (getPaperScheduled(paperID).compareTo("yes")==0)
-			paperStatus = us2s.DeleteScheduledPaper2Sever(paperID);
-		else if (getPaperScheduled(paperID).compareTo("no")==0)
-		paperStatus = us2s.addScheduledPaper2Sever(paperID);
-		handler.sendEmptyMessage(0);
-	}
+                    break;
+                default:
+                    break;
+            }
 
-	private Handler handler = new Handler() {
-		@Override
-		public void handleMessage(Message msg) {
-			pd.dismiss();
-			// update interface here
+        }
+    }
 
-			if (paperStatus.compareTo("yes") == 0) {
-				ib.setImageResource(edu.pitt.is.UMAP2015.R.drawable.yes_schedule);
-				updateUserPaperStatus(paperID, "yes", "schedule");
-				insertMyScheduledPaper(paperID);
-				pList.get(pos).scheduled="yes";
-				adapter.notifyDataSetChanged();
-				scheduleClicked = true;
-			}
-			if (paperStatus.compareTo("no") == 0) {
-				ib.setImageResource(edu.pitt.is.UMAP2015.R.drawable.no_schedule);
-				updateUserPaperStatus(paperID, "no", "schedule");
-				deleteMyScheduledPaper(paperID);
-				pList.get(pos).scheduled="no";
-				adapter.notifyDataSetChanged();
-				scheduleClicked = false;
-			}
-		}
-	};
-	public void callThread() {
+    public void run() {
+        // TODO Auto-generated method stub
+        if (getPaperScheduled(paperID).compareTo("yes") == 0)
+            paperStatus = us2s.DeleteScheduledPaper2Sever(paperID);
+        else if (getPaperScheduled(paperID).compareTo("no") == 0)
+            paperStatus = us2s.addScheduledPaper2Sever(paperID);
+        handler.sendEmptyMessage(0);
+    }
 
-		pd = ProgressDialog.show(this, "Synchronization", "Please Wait...",
-				true, false);
-		Thread thread = new Thread(this);
-		thread.start();
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            pd.dismiss();
+            // update interface here
 
-	}
+            if (paperStatus.compareTo("yes") == 0) {
+                updateUserPaperStatus(paperID, "yes", "schedule");
+                insertMyScheduledPaper(paperID);
+                pList.get(pos).scheduled = "yes";
+                adapter.notifyDataSetChanged();
+            } else if (paperStatus.compareTo("no") == 0) {
+                updateUserPaperStatus(paperID, "no", "schedule");
+                deleteMyScheduledPaper(paperID);
+                pList.get(pos).scheduled = "no";
+                adapter.notifyDataSetChanged();
+            }
+        }
+    };
+
+    public void callThread() {
+
+        pd = ProgressDialog.show(this, "Synchronization", "Please Wait...",
+                true, false);
+        Thread thread = new Thread(this);
+        thread.start();
+
+    }
 
 }
