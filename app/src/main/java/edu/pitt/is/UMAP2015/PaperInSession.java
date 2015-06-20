@@ -15,10 +15,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,7 +37,7 @@ import android.widget.TextView;
 public class PaperInSession extends Activity implements Runnable {
     private String papersessionID, sessionName, sessionBTime, sessionETime,
             sessionDate, room;
-    private TextView t1, t2, t3, t4;
+    private TextView t1, t2, t4;
     private ListView lv;
     private DBAdapter db;
     private ArrayList<Paper> pList;
@@ -93,16 +95,31 @@ public class PaperInSession extends Activity implements Runnable {
             System.out.println("Date Exception");
         }
 
-        t3 = (TextView) findViewById(edu.pitt.is.UMAP2015.R.id.TextView03);
         t4 = (TextView) findViewById(edu.pitt.is.UMAP2015.R.id.TextView04);
-        if (room.compareToIgnoreCase("NULL") == 0) {
-            t3.setVisibility(View.GONE);
-            t4.setVisibility(View.GONE);
-        } else {
-            t3.setVisibility(View.VISIBLE);
-            t4.setVisibility(View.VISIBLE);
+        if (room == null || "null".compareToIgnoreCase(room) == 0 || "".compareTo(room) == 0)
+            t4.setText("N/A");
+        else {
             t4.setText(room);
         }
+
+        t4.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                Uri geoLocation = Uri.parse("geo:0,0?").buildUpon()
+                        .appendQueryParameter("q", room)
+                        .build();
+
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(geoLocation);
+
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                } else {
+                    Log.d("Debug", "Couldn't call " + room + ", no receiving apps installed!");
+                }
+            }
+
+        });
 
         lv = (ListView) findViewById(edu.pitt.is.UMAP2015.R.id.ListView01);
         pList = new ArrayList<Paper>();

@@ -314,7 +314,6 @@ public class ProgramByDay extends Activity {
         @Override
         public void onItemClick(AdapterView<?> arg0, View arg1, int pos,
                                 long arg3) {
-            System.out.println("*******************" + "");
             Intent in = new Intent(ProgramByDay.this, PaperInSession.class);
             in.putExtra("papersessionID", s.get(pos).ID);
             in.putExtra("sessionName", s.get(pos).name);

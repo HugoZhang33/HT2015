@@ -8,8 +8,7 @@ import data.CheckDBUpdate;
 import data.Conference;
 import data.ConferenceInfoParser;
 import data.DBAdapter;
-import data.ConferenceDataLoad;
-import data.KeynoteParse;
+import data.KeynoteWorkshopParser;
 import data.LoadPaperFromDB;
 import data.LoadSessionFromDB;
 import data.Paper;
@@ -19,6 +18,7 @@ import data.Keynote;
 import data.RecommendParse;
 import data.Session;
 import data.UserScheduleParse;
+import data.Workshop;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -217,22 +217,26 @@ public class UpdateOption extends Activity {
                 ArrayList<Paper> pList = new ArrayList<Paper>();
                 ArrayList<PaperContent> pcList = new ArrayList<PaperContent>();
                 ArrayList<Keynote> knList = new ArrayList<Keynote>();
+                ArrayList<Workshop> wsList = new ArrayList<Workshop>();
                 ArrayList<String> pidList = new ArrayList<String>();
                 ArrayList<String> pidRList = new ArrayList<String>();
                 ArrayList<String> pidLList = new ArrayList<String>();
 
-                ConferenceDataLoad cdl = new ConferenceDataLoad();
-
-                cdl.loadConferenceInfo();
+//                ConferenceDataLoad cdl = new ConferenceDataLoad();
+//
+//                cdl.loadConferenceInfo();
 
 //                knList = cdl.loadKeynote();
 
 
-                //Update keynote info
+                //Update keynote and workshop info
                 publishProgress(14);
-                KeynoteParse knp = new KeynoteParse();
-                knList = knp.getKeynoteData();
-                if (knList.size() != 0) {
+                KeynoteWorkshopParser knp = new KeynoteWorkshopParser();
+                knp.getData();
+
+                knList = knp.getKenotes();
+                wsList = knp.getWorkshops();
+                if (knList.size() != 0 && wsList.size() != 0) {
                     publishProgress(12);
                 } else {
                     publishProgress(13);
@@ -268,13 +272,20 @@ public class UpdateOption extends Activity {
                     publishProgress(5);
                 }
 
-                if (knList.size() != 0 && sList.size() != 0 && pList.size() != 0 && pcList.size() != 0) {
+                if (wsList.size() != 0 && knList.size() != 0 && sList.size() != 0 && pList.size() != 0 && pcList.size() != 0) {
                     try {
                         db.open();
                         db.deleteKeynote();
+                        db.deleteWorkshopDes();
                         db.deleteSession();
                         db.deletePaper();
                         db.deletePaperContent();
+
+                        for (int i = 0; i < wsList.size(); i++) {
+                            long error = db.insertWorkshopDes(wsList.get(i));
+                            if (error == -1)
+                                System.out.println("error occured");
+                        }
 
                         for (int i = 0; i < knList.size(); i++) {
                             long error = db.insertKeynote(knList.get(i));
@@ -425,15 +436,15 @@ public class UpdateOption extends Activity {
                     break;
                 case 12:
                     keynote.setCompoundDrawablesWithIntrinsicBounds(edu.pitt.is.UMAP2015.R.drawable.accept, 0, 0, 0);
-                    keynote.setText("Update keynote information: success!");
+                    keynote.setText("Update keynote & workshop information: success!");
                     break;
                 case 13:
                     keynote.setCompoundDrawablesWithIntrinsicBounds(edu.pitt.is.UMAP2015.R.drawable.error, 0, 0, 0);
-                    keynote.setText("Fail to update keynote information");
+                    keynote.setText("Fail to update keynote & workshop information");
                     break;
                 case 14:
                     keynote.setCompoundDrawablesWithIntrinsicBounds(edu.pitt.is.UMAP2015.R.drawable.db_refresh, 0, 0, 0);
-                    keynote.setText("Updating keynote information ...");
+                    keynote.setText("Updating keynote & workshop information ...");
                     break;
                 default:
                     break;

@@ -7,7 +7,9 @@ import java.util.Date;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,9 +21,11 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import data.Conference;
+
 public class KeynoteDetail extends Activity {
     private TextView tw1, tw2, tw3, tw6, tw7;
-    private Button tw4;
+    private Button googlemap;
     private WebView wv;
     private RelativeLayout rl;
     private String title, date, beginTime, kendTime, room, description, speaker, Affiliation;
@@ -76,14 +80,11 @@ public class KeynoteDetail extends Activity {
         }
 
         tw3 = (TextView) this.findViewById(edu.pitt.is.UMAP2015.R.id.TextView04);
-        if (room.compareTo("null") != 0)
-            tw3.setText(room);
+        if (room == null || "null".compareToIgnoreCase(room) == 0 || "".compareTo(room) == 0)
+            tw3.setText("N/A");
         else {
-            this.findViewById(edu.pitt.is.UMAP2015.R.id.TextView03).setVisibility(View.GONE);
-            tw3.setVisibility(View.GONE);
+            tw3.setText(room);
         }
-        tw4 = (Button) this.findViewById(edu.pitt.is.UMAP2015.R.id.map);
-        tw4.setVisibility(View.GONE);
 
         rl = (RelativeLayout) this.findViewById(edu.pitt.is.UMAP2015.R.id.LinearLayout02);
         rl.setVisibility(View.VISIBLE);
@@ -99,6 +100,26 @@ public class KeynoteDetail extends Activity {
         wv = (WebView) this.findViewById(edu.pitt.is.UMAP2015.R.id.WebView01);
         wv.getSettings().setJavaScriptEnabled(true);
         wv.loadData(description, "text/html", "utf-8");
+
+        googlemap = (Button) findViewById(edu.pitt.is.UMAP2015.R.id.map);
+        googlemap.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                Uri geoLocation = Uri.parse("geo:0,0?").buildUpon()
+                        .appendQueryParameter("q", room)
+                        .build();
+
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(geoLocation);
+
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                } else {
+                    Log.d("Debug", "Couldn't call " + room + ", no receiving apps installed!");
+                }
+            }
+
+        });
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -72,32 +73,21 @@ public class ConferenceInfo extends Activity {
 		{
 
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				//String location1 = "Hotel Holiday-Inn Montreal"+"420 Sherbrooke Street West Montreal, QC H3A 1B4";
-				Intent map = new Intent(Intent.ACTION_VIEW, Uri
-						.parse("https://maps.google.com/maps?q=Worthington%20Renaissance%20google%20map&um=1&ie=UTF-8&hl=en&sa=N&tab=wl"));
-				startActivity(map);
-				
-				
+				Uri geoLocation = Uri.parse("geo:0,0?").buildUpon()
+						.appendQueryParameter("q", Conference.location)
+						.build();
+
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(geoLocation);
+
+				if (intent.resolveActivity(getPackageManager()) != null) {
+					startActivity(intent);
+				} else {
+					Log.d("Debug", "Couldn't call " + Conference.location + ", no receiving apps installed!");
+				}
 			}
 			
-		}
-	);
-
-		/*googlemap2 = (Button) findViewById(R.id.map1);		
-		googlemap2.setOnClickListener(new View.OnClickListener()
-		{
-
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				String location2 = "Universit??? du Qu???bec ??? Montr???al"+"Workshops @45.50967,-73.570129";
-				Intent map2 = new Intent(Intent.ACTION_VIEW, Uri
-						.parse("http://maps.google.com/maps?q=" + location2));
-				startActivity(map2);				
-			}
-			
-		}
-	);*/
+		});
 	}
 	
 	@Override

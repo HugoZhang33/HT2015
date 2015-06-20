@@ -41,7 +41,7 @@ public class Signin extends Activity implements Runnable {
             sessionDate = "";
     private String contentID = "";
     private String presentationID, paperTitle, paperbTime, papereTime, paperAbstract, paperAuthors, date, room = "";
-    private String workshopID, workshopTitle, content, workshopDate, wbtime, wetime, childsessionID = "";
+    private String workshopID, workshopTitle, workshopDate, wbtime, wetime, eventSessionID = "";
     private TextView tw4;
     private DBAdapter db;
 
@@ -113,8 +113,8 @@ public class Signin extends Activity implements Runnable {
                 room = b.getString("room");
                 wbtime = b.getString("wbtime");
                 wetime = b.getString("wetime");
-                content = b.getString("content");
-                childsessionID = b.getString("childsessionID");
+//                content = b.getString("content");
+                eventSessionID = b.getString("eventSessionID");
 
             } else if (activityName.compareTo("PosterDetail") == 0) {
                 paperID = b.getString("paperID");
@@ -135,7 +135,7 @@ public class Signin extends Activity implements Runnable {
         signupButton = (Button) findViewById(edu.pitt.is.UMAP2015.R.id.SignupButton);
 
 		/*tw4 = (TextView)this.findViewById(R.id.TextView04);
-		tw4.setText(Html.fromHtml("<a href=\"http://asist2010planner.appspot.com\">ASIST Web 2.0</a>"));*/
+        tw4.setText(Html.fromHtml("<a href=\"http://asist2010planner.appspot.com\">ASIST Web 2.0</a>"));*/
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -301,8 +301,8 @@ public class Signin extends Activity implements Runnable {
                 in.putExtra("room", room);
                 in.putExtra("bTime", wbtime);
                 in.putExtra("eTime", wetime);
-                in.putExtra("content", content);
-                in.putExtra("childsessionID", childsessionID);
+//                in.putExtra("content", content);
+                in.putExtra("eventSessionID", eventSessionID);
             } else if (activityName.compareTo("PosterDetail") == 0) {
                 updatePaperStatus(paperID);
                 syncDB();
@@ -386,8 +386,8 @@ public class Signin extends Activity implements Runnable {
             in.putExtra("room", room);
             in.putExtra("bTime", wbtime);
             in.putExtra("eTime", wetime);
-            in.putExtra("content", content);
-            in.putExtra("childsessionID", childsessionID);
+//            in.putExtra("content", content);
+            in.putExtra("eventSessionID", eventSessionID);
         } else if (activityName.compareTo("PosterDetail") == 0) {
 
             in.putExtra("paperID", paperID);

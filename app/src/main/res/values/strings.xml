@@ -6,5 +6,9 @@
     <string-array name="conference_array">  
         <item>UMAP2015</item>
         <item>iConference2015</item>
-    </string-array> 
+    </string-array>
+    <string name="title_activity_first_launch_update">firstLaunchUpdate</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string> 
 </resources>

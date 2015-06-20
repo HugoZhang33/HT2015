@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +21,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -95,12 +97,30 @@ public class PaperInfo extends Activity implements Runnable, OnClickListener {
         t3 = (TextView) findViewById(edu.pitt.is.UMAP2015.R.id.TextView02);
         t3.setText(date + " " + bTime + "-" + eTime);
         t4 = (TextView) findViewById(edu.pitt.is.UMAP2015.R.id.TextView04);
-        if (pRoom.compareTo("unknown") != 0 && pRoom.compareTo("null") != 0)
-            t4.setText(pRoom);
+        if (pRoom == null || "null".compareToIgnoreCase(pRoom) == 0 || "".compareTo(pRoom) == 0)
+            t4.setText("N/A");
         else {
-            findViewById(edu.pitt.is.UMAP2015.R.id.TextView03).setVisibility(View.GONE);
-            t4.setVisibility(View.GONE);
+            t4.setText(pRoom);
         }
+
+        t4.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                Uri geoLocation = Uri.parse("geo:0,0?").buildUpon()
+                        .appendQueryParameter("q", pRoom)
+                        .build();
+
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(geoLocation);
+
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                } else {
+                    Log.d("Debug", "Couldn't call " + pRoom + ", no receiving apps installed!");
+                }
+            }
+
+        });
 
 
         bv = (TextView) findViewById(edu.pitt.is.UMAP2015.R.id.PaperButton);
@@ -422,8 +442,8 @@ public class PaperInfo extends Activity implements Runnable, OnClickListener {
                 in.putExtra("eTime", s[3]);
                 in.putExtra("room", s[4]);
                 in.putExtra("date", s[5]);
-                in.putExtra("content", s[6]);
-                in.putExtra("childsessionID", s[7]);
+//                in.putExtra("content", s[6]);
+                in.putExtra("eventSessionID", s[6]);
                 startActivity(in);
             } else if (activity.compareToIgnoreCase("PosterDetail") == 0) {
                 this.finish();

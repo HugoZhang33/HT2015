@@ -83,8 +83,9 @@ public class MainInterface extends Activity {
 
         //Row 1
         GridView gv1 = (GridView) findViewById(edu.pitt.is.UMAP2015.R.id.GridView01);
-        Integer[] i1 = {edu.pitt.is.UMAP2015.R.drawable.about, edu.pitt.is.UMAP2015.R.drawable.keynote, edu.pitt.is.UMAP2015.R.drawable.sessionbig, edu.pitt.is.UMAP2015.R.drawable.proceeding};
-        String[] t1 = {"About", "Keynotes", "Schedule", "Proceedings"};
+//        Integer[] i1 = {edu.pitt.is.UMAP2015.R.drawable.about, edu.pitt.is.UMAP2015.R.drawable.keynote, edu.pitt.is.UMAP2015.R.drawable.sessionbig, edu.pitt.is.UMAP2015.R.drawable.proceeding};
+        Integer[] i1 = {edu.pitt.is.UMAP2015.R.drawable.about, edu.pitt.is.UMAP2015.R.drawable.keynote, R.drawable.workshop, edu.pitt.is.UMAP2015.R.drawable.sessionbig, edu.pitt.is.UMAP2015.R.drawable.proceeding};
+        String[] t1 = {"About", "Keynotes", "Workshop", "Schedule", "Proceedings"};
         gv1.setAdapter(new ImageViewAdapter(this, i1, t1));
 
         gv1.setOnItemClickListener(new OnItemClickListener() {
@@ -101,12 +102,18 @@ public class MainInterface extends Activity {
                         in = new Intent(MainInterface.this, KeyNote.class);
                         startActivity(in);
                         break;
+                    // Workshop
                     case 2:
+                        in = new Intent(MainInterface.this, Workshops.class);
+                        startActivity(in);
+                        break;
+                    // Schedule
+                    case 3:
                         in = new Intent(MainInterface.this, ProgramByDay.class);
                         startActivity(in);
                         break;
                     // Proceedings
-                    case 3:
+                    case 4:
                         in = new Intent(MainInterface.this, Proceedings.class);
                         startActivity(in);
                         break;
@@ -217,9 +224,10 @@ public class MainInterface extends Activity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
             finish();
-            System.runFinalizersOnExit(true);
-            this.moveTaskToBack(true);
-            android.os.Process.killProcess(android.os.Process.myPid());
+            Intent home = new Intent(Intent.ACTION_MAIN);
+            home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            home.addCategory(Intent.CATEGORY_HOME);
+            startActivity(home);
         }
 
         return super.onKeyDown(keyCode, event);

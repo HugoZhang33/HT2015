@@ -20,6 +20,10 @@ public class Authorization {
 	public String  errorMessage = null;
 
 	public void login(String email, String password) {
+		// delete whitespace string
+		email = email.trim();
+		password = password.trim();
+
 		String url = ConferenceURL.Login;
 		HttpPost httpRequest = new HttpPost(url);
 
@@ -72,6 +76,11 @@ public class Authorization {
 	
 	public void signUp(String name,String email, String password, String rePassword, String citeULike)
 	{
+		// delete whitespace string
+		name = name.trim();
+		email = email.trim();
+		password = password.trim();
+
 		String url = ConferenceURL.Signup;
 		HttpPost httpRequest = new HttpPost(url);
 
