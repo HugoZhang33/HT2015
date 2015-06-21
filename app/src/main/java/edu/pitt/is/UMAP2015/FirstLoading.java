@@ -1,21 +1,6 @@
 package edu.pitt.is.UMAP2015;
 
 
-import java.util.ArrayList;
-
-
-import data.CheckDBUpdate;
-import data.Conference;
-import data.DBAdapter;
-import data.LoadPaperFromDB;
-import data.LoadSessionFromDB;
-import data.Paper;
-import data.PaperContent;
-import data.PaperContentParse;
-import data.RecommendParse;
-import data.Session;
-import data.UserScheduleParse;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -36,6 +21,20 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+
+import data.CheckDBUpdate;
+import data.Conference;
+import data.DBAdapter;
+import data.LoadPaperFromDB;
+import data.LoadSessionFromDB;
+import data.Paper;
+import data.PaperContent;
+import data.PaperContentParse;
+import data.RecommendParse;
+import data.Session;
+import data.UserScheduleParse;
 
 /**
  * update layout

@@ -1,9 +1,5 @@
 package edu.pitt.is.UMAP2015;
 
-import data.Conference;
-import data.DBAdapter;
-import data.UserScheduledToServer;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -21,9 +17,12 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebView;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import data.Conference;
+import data.DBAdapter;
+import data.UserScheduledToServer;
 
 public class PaperInfo extends Activity implements Runnable, OnClickListener {
     private String key, activity, id, title, authors, pAbstract, pContent, pRoom, bTime, eTime, paperID, paperStatus, date, presentationID;

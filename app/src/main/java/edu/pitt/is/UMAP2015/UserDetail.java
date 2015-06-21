@@ -1,10 +1,6 @@
 package edu.pitt.is.UMAP2015;
 
 
-import data.Conference;
-import data.User;
-import data.UserProfileParse;
-import data.UserScheduleParse;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -16,6 +12,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import data.Conference;
+import data.User;
+import data.UserProfileParse;
+import data.UserScheduleParse;
 
 public class UserDetail extends Activity{
 

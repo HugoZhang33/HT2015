@@ -1,16 +1,6 @@
 package edu.pitt.is.UMAP2015;
 
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-
-
-import data.DBAdapter;
-import data.Paper;
-import data.Session;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,13 +12,22 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.TabHost.TabSpec;
 import android.widget.TabWidget;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.TabHost.TabSpec;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
+import data.DBAdapter;
+import data.Paper;
+import data.Session;
 
 public class ProgramByDay extends Activity {
 

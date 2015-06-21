@@ -1,9 +1,6 @@
 package edu.pitt.is.UMAP2015;
 
 
-import java.util.ArrayList;
-import java.util.Date;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -12,21 +9,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.Html;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.View.OnClickListener;
 import android.webkit.WebView;
-import android.widget.BaseAdapter;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import data.Conference;
 import data.DBAdapter;

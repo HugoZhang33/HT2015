@@ -1,10 +1,6 @@
 package edu.pitt.is.UMAP2015;
 
 
-import data.CheckDBUpdate;
-import data.Conference;
-import data.DBAdapter;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -18,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
@@ -26,7 +23,10 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+
+import data.CheckDBUpdate;
+import data.Conference;
+import data.DBAdapter;
 
 public class MainInterface extends Activity {
 

@@ -1,7 +1,5 @@
 package edu.pitt.is.UMAP2015;
 
-import data.Conference;
-import data.DBAdapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -16,6 +14,9 @@ import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
+
+import data.Conference;
+import data.DBAdapter;
 
 
 /**

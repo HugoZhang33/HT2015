@@ -1,28 +1,27 @@
 package edu.pitt.is.UMAP2015;
 
 
-import java.util.Hashtable;
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.Hashtable;
 
 import data.Conference;
 import data.User;
 import data.UserBeFriend;
 import data.UserProfileParse;
 import data.UserScheduleParse;
-
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.KeyEvent;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class FriendsDetail extends Activity {
 

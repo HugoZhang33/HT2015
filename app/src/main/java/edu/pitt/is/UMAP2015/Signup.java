@@ -1,17 +1,6 @@
 package edu.pitt.is.UMAP2015;
 
 
-
-import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-
-import data.Authorization;
-import data.Conference;
-import data.DBAdapter;
-import data.UserScheduleParse;
-import data.UserScheduledToServer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -27,6 +16,16 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import data.Authorization;
+import data.Conference;
+import data.DBAdapter;
+import data.UserScheduleParse;
+import data.UserScheduledToServer;
 
 public class Signup extends Activity implements Runnable{
 	

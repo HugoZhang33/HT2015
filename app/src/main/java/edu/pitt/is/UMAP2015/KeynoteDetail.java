@@ -1,10 +1,6 @@
 package edu.pitt.is.UMAP2015;
 
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -21,7 +17,8 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import data.Conference;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class KeynoteDetail extends Activity {
     private TextView tw1, tw2, tw3, tw6, tw7;

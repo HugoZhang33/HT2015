@@ -1,17 +1,6 @@
 package edu.pitt.is.UMAP2015;
 
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Hashtable;
-
-
-import data.Conference;
-import data.DBAdapter;
-import data.Paper;
-import data.UserPaperSimilar;
-import data.UserScheduledToServer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -30,15 +19,26 @@ import android.text.Html;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Hashtable;
+
+import data.Conference;
+import data.DBAdapter;
+import data.Paper;
+import data.UserPaperSimilar;
+import data.UserScheduledToServer;
 
 public class PaperSimilar extends Activity implements Runnable {
 	private ArrayList<Paper> pList;

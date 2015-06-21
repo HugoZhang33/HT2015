@@ -1,19 +1,6 @@
 package edu.pitt.is.UMAP2015;
 
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-
-
-import data.Conference;
-import data.DBAdapter;
-import data.Paper;
-import data.Session;
-import data.UserScheduleParse;
-import data.UserScheduledToServer;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -31,18 +18,30 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.View.OnClickListener;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TabHost;
+import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.TabHost.TabSpec;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
+import data.Conference;
+import data.DBAdapter;
+import data.Paper;
+import data.Session;
+import data.UserScheduleParse;
+import data.UserScheduledToServer;
 
 public class MyScheduledPapers extends Activity implements Runnable {
     private int date;

@@ -1,12 +1,12 @@
 package data;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.BaseAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 abstract public class SectionedAdapter extends BaseAdapter {
 	abstract protected View getHeaderView(String caption, int index,

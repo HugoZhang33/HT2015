@@ -1,14 +1,6 @@
 package edu.pitt.is.UMAP2015;
 
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-
-
-import data.Conference;
-import data.Friend;
-import data.UserFriendParse;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -22,12 +14,19 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+
+import java.util.ArrayList;
+import java.util.Hashtable;
+
+import data.Conference;
+import data.Friend;
+import data.UserFriendParse;
 
 public class MyFriends extends Activity{
 

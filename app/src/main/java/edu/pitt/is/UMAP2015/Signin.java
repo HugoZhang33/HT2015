@@ -1,15 +1,6 @@
 package edu.pitt.is.UMAP2015;
 
 
-import java.util.ArrayList;
-
-
-import data.Authorization;
-import data.Conference;
-import data.DBAdapter;
-import data.UserScheduleParse;
-import data.UserScheduledToServer;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -26,6 +17,14 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+
+import data.Authorization;
+import data.Conference;
+import data.DBAdapter;
+import data.UserScheduleParse;
+import data.UserScheduledToServer;
 
 public class Signin extends Activity implements Runnable {
 
