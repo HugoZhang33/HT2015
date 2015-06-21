@@ -15,6 +15,7 @@ import data.Paper;
 import data.PaperContent;
 import data.PaperContentParse;
 import data.Keynote;
+import data.Poster;
 import data.RecommendParse;
 import data.Session;
 import data.UserScheduleParse;
@@ -218,6 +219,7 @@ public class UpdateOption extends Activity {
                 ArrayList<PaperContent> pcList = new ArrayList<PaperContent>();
                 ArrayList<Keynote> knList = new ArrayList<Keynote>();
                 ArrayList<Workshop> wsList = new ArrayList<Workshop>();
+                ArrayList<Poster> poList = new ArrayList<Poster>();
                 ArrayList<String> pidList = new ArrayList<String>();
                 ArrayList<String> pidRList = new ArrayList<String>();
                 ArrayList<String> pidLList = new ArrayList<String>();
@@ -236,6 +238,8 @@ public class UpdateOption extends Activity {
 
                 knList = knp.getKenotes();
                 wsList = knp.getWorkshops();
+                poList = knp.getPosters();
+                System.out.println(")))))))))))))))))) " + poList.size());
                 if (knList.size() != 0 && wsList.size() != 0) {
                     publishProgress(12);
                 } else {
@@ -277,6 +281,7 @@ public class UpdateOption extends Activity {
                         db.open();
                         db.deleteKeynote();
                         db.deleteWorkshopDes();
+                        db.deletePoster();
                         db.deleteSession();
                         db.deletePaper();
                         db.deletePaperContent();
@@ -289,6 +294,12 @@ public class UpdateOption extends Activity {
 
                         for (int i = 0; i < knList.size(); i++) {
                             long error = db.insertKeynote(knList.get(i));
+                            if (error == -1)
+                                System.out.println("error occured");
+                        }
+
+                        for (int i = 0; i < poList.size(); i++) {
+                            long error = db.insertPoster(poList.get(i));
                             if (error == -1)
                                 System.out.println("error occured");
                         }

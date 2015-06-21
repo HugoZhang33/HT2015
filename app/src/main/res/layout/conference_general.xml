@@ -74,40 +74,6 @@
             android:background="@drawable/google_map"></Button>
     </RelativeLayout>
 
-    <!--<RelativeLayout-->
-        <!--android:id="@+id/LinearLayout11"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/TextView02"-->
-        <!--android:paddingBottom="5pt"-->
-        <!--android:paddingLeft="5pt"-->
-        <!--android:paddingRight="1pt">-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/TextView13"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="AT "-->
-
-            <!--android:textColor="@drawable/Gray"></TextView>-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/TextView14"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_toRightOf="@id/TextView13"-->
-            <!--android:paddingRight="10pt"-->
-            <!--android:textColor="@drawable/SteelBlue"></TextView>-->
-
-        <!--<Button-->
-            <!--android:id="@+id/map1"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:background="@drawable/google_map"></Button>-->
-    <!--</RelativeLayout>-->
-
-
     <RelativeLayout
         android:id="@+id/LinearLayout02"
         android:layout_width="fill_parent"

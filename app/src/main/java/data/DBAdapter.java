@@ -442,6 +442,8 @@ public class DBAdapter {
         return poList;
     }
 
+    public int deletePoster() { return mDb.delete("poster", null, null); }
+
 
     //Schedule Papers
     public long insertMyScheduledPaper(String ID) {

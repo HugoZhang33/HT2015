@@ -60,8 +60,6 @@ public class LoadPaperFromDB {
         InputStreamReader isr = null;
         InputStream stream = null;
         try {
-            //URL url = new URL("http://halley.exp.sis.pitt.edu/cn3mobile/allSessionsAndPresentations.jsp?eventID=86");
-
             //Use Post Method
             String urlString = new String("http://halley.exp.sis.pitt.edu/cn3mobile/allSessionsAndPresentations.jsp?conferenceID=134");
 

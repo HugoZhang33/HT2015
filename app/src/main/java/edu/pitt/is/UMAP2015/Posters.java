@@ -1,7 +1,9 @@
 package edu.pitt.is.UMAP2015;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -20,10 +22,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import data.DBAdapter;
+import data.Paper;
 import data.Poster;
 
 public class Posters extends Activity {
-	private ArrayList<Poster> wList;
+	private ArrayList<Poster> poList;
+	private ArrayList<Paper> pList;
 	private DBAdapter db;
 	private ListView lv;
 	
@@ -46,12 +50,16 @@ public class Posters extends Activity {
 		db = new DBAdapter(this);
 		db.open();
 		
-		wList = new ArrayList<Poster>();	
-		wList = db.getPoster();
+		poList = new ArrayList<Poster>();
+		poList = db.getPoster();
+//		for (Poster po : poList) {
+//			Paper poster = db.getPaperByID(po.ID);
+//			pList.add(poster);
+//		}
 
 		db.close();
 		
-		adapter = new ListViewAdapter(wList);
+		adapter = new ListViewAdapter(poList);
 		
 		TextView tv = (TextView) findViewById(edu.pitt.is.UMAP2015.R.id.TextView01);
 		tv.setText("Posters");
@@ -63,12 +71,14 @@ public class Posters extends Activity {
 				
 				Intent in = new Intent(Posters.this, PosterDetail.class);
 				//in.putExtra("day_id", buttonNum);
-				in.putExtra("id", wList.get(pos).ID);
-				in.putExtra("title", wList.get(pos).name);
-				in.putExtra("date", wList.get(pos).date);
-				in.putExtra("bTime", wList.get(pos).beginTime);
-				in.putExtra("eTime", wList.get(pos).endTime);
-				in.putExtra("room", wList.get(pos).room);
+				in.putExtra("id", poList.get(pos).ID);
+				in.putExtra("title", poList.get(pos).name);
+				in.putExtra("date", poList.get(pos).date);
+				in.putExtra("bTime", poList.get(pos).beginTime);
+				in.putExtra("eTime", poList.get(pos).endTime);
+				in.putExtra("room", poList.get(pos).room);
+//				in.putExtra("content", pList.get(pos).paperAbstract);
+//				in.putExtra("author", pList.get(pos).authors);
 				
 				startActivity(in);
 			}
@@ -132,13 +142,13 @@ public class Posters extends Activity {
 		TextView t1,t2,t3,firstCharHintTextView;
 	}
 	private class ListViewAdapter extends BaseAdapter {
-		ArrayList<Poster> wList;
+		ArrayList<Poster> poList;
 		public ListViewAdapter(ArrayList w) {
-			this.wList = w;
+			this.poList = w;
 		}
 
 		public int getCount() {
-			return wList.size();
+			return poList.size();
 		}
 
 		public Object getItem(int position) {
@@ -151,11 +161,16 @@ public class Posters extends Activity {
 
 		public View getView(int position, View convertView, ViewGroup parent) {
 			ViewHolder v = null;
+			SimpleDateFormat sdfSource = new SimpleDateFormat("HH:mm");
+			SimpleDateFormat sdfDestination = new SimpleDateFormat("h:mm a");
+			Date beginDate, endDate;
+			String begTime, endTime;
 			if (convertView == null) {
 				LayoutInflater li = getLayoutInflater();
 				convertView = li.inflate(edu.pitt.is.UMAP2015.R.layout.sessionitem, null);
 				v = new ViewHolder();
-				v.t1= (TextView)convertView.findViewById(edu.pitt.is.UMAP2015.R.id.title);
+				v.t1 = (TextView)convertView.findViewById(edu.pitt.is.UMAP2015.R.id.title);
+				v.t2 = (TextView)convertView.findViewById(R.id.time);
 				v.t3 = (TextView)convertView.findViewById(edu.pitt.is.UMAP2015.R.id.location);
 				v.firstCharHintTextView =(TextView)convertView.findViewById(edu.pitt.is.UMAP2015.R.id.text_first_char_hint);
 				convertView.setTag(v);
@@ -163,23 +178,33 @@ public class Posters extends Activity {
 			else {
 				v = (ViewHolder) convertView.getTag();
 			}
-			v.t1.setText(wList.get(position).name);
-			if(wList.get(position).room.compareToIgnoreCase("NULL")==0)
+			try {
+				beginDate = sdfSource.parse(poList.get(position).beginTime);
+				endDate = sdfSource.parse(poList.get(position).endTime);
+				begTime = sdfDestination.format(beginDate);
+				endTime = sdfDestination.format(endDate);
+				v.t2.setVisibility(View.VISIBLE);
+				v.t2.setText(begTime + " - " + endTime);
+			} catch (Exception e) {
+				System.out.println("Date Exception");
+			}
+			v.t1.setText(poList.get(position).name);
+			if(poList.get(position).room.compareToIgnoreCase("NULL")==0)
             	v.t3.setVisibility(View.GONE);
             else{
             	v.t3.setVisibility(View.VISIBLE);	
-            	v.t3.setText("At "+wList.get(position).room);}
+            	v.t3.setText("At "+poList.get(position).room);}
     			int idx = position - 1;   
    			 
-                String preview = idx >= 0 ? wList.get(idx).date : "";   
-                String current = wList.get(position).date;
+                String preview = idx >= 0 ? poList.get(idx).date : "";
+                String current = poList.get(position).date;
           
                 if (current.compareTo(preview) == 0) {
                 	v.firstCharHintTextView.setVisibility(View.GONE);   
                 } else {   
                    
                 	v.firstCharHintTextView.setVisibility(View.VISIBLE);
-                	v.firstCharHintTextView.setText(wList.get(position).date); 
+                	v.firstCharHintTextView.setText(poList.get(position).date);
                 }
 			return convertView;
 		}

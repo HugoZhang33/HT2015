@@ -30,6 +30,7 @@ public class KeynoteWorkshopParser {
 
     private ArrayList<Keynote> knList = new ArrayList<Keynote>();
     private ArrayList<Workshop> wsList = new ArrayList<Workshop>();
+    private ArrayList<Poster> poList = new ArrayList<Poster>();
     private Hashtable<String, String> Datetrans, Dtrans;
 
     private void daytoDate() {
@@ -63,13 +64,13 @@ public class KeynoteWorkshopParser {
         return wsList;
     }
 
+    public ArrayList<Poster> getPosters() { return poList; }
+
     public void getData() {
 
         InputStreamReader isr = null;
         InputStream stream = null;
         try {
-            //URL url = new URL("http://halley.exp.sis.pitt.edu/cn3mobile/allSessionsAndPresentations.jsp?eventid=86");
-
             //Use Post Method
             String urlString = new String("http://halley.exp.sis.pitt.edu/cn3mobile/allSessionsAndPapers.jsp?conferenceID=134&noAbstract=1");
 
@@ -114,11 +115,17 @@ public class KeynoteWorkshopParser {
     private class DataParseHandler extends DefaultHandler {
         private DataDescriptionParser descriptionParser = new DataDescriptionParser();
         private String contentID = "";
+
         private Keynote ke;
         private Workshop ws;
+        private Poster po;
+
         private boolean keynoteStart = false;
+
         private boolean isKeynote = false;
         private boolean isWorkshop = false;
+        private boolean isPoster = false;
+
         private StringBuilder sb = new StringBuilder();
 
         public void startDocument() throws SAXException {
@@ -137,6 +144,7 @@ public class KeynoteWorkshopParser {
             if (localName.equals("Item")) {
                 ke = new Keynote();
                 ws = new Workshop();
+                po = new Poster();
 
                 ke.speakerAffiliation = " ";
                 ke.description = " ";
@@ -150,6 +158,7 @@ public class KeynoteWorkshopParser {
             if (localName.equals("eventSessionID")) {
                 ke.ID = sb.toString();
                 ws.eventSessionID = sb.toString();
+//                po.ID = ke.ID;
                 return;
             }
             if (localName.equals("sessionDate")) {
@@ -166,45 +175,56 @@ public class KeynoteWorkshopParser {
                 ke.dayid = Dtrans.get(str);
                 ws.date = ke.date;
                 ws.date = ke.dayid;
+                po.date = ke.date;
+                po.day_id = ke.dayid;
                 return;
             }
             if (localName.equals("contentID")) {
                 contentID = sb.toString();
-
+                po.ID = sb.toString();
                 return;
             }
             if (localName.equals("paperTitle")) {
                 ke.title = sb.toString();
                 ws.name = ke.title;
+                po.name = ke.title;
                 return;
             }
             if (localName.equals("presentationID")) {
                 ws.ID = sb.toString();
+//                po.ID = sb.toString();
             }
             if (localName.equals("contentType")) {
-                if ("Keynote".equals(sb.toString()))
+                if ("Keynote".equals(sb.toString())) {
                     isKeynote = true;
-                else if ("Workshop".equals(sb.toString())) {
+                } else if ("Workshop".equals(sb.toString())) {
                     isWorkshop = true;
-                } else {
+                } else  if ("Poster".equals(sb.toString())) {
+                    isPoster = true;
+                }
+                else {
                     isKeynote = false;
                     isWorkshop = false;
+                    isPoster = false;
                 }
                 return;
             }
             if (localName.equals("begintime") && keynoteStart) {
                 ke.beginTime = sb.toString();
                 ws.beginTime = ke.beginTime;
+                po.beginTime = ke.beginTime;
                 return;
             }
             if (localName.equals("endtime") && keynoteStart) {
                 ke.endTime = sb.toString();
                 ws.endTime = ke.endTime;
+                po.endTime = ke.endTime;
                 return;
             }
             if (localName.equals("location")) {
                 ke.room = sb.toString();
                 ws.room = ke.room;
+                po.room = ke.room;
                 return;
             }
             if (localName.equals("authors")) {
@@ -218,9 +238,12 @@ public class KeynoteWorkshopParser {
                 } else if (isWorkshop) {
                     ws.content = descriptionParser.getDescription(contentID);
                     wsList.add(ws);
+                } else if (isPoster) {
+                    poList.add(po);
                 }
                 isKeynote = false;
                 isWorkshop = false;
+                isPoster = false;
                 return;
             }
             if (localName.equals("Items")) {

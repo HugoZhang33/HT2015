@@ -15,6 +15,7 @@ import data.Paper;
 import data.PaperContent;
 import data.PaperContentParse;
 import data.Keynote;
+import data.Poster;
 import data.Session;
 import data.Workshop;
 
@@ -106,6 +107,7 @@ public class FirstLaunchUpdate extends Activity {
                 ArrayList<PaperContent> pcList = new ArrayList<PaperContent>();
                 ArrayList<Keynote> knList = new ArrayList<Keynote>();
                 ArrayList<Workshop> wsList = new ArrayList<Workshop>();
+                ArrayList<Poster> poList = new ArrayList<Poster>();
 
                 //Update keynote and workshop info
                 publishProgress(14);
@@ -114,6 +116,7 @@ public class FirstLaunchUpdate extends Activity {
 
                 knList = knp.getKenotes();
                 wsList = knp.getWorkshops();
+                poList = knp.getPosters();
                 if (knList.size() != 0 && wsList.size() != 0) {
                     publishProgress(12);
                 } else {
@@ -155,6 +158,7 @@ public class FirstLaunchUpdate extends Activity {
                         db.open();
                         db.deleteKeynote();
                         db.deleteWorkshopDes();
+                        db.deletePoster();
                         db.deleteSession();
                         db.deletePaper();
                         db.deletePaperContent();
@@ -167,6 +171,12 @@ public class FirstLaunchUpdate extends Activity {
 
                         for (int i = 0; i < knList.size(); i++) {
                             long error = db.insertKeynote(knList.get(i));
+                            if (error == -1)
+                                System.out.println("error occured");
+                        }
+
+                        for (int i = 0; i < poList.size(); i++) {
+                            long error = db.insertPoster(poList.get(i));
                             if (error == -1)
                                 System.out.println("error occured");
                         }
