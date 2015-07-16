@@ -130,4 +130,5 @@
 	<drawable name="WhiteSmoke">#f5f5f5</drawable>
 	<drawable name="Yellow">#30ffff00</drawable>
 	<drawable name="YellowGreen">#9acd32</drawable>
+	<drawable name="YellowSilver">#b9b9ac</drawable>
 </resources>

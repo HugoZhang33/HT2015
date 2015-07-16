@@ -10,7 +10,7 @@
         android:id="@+id/RelativeLayout01"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rectshape">
+        android:background="@drawable/YellowSilver">
 
         <TextView
             android:id="@+id/status"
@@ -79,4 +79,4 @@
         android:textColor="@drawable/darkblue">
     </TextView>
 </LinearLayout>
-<!-- From: file:/Users/hongzhang/Desktop/UMAP2015/app/src/main/res/layout/userdetail.xml -->
+<!-- From: file:/Users/hongzhang/Desktop/HT2015/app/src/main/res/layout/userdetail.xml -->

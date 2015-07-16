@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.pitt.is.UMAP2015"
-    android:versionCode="18"
-    android:versionName="4.8.3" >
+    package="edu.pitt.is.HT2015"
+    android:versionCode="3"
+    android:versionName="1.0.2" >
 
     <uses-sdk
         android:minSdkVersion="4"
@@ -15,7 +15,7 @@
         android:icon="@drawable/icon"
         android:label="@string/app_name" >
         <activity
-            android:name="edu.pitt.is.UMAP2015.iConference2012"
+            android:name="activity.iConference"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -25,94 +25,94 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="edu.pitt.is.UMAP2015.UpdateOption"
+            android:name="activity.UpdateOption"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.MainInterface"
+            android:name="activity.MainInterface"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.ConferenceInfo"
+            android:name="activity.ConferenceInfo"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.KeyNote"
+            android:name="activity.KeyNote"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.KeynoteDetail"
+            android:name="activity.KeynoteDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.ProgramByDay"
+            android:name="activity.ProgramByDay"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.PaperInSession"
+            android:name="activity.PaperInSession"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.UserDetail"
+            android:name="activity.UserDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.PaperInfo"
+            android:name="activity.PaperInfo"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.PaperAttending"
+            android:name="activity.PaperAttending"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.PaperSimilar"
+            android:name="activity.PaperSimilar"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.PaperDetail"
+            android:name="activity.PaperDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.MyScheduledPapers"
+            android:name="activity.MyScheduledPapers"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.MyStaredPapers"
+            android:name="activity.MyStaredPapers"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.MyRecommendedPapers"
+            android:name="activity.MyRecommendedPapers"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.Signin"
+            android:name="activity.Signin"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.Signup"
+            android:name="activity.Signup"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.Workshops"
+            android:name="activity.Workshops"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.WorkshopDetail"
+            android:name="activity.WorkshopDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.Posters"
+            android:name="activity.Posters"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.PosterDetail"
+            android:name="activity.PosterDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.ProceedingsByAuthor"
+            android:name="activity.ProceedingsByAuthor"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.ProceedingsByName"
+            android:name="activity.ProceedingsByName"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.ProceedingsByType"
+            android:name="activity.ProceedingsByType"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.Proceedings"
+            android:name="activity.Proceedings"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.pitt.is.UMAP2015.FirstLaunchUpdate"
+            android:name="activity.FirstLaunchUpdate"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="edu.pitt.is.UMAP2015.Tutorials"
+            android:name="activity.Tutorials"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="edu.pitt.is.UMAP2015.Authors"
+            android:name="activity.Authors"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="edu.pitt.is.UMAP2015.AuthorDetail"
+            android:name="activity.AuthorDetail"
             android:screenOrientation="portrait" >
         </activity>
     </application>

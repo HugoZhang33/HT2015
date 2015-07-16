@@ -12,6 +12,8 @@ import org.apache.http.util.EntityUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import data.model.ConferenceURL;
+
 public class Authorization {
 	public boolean isLoginOK    = false;
 	public boolean isSignUp     = false;

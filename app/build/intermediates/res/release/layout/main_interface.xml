@@ -9,18 +9,18 @@
         android:id="@+id/FrameLayout01"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rectshape">
+        android:background="@drawable/banner">
 
-        <TextView
-            android:id="@+id/TextView01"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="HOME"
-            android:textColor="@drawable/White"
-            android:textSize="10pt"
-            android:textStyle="bold">
-        </TextView>
+        <!--<TextView-->
+            <!--android:id="@+id/TextView01"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center"-->
+            <!--android:text="HOME"-->
+            <!--android:textColor="@drawable/White"-->
+            <!--android:textSize="10pt"-->
+            <!--android:textStyle="bold">-->
+        <!--</TextView>-->
 
         <ImageButton
             android:id="@+id/ImageButton01"
@@ -40,7 +40,7 @@
         android:layout_below="@+id/FrameLayout01"
         android:background="@drawable/roundrectshape"
         android:gravity="left"
-        android:text="UMAP 2015"
+        android:text="HT 2015"
         android:textColor="@drawable/Black">
     </TextView>
 
@@ -62,7 +62,7 @@
         android:layout_below="@id/GridView01"
         android:background="@drawable/roundrectshape"
         android:gravity="left"
-        android:text="My UMAP 2015"
+        android:text="My HT 2015"
         android:textColor="@drawable/Black">
     </TextView>
 
@@ -89,4 +89,4 @@
         <!--android:prompt="@string/select" />-->
 
 </RelativeLayout>
-<!-- From: file:/Users/hongzhang/Desktop/UMAP2015/app/src/main/res/layout/main_interface.xml -->
+<!-- From: file:/Users/hongzhang/Desktop/HT2015/app/src/main/res/layout/main_interface.xml -->

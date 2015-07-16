@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.pitt.is.UMAP2015"
-    android:versionCode="19"
-    android:versionName="4.8.4" >
+    package="edu.pitt.is.HT2015"
+    android:versionCode="3"
+    android:versionName="1.0.2" >
 
     <uses-sdk android:minSdkVersion="4" />
 
@@ -13,7 +13,7 @@
         android:icon="@drawable/icon"
         android:label="@string/app_name" >
         <activity
-            android:name=".iConference2012"
+            android:name="activity.iConference"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -23,94 +23,94 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UpdateOption"
+            android:name="activity.UpdateOption"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainInterface"
+            android:name="activity.MainInterface"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ConferenceInfo"
+            android:name="activity.ConferenceInfo"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".KeyNote"
+            android:name="activity.KeyNote"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".KeynoteDetail"
+            android:name="activity.KeynoteDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ProgramByDay"
+            android:name="activity.ProgramByDay"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PaperInSession"
+            android:name="activity.PaperInSession"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".UserDetail"
+            android:name="activity.UserDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PaperInfo"
+            android:name="activity.PaperInfo"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PaperAttending"
+            android:name="activity.PaperAttending"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PaperSimilar"
+            android:name="activity.PaperSimilar"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PaperDetail"
+            android:name="activity.PaperDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MyScheduledPapers"
+            android:name="activity.MyScheduledPapers"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MyStaredPapers"
+            android:name="activity.MyStaredPapers"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MyRecommendedPapers"
+            android:name="activity.MyRecommendedPapers"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Signin"
+            android:name="activity.Signin"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Signup"
+            android:name="activity.Signup"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Workshops"
+            android:name="activity.Workshops"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".WorkshopDetail"
+            android:name="activity.WorkshopDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Posters"
+            android:name="activity.Posters"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PosterDetail"
+            android:name="activity.PosterDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ProceedingsByAuthor"
+            android:name="activity.ProceedingsByAuthor"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ProceedingsByName"
+            android:name="activity.ProceedingsByName"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ProceedingsByType"
+            android:name="activity.ProceedingsByType"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Proceedings"
+            android:name="activity.Proceedings"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".FirstLaunchUpdate"
+            android:name="activity.FirstLaunchUpdate"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".Tutorials"
+            android:name="activity.Tutorials"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".Authors"
+            android:name="activity.Authors"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".AuthorDetail"
+            android:name="activity.AuthorDetail"
             android:screenOrientation="portrait" >
         </activity>
     </application>

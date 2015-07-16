@@ -5,7 +5,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "edu.pitt.is.UMAP2015"
+        applicationId "edu.pitt.is.HT2015"
         minSdkVersion 4
         targetSdkVersion 4
     }
@@ -16,7 +16,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
         debug {
-            debuggable true
+            debuggable false
         }
     }
 }

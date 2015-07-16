@@ -4,4 +4,4 @@
 	android:layout_height="wrap_content"	
 	android:gravity="left" 
 	android:background="@drawable/darkblue"
-	android:textColor="@drawable/White" /><!-- From: file:/Users/hongzhang/Desktop/UMAP2015/app/src/main/res/layout/header.xml -->
+	android:textColor="@drawable/White" /><!-- From: file:/Users/hongzhang/Desktop/HT2015/app/src/main/res/layout/header.xml -->

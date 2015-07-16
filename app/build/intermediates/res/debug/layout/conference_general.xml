@@ -9,7 +9,7 @@
         android:id="@+id/FrameLayout01"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rectshape">
+        android:background="@drawable/roundrectshape">
 
         <TextView
             android:id="@+id/TextView"
@@ -124,4 +124,4 @@
         android:layout_below="@id/view"
         android:padding="10pt"></WebView>
 </RelativeLayout>
-<!-- From: file:/Users/hongzhang/Desktop/UMAP2015/app/src/main/res/layout/conference_general.xml -->
+<!-- From: file:/Users/hongzhang/Desktop/HT2015/app/src/main/res/layout/conference_general.xml -->

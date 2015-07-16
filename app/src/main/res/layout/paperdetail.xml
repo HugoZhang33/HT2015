@@ -32,13 +32,13 @@
         android:paddingLeft="5pt"
         android:paddingRight="5pt">
 
-        <TextView
-            android:id="@+id/TextView03"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="5pt"
-            android:text="AT "
-            android:textColor="@drawable/Gray"></TextView>
+        <!--<TextView-->
+            <!--android:id="@+id/TextView03"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingRight="5pt"-->
+            <!--android:text=""-->
+            <!--android:textColor="@drawable/Gray"></TextView>-->
 
         <TextView
             android:id="@+id/TextView04"

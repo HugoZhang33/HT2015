@@ -16,4 +16,4 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_width="fill_parent" 
 		android:padding="10pt">
 	</WebView>
-</LinearLayout><!-- From: file:/Users/hongzhang/Desktop/UMAP2015/app/src/main/res/layout/list_view_header.xml -->
+</LinearLayout><!-- From: file:/Users/hongzhang/Desktop/HT2015/app/src/main/res/layout/list_view_header.xml -->

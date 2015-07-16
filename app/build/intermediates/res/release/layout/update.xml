@@ -3,13 +3,13 @@
     android:id="@+id/LinearLayout10"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/back1">
+    android:background="@drawable/back2">
 
     <FrameLayout
         android:id="@+id/FrameLayout01"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rectshape">
+        android:background="@drawable/roundrectshape">
 
         <TextView
             android:id="@+id/TextView01"
@@ -37,10 +37,11 @@
         android:id="@+id/RelativeLayout11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:background="@drawable/roundshape"
         android:paddingLeft="5pt"
-        android:paddingRight="5pt">
+        android:paddingRight="5pt"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true">
 
         <TextView
             android:id="@+id/show"
@@ -126,4 +127,4 @@
             android:textSize="8pt">
         </TextView>
     </RelativeLayout>
-</RelativeLayout><!-- From: file:/Users/hongzhang/Desktop/UMAP2015/app/src/main/res/layout/update.xml -->
+</RelativeLayout><!-- From: file:/Users/hongzhang/Desktop/HT2015/app/src/main/res/layout/update.xml -->

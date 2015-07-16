@@ -8,7 +8,7 @@
         android:id="@+id/FrameLayout01"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rectshape"
+        android:background="@drawable/roundrectshape"
         android:visibility="gone">
 
         <TextView
@@ -107,20 +107,20 @@
                     android:footerDividersEnabled="true">
                 </ExpandableListView>
 
-                <ExpandableListView
-                    android:id="@+id/day5"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/White"
-                    android:choiceMode="singleChoice"
-                    android:clickable="true"
-                    android:drawSelectorOnTop="false"
-                    android:fastScrollEnabled="true"
-                    android:footerDividersEnabled="true">
-                </ExpandableListView>
+                <!--<ExpandableListView-->
+                    <!--android:id="@+id/day5"-->
+                    <!--android:layout_width="fill_parent"-->
+                    <!--android:layout_height="fill_parent"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@drawable/White"-->
+                    <!--android:choiceMode="singleChoice"-->
+                    <!--android:clickable="true"-->
+                    <!--android:drawSelectorOnTop="false"-->
+                    <!--android:fastScrollEnabled="true"-->
+                    <!--android:footerDividersEnabled="true">-->
+                <!--</ExpandableListView>-->
             </FrameLayout>
         </LinearLayout>
     </TabHost>
 </LinearLayout>
-<!-- From: file:/Users/hongzhang/Desktop/UMAP2015/app/src/main/res/layout/scheduleexpandable.xml -->
+<!-- From: file:/Users/hongzhang/Desktop/HT2015/app/src/main/res/layout/scheduleexpandable.xml -->

@@ -12,6 +12,9 @@ import org.apache.http.util.EntityUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import data.model.Conference;
+import data.model.ConferenceURL;
+
 public class UserBeFriend {
     public String getStatus(String id, String status) {
         String url = ConferenceURL.BeFriend;

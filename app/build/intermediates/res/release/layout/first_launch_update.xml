@@ -3,13 +3,13 @@
     android:id="@+id/LinearLayout10"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/back1">
+    android:background="@drawable/back2">
 
     <FrameLayout
         android:id="@+id/FrameLayout01"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rectshape">
+        android:background="@drawable/roundrectshape">
 
         <TextView
             android:id="@+id/TextView01"
@@ -107,4 +107,4 @@
             android:textSize="8pt">
         </TextView>
     </RelativeLayout>
-</RelativeLayout><!-- From: file:/Users/hongzhang/Desktop/UMAP2015/app/src/main/res/layout/first_launch_update.xml -->
+</RelativeLayout><!-- From: file:/Users/hongzhang/Desktop/HT2015/app/src/main/res/layout/first_launch_update.xml -->

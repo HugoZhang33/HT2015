@@ -118,21 +118,21 @@
                     android:footerDividersEnabled="true">
                 </ListView>
 
-                <ListView
-                    android:id="@+id/day5"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/White"
-                    android:choiceMode="singleChoice"
-                    android:clickable="true"
-                    android:drawSelectorOnTop="false"
-                    android:fastScrollEnabled="true"
-                    android:footerDividersEnabled="true">
-                </ListView>
+                <!--<ListView-->
+                    <!--android:id="@+id/day5"-->
+                    <!--android:layout_width="fill_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@drawable/White"-->
+                    <!--android:choiceMode="singleChoice"-->
+                    <!--android:clickable="true"-->
+                    <!--android:drawSelectorOnTop="false"-->
+                    <!--android:fastScrollEnabled="true"-->
+                    <!--android:footerDividersEnabled="true">-->
+                <!--</ListView>-->
 
             </FrameLayout>
         </LinearLayout>
     </TabHost>
 </LinearLayout>
-<!-- From: file:/Users/hongzhang/Desktop/UMAP2015/app/src/main/res/layout/programbyday.xml -->
+<!-- From: file:/Users/hongzhang/Desktop/HT2015/app/src/main/res/layout/programbyday.xml -->

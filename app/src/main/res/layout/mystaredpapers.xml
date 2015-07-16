@@ -5,7 +5,7 @@
 	<FrameLayout android:id="@+id/FrameLayout01"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:background="@drawable/rectshape">
+		android:background="@drawable/roundrectshape">
 	<TextView android:id="@+id/TextView01"
 		android:layout_height="wrap_content" 
 		android:layout_width="fill_parent"

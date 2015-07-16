@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"  
         android:textSize="20dip"  
         android:paddingLeft="10dip"  
-        android:background="@drawable/darkblue"
+        android:background="@drawable/YellowSilver"
         android:textColor="@drawable/White"
         android:visibility="gone">  
     </TextView>  

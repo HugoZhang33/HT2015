@@ -10,7 +10,7 @@
         android:id="@+id/RelativeLayout01"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rectshape">
+        android:background="@drawable/YellowSilver">
 
         <TextView
             android:id="@+id/status"

@@ -12,6 +12,9 @@ import org.apache.http.util.EntityUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import data.model.Conference;
+import data.model.ConferenceURL;
+
 public class UserScheduledToServer {
 
     public String addScheduledPaper2Sever(String id) {

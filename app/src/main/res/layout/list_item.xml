@@ -7,8 +7,8 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 	android:background="@drawable/White">
 <TextView android:id="@+id/text_first_char_hint"  
         android:layout_width="fill_parent"  
-        android:layout_height="30dip"
-        android:background="@drawable/roundrectshape"
+        android:layout_height="20dip"
+        android:background="@drawable/YellowSilver"
         android:textColor="@drawable/Black"
         android:visibility="gone">  
     </TextView>
