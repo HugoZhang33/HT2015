@@ -68,7 +68,7 @@ public class KeynoteWorkshopParser {
         InputStream stream = null;
         try {
             //Use Post Method
-            String urlString = new String("http://halley.exp.sis.pitt.edu/cn3mobile/allSessionsAndPapers.jsp?conferenceID=134&noAbstract=1");
+            String urlString = "http://halley.exp.sis.pitt.edu/cn3mobile/allSessionsAndPapers.jsp?conferenceID=134&noAbstract=1";
 
             URL url = new URL(urlString);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -153,8 +153,8 @@ public class KeynoteWorkshopParser {
                                String qName) throws SAXException {
             if (localName.equals("eventSessionID")) {
                 ke.ID = sb.toString();
-                ws.eventSessionID = sb.toString();
-//                po.ID = ke.ID;
+                ws.eventSessionID = ke.ID;
+                po.eventSessionID = ke.ID;
                 return;
             }
             if (localName.equals("sessionDate")) {
@@ -193,7 +193,7 @@ public class KeynoteWorkshopParser {
             if (localName.equals("contentType")) {
                 if ("Keynote".equals(sb.toString())) {
                     isKeynote = true;
-                } else if ("Workshop".equals(sb.toString())) {
+                } else if ("Workshop Paper".equals(sb.toString())) {
                     isWorkshop = true;
                 } else  if ("Poster".equals(sb.toString())) {
                     isPoster = true;

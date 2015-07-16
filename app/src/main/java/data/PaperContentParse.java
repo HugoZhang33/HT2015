@@ -10,6 +10,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -17,10 +18,18 @@ import javax.xml.parsers.SAXParserFactory;
 
 public class PaperContentParse {
 
-    public ArrayList<PaperContent> List = new ArrayList<PaperContent>();
+    private ArrayList<PaperContent> List = new ArrayList<PaperContent>();
+    private HashMap<String, Author> authorMap = new HashMap<String, Author>();
 
+    public ArrayList<PaperContent> getPaperContentList() {
+        return  List;
+    }
 
-    public ArrayList<PaperContent> getData() {
+    public HashMap<String, Author> getAuthors() {
+        return authorMap;
+    }
+
+    public void getData() {
 
         try {
             URL url = new URL("http://halley.exp.sis.pitt.edu/cn3mobile/allContentsAndAuthors.jsp?conferenceID=134&noAbstract=1");
@@ -39,12 +48,11 @@ public class PaperContentParse {
         } catch (Exception ee) {
             System.out.print(ee.toString());
         }
-
-        return List;
     }
 
     private class SessionParseHandler extends DefaultHandler {
         private PaperContent se;
+        private Author author;
         private boolean contentStart = false;
         private StringBuilder sb = new StringBuilder();
 
@@ -69,6 +77,10 @@ public class PaperContentParse {
                 se.authors = "";
                 return;
             }
+            if (localName.equals("authorpresenter")) {
+                author = new Author();
+                return;
+            }
         }
 
         public void endElement(String namespaceURI, String localName,
@@ -87,8 +99,20 @@ public class PaperContentParse {
                 se.type = sb.toString();
                 return;
             }
+            if (localName.equals("authorID") && contentStart) {
+                author.id = sb.toString();
+                se.authorIDList.add(author.id);
+                return;
+            }
             if (localName.equals("name") && contentStart) {
                 se.authors = se.authors + sb.toString() + ", ";
+                author.name = sb.toString();
+                return;
+            }
+            if (localName.equals("authorpresenter")) {
+                if (!authorMap.containsKey(author.id)) {
+                    authorMap.put(author.id, author);
+                }
                 return;
             }
             if (localName.equals("content")) {

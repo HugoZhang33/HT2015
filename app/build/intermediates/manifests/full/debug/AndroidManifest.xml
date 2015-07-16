@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.pitt.is.UMAP2015"
-    android:versionCode="6"
-    android:versionName="4.1" >
+    android:versionCode="18"
+    android:versionName="4.8.3" >
 
     <uses-sdk
         android:minSdkVersion="4"
@@ -101,6 +101,18 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="edu.pitt.is.UMAP2015.FirstLaunchUpdate"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="edu.pitt.is.UMAP2015.Tutorials"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="edu.pitt.is.UMAP2015.Authors"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="edu.pitt.is.UMAP2015.AuthorDetail"
             android:screenOrientation="portrait" >
         </activity>
     </application>

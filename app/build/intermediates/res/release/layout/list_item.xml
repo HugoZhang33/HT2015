@@ -7,7 +7,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 	android:background="@drawable/White">
 <TextView android:id="@+id/text_first_char_hint"  
         android:layout_width="fill_parent"  
-        android:layout_height="wrap_content"   
+        android:layout_height="30dip"
         android:background="@drawable/roundrectshape"
         android:textColor="@drawable/Black"
         android:visibility="gone">  
@@ -56,13 +56,22 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 		android:background="@drawable/White"
 		android:padding="5pt">
 	</TextView>
-	<TextView    android:id="@+id/time"
-              android:layout_height="wrap_content"   
+	<TextView android:id="@+id/time"
+		android:layout_height="wrap_content"
         android:layout_width="fill_parent"   
         android:textColor="@drawable/Gray"
         android:background="@drawable/White"
         android:paddingLeft="5pt"
         android:paddingRight="5pt">  
+	</TextView>
+	<TextView android:id="@+id/location"
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:textColor="@drawable/Gray"
+		android:background="@drawable/White"
+		android:paddingLeft="5pt"
+		android:paddingRight="5pt"
+		android:visibility="gone">
 	</TextView>
 	<TextView    android:id="@+id/author"
               android:layout_height="wrap_content"   
@@ -82,18 +91,18 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         android:paddingRight="5pt">  
 	</TextView>
 	</LinearLayout>
-	<TextView android:id="@+id/arrow"
-		android:layout_height="fill_parent"
-		android:layout_width="wrap_content"
-		android:layout_alignParentRight="true"
-		android:layout_alignTop="@id/LinearLayout02"
-		android:layout_alignBottom="@id/LinearLayout02"
-		android:gravity="center_vertical"
-		android:text=">"
-		android:textStyle="bold"
-		android:textColor="@drawable/darkblue"
-		android:background="@drawable/White">
-	</TextView>
+	<!--<TextView android:id="@+id/arrow"-->
+		<!--android:layout_height="fill_parent"-->
+		<!--android:layout_width="wrap_content"-->
+		<!--android:layout_alignParentRight="true"-->
+		<!--android:layout_alignTop="@id/LinearLayout02"-->
+		<!--android:layout_alignBottom="@id/LinearLayout02"-->
+		<!--android:gravity="center_vertical"-->
+		<!--android:text=">"-->
+		<!--android:textStyle="bold"-->
+		<!--android:textColor="@drawable/darkblue"-->
+		<!--android:background="@drawable/White">-->
+	<!--</TextView>-->
 </RelativeLayout>
 </LinearLayout>
 <!-- From: file:/Users/hongzhang/Desktop/UMAP2015/app/src/main/res/layout/list_item.xml -->

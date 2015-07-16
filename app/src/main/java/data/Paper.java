@@ -12,7 +12,7 @@ public class Paper {
 	public String recommended = "no";
 	public String type;
 	public String day_id;
-	public String room="unknown";
+	public String room="N/A";
 	public String paperAbstract="no";
 	public String contentlink = "null";
 	public String title="no";

@@ -2,11 +2,14 @@ package edu.pitt.is.UMAP2015;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -43,6 +46,61 @@ public class ProgramByDay extends Activity {
     private final int MENU_SCHEDULE = Menu.FIRST + 3;
     private final int MENU_RECOMMEND = Menu.FIRST + 4;
 
+    private float mPosX, mPosY, mCurPosX, mCurPosY;
+    private TabHost host;
+
+
+    /**
+     * scroll gesture
+     */
+    private void setGestureListener(View dayListView) {
+        dayListView.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // TODO Auto-generated method stub
+                switch (event.getAction()) {
+
+
+                    case MotionEvent.ACTION_DOWN:
+                        mPosX = event.getX();
+                        mPosY = event.getY();
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        mCurPosX = event.getX();
+                        mCurPosY = event.getY();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        if (Math.abs(mCurPosY-mPosY) > 40) {
+                            return false;
+                        }
+                        else if (mCurPosX - mPosX < 0
+                                && (Math.abs(mCurPosX - mPosX) > 135)) {
+                            //向右滑動
+                            int TagCount = 5;
+                            int index = host.getCurrentTab();
+                            if (index != TagCount - 1) {
+                                host.setCurrentTab(index + 1);
+                                return true;
+                            }
+
+                        } else if (mCurPosX - mPosX > 0
+                                && (Math.abs(mCurPosX - mPosX) > 135)) {
+                            //向左滑动
+                            int index = host.getCurrentTab();
+                            if (index != 0) {
+                                host.setCurrentTab(index - 1);
+                                return true;
+                            }
+                        }
+                        break;
+                }
+                return false; // will not affect other touch event
+            }
+        });
+    }
+
+
     /**
      * Called when the activity is first created.
      */
@@ -71,7 +129,7 @@ public class ProgramByDay extends Activity {
         day5lv = (ListView) findViewById(edu.pitt.is.UMAP2015.R.id.day5);
 
         // Set up the tabs
-        TabHost host = (TabHost) findViewById(edu.pitt.is.UMAP2015.R.id.tabdates);
+        host = (TabHost) findViewById(edu.pitt.is.UMAP2015.R.id.tabdates);
         host.setup();
 
         //1st day tab
@@ -110,23 +168,23 @@ public class ProgramByDay extends Activity {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int screenWidth = displayMetrics.widthPixels;
-        for (int i=0; i<5; i++) {
-            tabWidget.getChildTabViewAt(i).setMinimumWidth((screenWidth)/4);
+        for (int i = 0; i < 5; i++) {
+            tabWidget.getChildTabViewAt(i).setMinimumWidth((screenWidth) / 4);
         }
 
         Calendar c = Calendar.getInstance();
         date = c.get(Calendar.DAY_OF_YEAR);
 
-        if (date <= 189)
+        if (date <= 180)
             //set up default tab
             host.setCurrentTabByTag("day1");
-        if (date == 190)
+        if (date == 181)
             host.setCurrentTabByTag("day2");
-        if (date == 191)
+        if (date == 182)
             host.setCurrentTabByTag("day3");
-        if (date >= 192)
+        if (date >= 183)
             host.setCurrentTabByTag("day4");
-        if(date >= 193)
+        if (date >= 184)
             host.setCurrentTabByTag("day5");
 
         //1st day
@@ -164,6 +222,12 @@ public class ProgramByDay extends Activity {
         MyListAdapter adapter5 = new MyListAdapter(sessions5);
         day5lv.setAdapter(adapter5);
         day5lv.setOnItemClickListener(adapter5);
+
+        setGestureListener(day1lv);
+        setGestureListener(day2lv);
+        setGestureListener(day3lv);
+        setGestureListener(day4lv);
+        setGestureListener(day5lv);
     }
 
     @Override

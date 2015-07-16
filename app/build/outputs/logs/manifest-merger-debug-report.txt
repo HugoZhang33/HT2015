@@ -210,3 +210,21 @@ ADDED from AndroidManifest.xml:100:9
 		ADDED from AndroidManifest.xml:102:13
 	android:name
 		ADDED from AndroidManifest.xml:101:13
+activity#edu.pitt.is.UMAP2015.Tutorials
+ADDED from AndroidManifest.xml:104:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:106:13
+	android:name
+		ADDED from AndroidManifest.xml:105:13
+activity#edu.pitt.is.UMAP2015.Authors
+ADDED from AndroidManifest.xml:108:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:110:13
+	android:name
+		ADDED from AndroidManifest.xml:109:13
+activity#edu.pitt.is.UMAP2015.AuthorDetail
+ADDED from AndroidManifest.xml:112:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:114:13
+	android:name
+		ADDED from AndroidManifest.xml:113:13

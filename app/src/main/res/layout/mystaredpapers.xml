@@ -30,5 +30,6 @@
 		android:layout_below="@+id/FrameLayout01" 
 		android:textColor="@drawable/darkblue" 
 		android:visibility="gone" 
-		android:text="Star, or Bookmark papers of interest here"></TextView>
+		android:text="Star, or Bookmark papers of interest here">
+	</TextView>
 </RelativeLayout>

@@ -21,16 +21,22 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 
 import data.DBAdapter;
 import data.Paper;
 import data.Poster;
+import data.Session;
+import data.Workshop;
 
 public class Posters extends Activity {
-	private ArrayList<Poster> poList;
+	private ArrayList<Session> sList;
 	private ArrayList<Paper> pList;
 	private DBAdapter db;
 	private ListView lv;
+	private HashMap<String, String> sessionMap = new HashMap<String, String>();
+	private ArrayList<Session> list = new ArrayList<Session>();
 	
 	private final int MENU_HOME = Menu.FIRST;
 	private final int MENU_TRACK = Menu.FIRST + 1;
@@ -50,17 +56,47 @@ public class Posters extends Activity {
 		ListViewAdapter adapter;
 		db = new DBAdapter(this);
 		db.open();
-		
-		poList = new ArrayList<Poster>();
-		poList = db.getPoster();
-//		for (Poster po : poList) {
-//			Paper poster = db.getPaperByID(po.ID);
-//			pList.add(poster);
-//		}
 
+		ArrayList<Poster> poList = new ArrayList<Poster>();
+		poList = db.getPoster();
+
+
+		// get Poster session list
+		sList = new ArrayList<Session>();
+		HashSet<String> eventSessionIDSet = new HashSet<String>();
+
+		for (int i=0; i<poList.size(); i++) {
+			String id = poList.get(i).eventSessionID;
+			if (!eventSessionIDSet.contains(id)) {
+				eventSessionIDSet.add(id);
+			}
+		}
+
+		// get session by dayid
+		for (int i=0; i<5; i++) {
+			ArrayList<Session> tmpList = db.getSessionBydayID(String.valueOf(i));
+			for (int j=0; j<tmpList.size(); j++) {
+				String id = tmpList.get(j).ID;
+				if (eventSessionIDSet.contains(id)) {
+					sList.add(tmpList.get(j));
+				}
+			}
+		}
 		db.close();
+
+		for (Session session: sList) {
+			if (sessionMap.containsKey(session.name)) {
+				String eventSessionIDList = sessionMap.get(session.name);
+				StringBuilder sb = new StringBuilder(eventSessionIDList);
+				sb.append(";"+session.ID);
+				sessionMap.put(session.name, sb.toString());
+			} else {
+				sessionMap.put(session.name, session.ID);
+				list.add(session);
+			}
+		}
 		
-		adapter = new ListViewAdapter(poList);
+		adapter = new ListViewAdapter(sList);
 		
 		TextView tv = (TextView) findViewById(edu.pitt.is.UMAP2015.R.id.TextView01);
 		tv.setText("Posters");
@@ -71,15 +107,9 @@ public class Posters extends Activity {
 			public void onItemClick(AdapterView av, View v, int pos, long arg) {
 				
 				Intent in = new Intent(Posters.this, PosterDetail.class);
-				//in.putExtra("day_id", buttonNum);
-				in.putExtra("id", poList.get(pos).ID);
-				in.putExtra("title", poList.get(pos).name);
-				in.putExtra("date", poList.get(pos).date);
-				in.putExtra("bTime", poList.get(pos).beginTime);
-				in.putExtra("eTime", poList.get(pos).endTime);
-				in.putExtra("room", poList.get(pos).room);
-//				in.putExtra("content", pList.get(pos).paperAbstract);
-//				in.putExtra("author", pList.get(pos).authors);
+				String sessionName = list.get(pos).name;
+				String eventSessionIDList = sessionMap.get(sessionName);
+				in.putExtra("eventSessionIDList", eventSessionIDList);
 				
 				startActivity(in);
 			}
@@ -143,13 +173,13 @@ public class Posters extends Activity {
 		TextView t1,t2,t3,firstCharHintTextView;
 	}
 	private class ListViewAdapter extends BaseAdapter {
-		ArrayList<Poster> poList;
+		ArrayList<Session> list;
 		public ListViewAdapter(ArrayList w) {
-			this.poList = w;
+			this.list = w;
 		}
 
 		public int getCount() {
-			return poList.size();
+			return list.size();
 		}
 
 		public Object getItem(int position) {
@@ -180,8 +210,8 @@ public class Posters extends Activity {
 				v = (ViewHolder) convertView.getTag();
 			}
 			try {
-				beginDate = sdfSource.parse(poList.get(position).beginTime);
-				endDate = sdfSource.parse(poList.get(position).endTime);
+				beginDate = sdfSource.parse(list.get(position).beginTime);
+				endDate = sdfSource.parse(list.get(position).endTime);
 				begTime = sdfDestination.format(beginDate);
 				endTime = sdfDestination.format(endDate);
 				v.t2.setVisibility(View.VISIBLE);
@@ -189,23 +219,23 @@ public class Posters extends Activity {
 			} catch (Exception e) {
 				System.out.println("Date Exception");
 			}
-			v.t1.setText(poList.get(position).name);
-			if(poList.get(position).room.compareToIgnoreCase("NULL")==0)
+			v.t1.setText(list.get(position).name);
+			if(list.get(position).room.compareToIgnoreCase("NULL")==0)
             	v.t3.setVisibility(View.GONE);
             else{
             	v.t3.setVisibility(View.VISIBLE);	
-            	v.t3.setText("At "+poList.get(position).room);}
+            	v.t3.setText("At "+list.get(position).room);}
     			int idx = position - 1;   
    			 
-                String preview = idx >= 0 ? poList.get(idx).date : "";
-                String current = poList.get(position).date;
+                String preview = idx >= 0 ? list.get(idx).date : "";
+                String current = list.get(position).date;
           
                 if (current.compareTo(preview) == 0) {
                 	v.firstCharHintTextView.setVisibility(View.GONE);   
                 } else {   
                    
                 	v.firstCharHintTextView.setVisibility(View.VISIBLE);
-                	v.firstCharHintTextView.setText(poList.get(position).date);
+                	v.firstCharHintTextView.setText(list.get(position).date);
                 }
 			return convertView;
 		}

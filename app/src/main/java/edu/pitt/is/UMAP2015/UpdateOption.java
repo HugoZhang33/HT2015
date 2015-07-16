@@ -23,7 +23,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import data.Author;
 import data.CheckDBUpdate;
 import data.Conference;
 import data.ConferenceInfoParser;
@@ -108,7 +110,6 @@ public class UpdateOption extends Activity {
 
             }
         });
-
     }
 
     public void showDialog(String s) {
@@ -200,16 +201,7 @@ public class UpdateOption extends Activity {
             //check update
             boolean needUpdate = false;
             CheckDBUpdate cdbu = new CheckDBUpdate();
-            needUpdate = cdbu.compare();
-
-            ConferenceInfoParser.getConferenceInfo("134");
-            db.open();
-            db.deleteConference();
-            long errorr = db.insertConference(Conference.id, Conference.title, Conference.startDate,
-                    Conference.endDate, Conference.location, Conference.description, Conference.timstamp);
-            if (errorr == -1)
-                System.out.println("Insertion ConferenceInfo Failed");
-            db.close();
+            needUpdate = cdbu.check();
 
             //execute update
             if (needUpdate) {
@@ -222,13 +214,7 @@ public class UpdateOption extends Activity {
                 ArrayList<String> pidList = new ArrayList<String>();
                 ArrayList<String> pidRList = new ArrayList<String>();
                 ArrayList<String> pidLList = new ArrayList<String>();
-
-//                ConferenceDataLoad cdl = new ConferenceDataLoad();
-//
-//                cdl.loadConferenceInfo();
-
-//                knList = cdl.loadKeynote();
-
+                HashMap<String, Author> authorList = new HashMap<String, Author>();
 
                 //Update keynote and workshop info
                 publishProgress(14);
@@ -243,6 +229,8 @@ public class UpdateOption extends Activity {
                     publishProgress(12);
                 } else {
                     publishProgress(13);
+                    state = 2;
+                    return state;
                 }
 
                 //Update session info
@@ -253,6 +241,8 @@ public class UpdateOption extends Activity {
                     publishProgress(0);
                 } else {
                     publishProgress(1);
+                    state = 2;
+                    return state;
                 }
 
                 //Update presentation info
@@ -263,19 +253,37 @@ public class UpdateOption extends Activity {
                     publishProgress(2);
                 } else {
                     publishProgress(3);
+                    state = 2;
+                    return state;
                 }
 
                 //Update paper content info
                 publishProgress(8);
                 PaperContentParse pcp = new PaperContentParse();
-                pcList = pcp.getData();
-                if (pcList.size() != 0) {
+                pcp.getData();
+                pcList = pcp.getPaperContentList();
+                authorList = pcp.getAuthors();
+                if (pcList.size() != 0 && authorList.size() !=0) {
                     publishProgress(4);
                 } else {
                     publishProgress(5);
+                    state = 2;
+                    return state;
                 }
 
-                if (wsList.size() != 0 && knList.size() != 0 && sList.size() != 0 && pList.size() != 0 && pcList.size() != 0) {
+                // update conference
+                String timestamp = new CheckDBUpdate().getTimestamp();
+                Conference.timstamp = timestamp;
+                ConferenceInfoParser.getConferenceInfo("134");
+                db.open();
+                db.deleteConference();
+                long errorr = db.insertConference(Conference.id, Conference.title, Conference.startDate,
+                        Conference.endDate, Conference.location, Conference.description, timestamp);
+                if (errorr == -1)
+                    System.out.println("Insertion ConferenceInfo Failed");
+                db.close();
+
+                if (authorList.size()!=0 && wsList.size() != 0 && knList.size() != 0 && sList.size() != 0 && pList.size() != 0 && pcList.size() != 0) {
                     try {
                         db.open();
                         db.deleteKeynote();
@@ -284,6 +292,8 @@ public class UpdateOption extends Activity {
                         db.deleteSession();
                         db.deletePaper();
                         db.deletePaperContent();
+                        db.deleteAllAuthor();
+                        db.deleteAuthorToPaper();
 
                         for (int i = 0; i < wsList.size(); i++) {
                             long error = db.insertWorkshopDes(wsList.get(i));
@@ -326,9 +336,19 @@ public class UpdateOption extends Activity {
                             if (pcList.get(i).paperAbstract == null || pcList.get(i).paperAbstract == "") {
                                 pcList.get(i).paperAbstract = "No abstract information available";
                             }
+                            for (String autorID : pcList.get(i).authorIDList) {
+                                long error = db.insertAuthorToPaper(autorID, pcList.get(i).id);
+                                if (error == -1)
+                                    System.out.println("Insert authorToPaper error occured");
+                            }
                             long error = db.insertPaperContent(pcList.get(i));
                             if (error == -1)
                                 System.out.println("Insert paper content error occured");
+                        }
+                        for (Author author : authorList.values()) {
+                            long error = db.insertAuthor(author.id, author.name);
+                            if (error == -1)
+                                System.out.println("Insertion author Failed session");
                         }
                         db.close();
                     } catch (Exception e) {

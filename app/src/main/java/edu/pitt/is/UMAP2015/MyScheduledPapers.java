@@ -17,6 +17,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -46,9 +47,9 @@ import data.UserScheduledToServer;
 public class MyScheduledPapers extends Activity implements Runnable {
     private int date;
     private DBAdapter db;
-    private ArrayList<Session> sessions1, sessions2, sessions3, sessions4, sessions5, sessions6, sessions7, sessions8;
-    private ArrayList<ArrayList<Paper>> p1, p2, p3, p4, p5, p6, p7, p8;
-    private ExpandableListView day1lv, day2lv, day3lv, day4lv, day5lv, day6lv, day7lv, day8lv;
+    private ArrayList<Session> sessions1, sessions2, sessions3, sessions4, sessions5;
+    private ArrayList<ArrayList<Paper>> p1, p2, p3, p4, p5;
+    private ExpandableListView day1lv, day2lv, day3lv, day4lv, day5lv;
     private int sday;
     private FrameLayout fl;
     private ImageButton syncB;
@@ -61,13 +62,66 @@ public class MyScheduledPapers extends Activity implements Runnable {
     private String paperID;
     private int Pos, pos;
     private String dayID;
-    private TabHost host;
     private final int MENU_HOME = Menu.FIRST;
     private final int MENU_TRACK = Menu.FIRST + 1;
     private final int MENU_SESSION = Menu.FIRST + 2;
     private final int MENU_STAR = Menu.FIRST + 3;
     private final int MENU_RECOMMEND = Menu.FIRST + 4;
     private MyListViewAdapter adapter1, adapter2, adapter3, adapter4, adapter5;
+
+    private float mPosX, mPosY, mCurPosX, mCurPosY;
+    private TabHost host;
+
+    /**
+     * scroll gesture
+     */
+    private void setGestureListener(View dayListView) {
+        dayListView.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // TODO Auto-generated method stub
+                switch (event.getAction()) {
+
+
+                    case MotionEvent.ACTION_DOWN:
+                        mPosX = event.getX();
+                        mPosY = event.getY();
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        mCurPosX = event.getX();
+                        mCurPosY = event.getY();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        if (Math.abs(mCurPosY-mPosY) > 40) {
+                            return false;
+                        }
+                        else if (mCurPosX - mPosX < 0
+                                && (Math.abs(mCurPosX - mPosX) > 135)) {
+                            //向右滑動
+                            int TagCount = 5;
+                            int index = host.getCurrentTab();
+                            if (index != TagCount - 1) {
+                                host.setCurrentTab(index + 1);
+                                return true;
+                            }
+
+                        } else if (mCurPosX - mPosX > 0
+                                && (Math.abs(mCurPosX - mPosX) > 135)) {
+                            //向左滑动
+                            int index = host.getCurrentTab();
+                            if (index != 0) {
+                                host.setCurrentTab(index - 1);
+                                return true;
+                            }
+                        }
+                        break;
+                }
+                return false; // will not affect other touch event
+            }
+        });
+    }
+
 
     /**
      * Called when the activity is first created.
@@ -106,10 +160,6 @@ public class MyScheduledPapers extends Activity implements Runnable {
             host = (TabHost) findViewById(edu.pitt.is.UMAP2015.R.id.tabdates);
             host.setup();
 
-            // Set up the tabs
-            host = (TabHost) findViewById(edu.pitt.is.UMAP2015.R.id.tabdates);
-            host.setup();
-
 
             //1st day tab
             TabSpec day1 = host.newTabSpec("day1");
@@ -136,13 +186,18 @@ public class MyScheduledPapers extends Activity implements Runnable {
             host.addTab(day4);
 
             //5th day tab
-             TabSpec day5 = host.newTabSpec("day5");
-             day5.setIndicator("Fri, July.3");
-             day5.setContent(edu.pitt.is.UMAP2015.R.id.day5);
-             host.addTab(day5);
+            TabSpec day5 = host.newTabSpec("day5");
+            day5.setIndicator("Fri, July.3");
+            day5.setContent(edu.pitt.is.UMAP2015.R.id.day5);
+            host.addTab(day5);
 
             reGene();
             Changetab(sday);
+            setGestureListener(day1lv);
+            setGestureListener(day2lv);
+            setGestureListener(day3lv);
+            setGestureListener(day4lv);
+            setGestureListener(day5lv);
 
         } else {
             new AlertDialog.Builder(MyScheduledPapers.this)
@@ -203,8 +258,6 @@ public class MyScheduledPapers extends Activity implements Runnable {
                             .show();
             }
         });
-
-
     }
 
     public void reGene() {
@@ -215,6 +268,7 @@ public class MyScheduledPapers extends Activity implements Runnable {
         for (int i = 0; i < sessions1.size(); i++) {
             ArrayList<Paper> p = new ArrayList<Paper>();
             p = getPapersBySessionID(sessions1.get(i).ID);
+//            System.out.println("+++++++++++++++++++++" + p.get(0).type);
             p1.add(p);
         }
         adapter1 = new MyListViewAdapter(sessions1, p1, "1");
@@ -276,15 +330,16 @@ public class MyScheduledPapers extends Activity implements Runnable {
         sessions5 = new ArrayList<Session>();
         sessions5 = getSession("5");
         p5 = new ArrayList<ArrayList<Paper>>();
-        	for(int i=0; i<sessions5.size();i++){
-        	ArrayList<Paper> p= new ArrayList<Paper>();
-        	p=getPapersBySessionID(sessions5.get(i).ID);
-        p5.add(p);
+        for (int i = 0; i < sessions5.size(); i++) {
+            ArrayList<Paper> p = new ArrayList<Paper>();
+            p = getPapersBySessionID(sessions5.get(i).ID);
+            p5.add(p);
         }
-        adapter5 = new MyListViewAdapter(sessions5,p5,"5");
+        adapter5 = new MyListViewAdapter(sessions5, p5, "5");
         day5lv.setAdapter(adapter5);
-        for(int i=0; i<sessions5.size();i++){
-        day5lv.expandGroup(i);}
+        for (int i = 0; i < sessions5.size(); i++) {
+            day5lv.expandGroup(i);
+        }
 
     }
 
@@ -303,17 +358,17 @@ public class MyScheduledPapers extends Activity implements Runnable {
                 host.setCurrentTabByTag("day4");
                 break;
             case 5:
-            	host.setCurrentTabByTag("day5");
+                host.setCurrentTabByTag("day5");
                 break;
             default:
                 Calendar c = Calendar.getInstance();
                 date = c.get(Calendar.DAY_OF_YEAR);
 
                 /*******************/
-                if (date < 189) {
+                if (date < 180) {
                     host.setCurrentTabByTag("day1");
                 }
-                if (date == 189) {
+                if (date == 180) {
                     host.setCurrentTabByTag("day1");
                     SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
                     Date d = new Date(System.currentTimeMillis());
@@ -325,7 +380,7 @@ public class MyScheduledPapers extends Activity implements Runnable {
                         }
                     }
                 }
-                if (date == 190) {
+                if (date == 181) {
                     host.setCurrentTabByTag("day2");
                     SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
                     Date d = new Date(System.currentTimeMillis());
@@ -338,7 +393,7 @@ public class MyScheduledPapers extends Activity implements Runnable {
                     }
                 }
                 /*******************/
-                if (date == 191) {
+                if (date == 182) {
                     host.setCurrentTabByTag("day3");
                     SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
                     Date d = new Date(System.currentTimeMillis());
@@ -350,7 +405,7 @@ public class MyScheduledPapers extends Activity implements Runnable {
                         }
                     }
                 }
-                if (date == 192) {
+                if (date == 183) {
                     host.setCurrentTabByTag("day4");
                     SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
                     Date d = new Date(System.currentTimeMillis());
@@ -362,7 +417,7 @@ public class MyScheduledPapers extends Activity implements Runnable {
                         }
                     }
                 }
-                if (date == 193) {
+                if (date == 184) {
                     host.setCurrentTabByTag("day5");
                     SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
                     Date d = new Date(System.currentTimeMillis());
@@ -374,7 +429,7 @@ public class MyScheduledPapers extends Activity implements Runnable {
                         }
                     }
                 }
-                if (date > 193) {
+                if (date > 185) {
                     host.setCurrentTabByTag("day5");
                 }
                 break;
@@ -577,7 +632,7 @@ public class MyScheduledPapers extends Activity implements Runnable {
     public String getUserID() {
         String id = "";
             /*
-			db = new DBAdapter(this);
+            db = new DBAdapter(this);
 			db.open();
 			id = db.getUserID();
 			db.close();
@@ -870,13 +925,12 @@ public class MyScheduledPapers extends Activity implements Runnable {
         if (threadid == 1) {
             synchronizeScheduledPaper();
 
-        }
-        else if (threadid == 2) {
+        } else if (threadid == 2) {
             paperStatus = us2s.DeleteScheduledPaper2Sever(paperID);
 				/*if(paperStatus != "yes" && paperStatus !="no"){
 					showToast("Fail to connect to sever, please try again.");
 				}*/
-        } else if (threadid == 3){
+        } else if (threadid == 3) {
             paperStatus = us2s.addScheduledPaper2Sever(paperID);
 				/*if(paperStatus != "yes" && paperStatus !="no"){
 					showToast("Fail to connect to sever, please try again.");
@@ -956,8 +1010,7 @@ public class MyScheduledPapers extends Activity implements Runnable {
                     }
                     /*******************/
                     reGene();
-                }
-                else if (paperStatus.compareTo("no") == 0) {
+                } else if (paperStatus.compareTo("no") == 0) {
                     ib.setImageResource(edu.pitt.is.UMAP2015.R.drawable.no_schedule);
                     updateUserPaperStatus(paperID, "no", "schedule");
                     deleteMyScheduledPaper(paperID);

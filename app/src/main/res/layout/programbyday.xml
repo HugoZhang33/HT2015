@@ -39,24 +39,25 @@
         android:layout_height="fill_parent">
 
         <LinearLayout
+            android:id="@+id/view"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical">
 
-            <HorizontalScrollView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/next_button"
-                android:layout_toRightOf="@+id/up_button"
-                android:fillViewport="true"
-                android:scrollbars="horizontal">
+            <!--<HorizontalScrollView-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_toLeftOf="@+id/next_button"-->
+                <!--android:layout_toRightOf="@+id/up_button"-->
+                <!--android:fillViewport="true"-->
+                <!--android:scrollbars="horizontal">-->
 
                 <TabWidget
                     android:id="@android:id/tabs"
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/lightblue" />
-            </HorizontalScrollView>
+            <!--</HorizontalScrollView>-->
 
             <FrameLayout
                 android:id="@android:id/tabcontent"
@@ -71,7 +72,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/White"
                     android:choiceMode="singleChoice"
-                    android:clickable="true"
+
                     android:drawSelectorOnTop="false"
                     android:fastScrollEnabled="true"
                     android:footerDividersEnabled="true"
@@ -129,6 +130,7 @@
                     android:fastScrollEnabled="true"
                     android:footerDividersEnabled="true">
                 </ListView>
+
             </FrameLayout>
         </LinearLayout>
     </TabHost>

@@ -6,6 +6,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -31,11 +33,24 @@ import data.DBAdapter;
 public class MainInterface extends Activity {
 
     private ImageButton syncB;
-    //private ImageButton syncC;
     private DBAdapter db;
-    private ProgressDialog pd;
-    private Spinner spinner2;
-    private ArrayAdapter adapter2;
+
+    public static boolean isConnect(Context context) {
+
+        ConnectivityManager connectivity = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivity != null) {
+
+            NetworkInfo info = connectivity.getActiveNetworkInfo();
+            if (info != null) {
+
+                if (info.getState() == NetworkInfo.State.CONNECTED) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     private void checkUpdate() {
         CheckDBUpdate checkDBUpdate = new CheckDBUpdate();
@@ -49,8 +64,11 @@ public class MainInterface extends Activity {
 
     @Override
     protected void onResume() {
+        System.out.println("+++++++++++onResume: " + Conference.timstamp);
         super.onResume();
-        checkUpdate();
+        if (isConnect(this)) {
+            checkUpdate();
+        }
     }
 
     @Override
@@ -83,9 +101,8 @@ public class MainInterface extends Activity {
 
         //Row 1
         GridView gv1 = (GridView) findViewById(edu.pitt.is.UMAP2015.R.id.GridView01);
-//        Integer[] i1 = {edu.pitt.is.UMAP2015.R.drawable.about, edu.pitt.is.UMAP2015.R.drawable.keynote, edu.pitt.is.UMAP2015.R.drawable.sessionbig, edu.pitt.is.UMAP2015.R.drawable.proceeding};
-        Integer[] i1 = {R.drawable.about, R.drawable.keynote, R.drawable.poster, R.drawable.workshop, R.drawable.sessionbig, R.drawable.proceeding};
-        String[] t1 = {"About", "Keynotes", "Poster", "Workshop", "Schedule", "Proceedings"};
+        Integer[] i1 = {R.drawable.about, R.drawable.keynote, R.drawable.sessionbig, R.drawable.proceeding, R.drawable.workshop, R.drawable.tutorial, R.drawable.poster, R.drawable.author};
+        String[] t1 = {"About", "Keynotes", "Schedule", "Proceedings", "Workshops", "Tutorials", "Posters", "Authors"};
         gv1.setAdapter(new ImageViewAdapter(this, i1, t1));
 
         gv1.setOnItemClickListener(new OnItemClickListener() {
@@ -102,24 +119,34 @@ public class MainInterface extends Activity {
                         in = new Intent(MainInterface.this, KeyNote.class);
                         startActivity(in);
                         break;
-                    // Poster
-                    case 2:
-                        in = new Intent(MainInterface.this, Posters.class);
-                        startActivity(in);
-                        break;
-                    // Workshop
-                    case 3:
-                        in = new Intent(MainInterface.this, Workshops.class);
-                        startActivity(in);
-                        break;
                     // Schedule
-                    case 4:
+                    case 2:
                         in = new Intent(MainInterface.this, ProgramByDay.class);
                         startActivity(in);
                         break;
                     // Proceedings
-                    case 5:
+                    case 3:
                         in = new Intent(MainInterface.this, Proceedings.class);
+                        startActivity(in);
+                        break;
+                    // Workshop
+                    case 4:
+                        in = new Intent(MainInterface.this, Workshops.class);
+                        startActivity(in);
+                        break;
+                    // Tutorial
+                    case 5:
+                        in = new Intent(MainInterface.this, Tutorials.class);
+                        startActivity(in);
+                        break;
+                    // Poster
+                    case 6:
+                        in = new Intent(MainInterface.this, Posters.class);
+                        startActivity(in);
+                        break;
+                    // Author
+                    case 7:
+                        in = new Intent(MainInterface.this, Authors.class);
                         startActivity(in);
                         break;
                     default:
@@ -132,8 +159,8 @@ public class MainInterface extends Activity {
         GridView gv4 = (GridView) findViewById(edu.pitt.is.UMAP2015.R.id.GridView04);
 
         if (Conference.userID.compareTo("") != 0) {
-            Integer[] i4 = {edu.pitt.is.UMAP2015.R.drawable.starbig, edu.pitt.is.UMAP2015.R.drawable.schedulebig, edu.pitt.is.UMAP2015.R.drawable.logout};
-            String[] t4 = {"Favorite", "Schedule", "Log Out"};
+            Integer[] i4 = {edu.pitt.is.UMAP2015.R.drawable.starbig, edu.pitt.is.UMAP2015.R.drawable.schedulebig, R.drawable.recommend, edu.pitt.is.UMAP2015.R.drawable.logout};
+            String[] t4 = {"Favorite", "Schedule", "Recommends", "Log Out"};
             gv4.setAdapter(new ImageViewAdapter(this, i4, t4));
 
             gv4.setOnItemClickListener(new OnItemClickListener() {
@@ -150,8 +177,12 @@ public class MainInterface extends Activity {
                             in = new Intent(MainInterface.this, MyScheduledPapers.class);
                             startActivity(in);
                             break;
-
+                        // Recommendation
                         case 2:
+                            in = new Intent(MainInterface.this, MyRecommendedPapers.class);
+                            startActivity(in);
+                            break;
+                        case 3:
                             Conference.userID = "";
                             Conference.userSignin = false;
                             SharedPreferences userinfo = getSharedPreferences("userinfo", 0);
@@ -175,8 +206,8 @@ public class MainInterface extends Activity {
             });
 
         } else {
-            Integer[] i4 = {edu.pitt.is.UMAP2015.R.drawable.starbig, edu.pitt.is.UMAP2015.R.drawable.schedulebig, edu.pitt.is.UMAP2015.R.drawable.login};
-            String[] t4 = {"Favorite", "Schedule", "Log In"};
+            Integer[] i4 = {edu.pitt.is.UMAP2015.R.drawable.starbig, edu.pitt.is.UMAP2015.R.drawable.schedulebig, R.drawable.recommend, edu.pitt.is.UMAP2015.R.drawable.login};
+            String[] t4 = {"Favorite", "Schedule", "Recommends", "Log In"};
             gv4.setAdapter(new ImageViewAdapter(this, i4, t4));
 
             gv4.setOnItemClickListener(new OnItemClickListener() {
@@ -193,8 +224,12 @@ public class MainInterface extends Activity {
                             in = new Intent(MainInterface.this, MyScheduledPapers.class);
                             startActivity(in);
                             break;
-
+                        // Recommendation
                         case 2:
+                            in = new Intent(MainInterface.this, MyRecommendedPapers.class);
+                            startActivity(in);
+                            break;
+                        case 3:
                             CallSignin();
                             break;
                         default:
@@ -203,7 +238,9 @@ public class MainInterface extends Activity {
                 }
             });
         }
-        checkUpdate();
+        if (isConnect(this)) {
+            checkUpdate();
+        }
     }
 
     private void CallSignin() {
@@ -268,6 +305,7 @@ public class MainInterface extends Activity {
                 v = li.inflate(edu.pitt.is.UMAP2015.R.layout.imagetext, null);
                 TextView tv = (TextView) v.findViewById(edu.pitt.is.UMAP2015.R.id.TextView01);
                 tv.setText(mText[position]);
+//                tv.setTextSize(12);
                 ImageView iv = (ImageView) v.findViewById(edu.pitt.is.UMAP2015.R.id.ImageView01);
                 iv.setImageResource(mThumbIds[position]);
             } else {

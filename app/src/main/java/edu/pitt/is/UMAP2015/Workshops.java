@@ -19,10 +19,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 import data.DBAdapter;
 import data.Session;
+import data.StringFilter;
 import data.Workshop;
 
 public class Workshops extends Activity {
@@ -30,6 +32,8 @@ public class Workshops extends Activity {
 	private DBAdapter db;
 	private ListView lv;
 	private TextView t1;
+	private HashMap<String, String> sessionMap = new HashMap<String, String>();
+	private ArrayList<Session> list = new ArrayList<Session>();
 	
 	private final int MENU_HOME = Menu.FIRST;
 	private final int MENU_TRACK = Menu.FIRST + 1;
@@ -80,10 +84,21 @@ public class Workshops extends Activity {
 			}
 
 		}
-
 		db.close();
-		
-		adapter = new ListViewAdapter(sList);
+
+		for (Session session: sList) {
+			if (sessionMap.containsKey(session.name)) {
+				String eventSessionIDList = sessionMap.get(session.name);
+				StringBuilder sb = new StringBuilder(eventSessionIDList);
+				sb.append(";"+session.ID);
+				sessionMap.put(session.name, sb.toString());
+			} else {
+				sessionMap.put(session.name, session.ID);
+				list.add(session);
+			}
+		}
+
+		adapter = new ListViewAdapter(list);
 		
 		lv = (ListView) findViewById(edu.pitt.is.UMAP2015.R.id.ListView01);
 		lv.setAdapter(adapter);
@@ -91,7 +106,9 @@ public class Workshops extends Activity {
 			public void onItemClick(AdapterView av, View v, int pos, long arg) {
 				
 				Intent in = new Intent(Workshops.this, WorkshopDetail.class);
-				in.putExtra("eventSessionID", sList.get(pos).ID);
+				String sessionName = list.get(pos).name;
+				String eventSessionIDList = sessionMap.get(sessionName);
+				in.putExtra("eventSessionIDList", eventSessionIDList);
 				startActivity(in);
 			}
 		});

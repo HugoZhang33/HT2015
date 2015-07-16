@@ -240,7 +240,7 @@ public class MyStaredPapers extends Activity implements Runnable {
     }
 
     static class ViewHolder {
-        TextView t1, t2, t3, tr, type, date;
+        TextView t1, t2, t3, tr, type, date, location;
         ImageButton star, schedule;
     }
 
@@ -289,6 +289,14 @@ public class MyStaredPapers extends Activity implements Runnable {
                 vh.star = (ImageButton) convertView
                         .findViewById(edu.pitt.is.UMAP2015.R.id.ImageButton02);
 
+                vh.location = (TextView) convertView.findViewById(R.id.location);
+                vh.location.setVisibility(View.VISIBLE);
+                String room = paperList.get(position).room;
+                if (room == null || "null".compareToIgnoreCase(room)==0 || "".compareTo(room)==0) {
+                    vh.location.setText("AT N/A");
+                } else {
+                    vh.location.setText("AT " + room);
+                }
 
                 convertView.setTag(vh);
             } else {
@@ -296,7 +304,6 @@ public class MyStaredPapers extends Activity implements Runnable {
             }
 
             if (pList.get(position).scheduled.compareTo("yes") == 0) {
-                System.out.println("}}}}}}}}}}}}}}}}}}}}}}}}" + pList.get(position).title);
                 vh.schedule.setImageResource(edu.pitt.is.UMAP2015.R.drawable.yes_schedule);
             }
             else

@@ -90,8 +90,6 @@ public class PaperAttending extends Activity {
                     .show();
 
         }
-
-
     }
 
     private void CallSignin() {
@@ -281,23 +279,34 @@ public class PaperAttending extends Activity {
                 Intent in = new Intent(this, WorkshopDetail.class);
                 in.putExtra("id", s[0]);
                 in.putExtra("title", s[1]);
-                in.putExtra("bTime", s[2]);
-                in.putExtra("eTime", s[3]);
-                in.putExtra("room", s[4]);
-                in.putExtra("date", s[5]);
-                in.putExtra("content", s[6]);
-                in.putExtra("childsessionID", s[7]);
+                in.putExtra("room", s[2]);
+                in.putExtra("eventSessionID", s[3]);
+                in.putExtra("eventSessionIDList", s[4]);
                 startActivity(in);
             } else if (activity.compareToIgnoreCase("PosterDetail") == 0) {
                 this.finish();
-                String[] s = key.split(";");
+                String[] s = key.split("%");
                 Intent in = new Intent(this, PosterDetail.class);
-                in.putExtra("title", s[0]);
-                in.putExtra("id", s[1]);
-                in.putExtra("date", s[2]);
-                in.putExtra("btime", s[3]);
-                in.putExtra("etime", s[4]);
-                in.putExtra("room", s[5]);
+                in.putExtra("id", s[0]);
+                in.putExtra("title", s[1]);
+                in.putExtra("room", s[2]);
+                in.putExtra("eventSessionID", s[3]);
+                in.putExtra("eventSessionIDList", s[4]);
+                startActivity(in);
+            } else if (activity.compareToIgnoreCase("Tutorials") == 0) {
+                this.finish();
+                String[] s = key.split("%");
+                Intent in = new Intent(this, Tutorials.class);
+                in.putExtra("id", s[0]);
+                in.putExtra("title", s[1]);
+                in.putExtra("room", s[2]);
+                startActivity(in);
+            } else if (activity.compareToIgnoreCase("AuthorDetail") == 0) {
+                this.finish();
+                String[] s = key.split("%");
+                Intent in = new Intent(this, AuthorDetail.class);
+                in.putExtra("authorID", s[0]);
+                in.putExtra("authorName", s[1]);
                 startActivity(in);
             } else {
                 return false;

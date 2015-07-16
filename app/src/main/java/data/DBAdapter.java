@@ -15,6 +15,16 @@ public class DBAdapter {
     private DatabaseHelper mDbHelper;
     private SQLiteDatabase mDb;
 
+    private final static String CreateAuthor = "create table author " +
+            "(ID text primary key, " +
+            "name text not null" +
+            ")";
+
+    private final static String CreateAuthorToPaper = "create table authorToPaper " +
+            "(authorID text not null, " +
+            "contentID text not null " +
+            ")";
+
     private final static String CreateConference = "create table conference " +
             "(ID text primary key, "
             + "title text not null, " +
@@ -22,7 +32,8 @@ public class DBAdapter {
             "endDate text not null, " +
             "location text not null, " +
             "timestamp text not null, " +
-            "description text not null)";
+            "description text not null" +
+            ")";
     private final static String CreateSession = "create table session (" +
             "ID text primary key not null, "
             + "name text, " +
@@ -36,9 +47,10 @@ public class DBAdapter {
             + "name text, " +
             "beginTime text, " +
             "endTime text, " +
-            "date text," +
-            "day_id text," +
-            "room text)";
+            "date text, " +
+            "day_id text, " +
+            "room text, " +
+            "eventSessionID text)";
     private final static String CreatePaper = "create table paper (" +
             "ID text, " +
             "presentationID text primary key not null, " +
@@ -104,6 +116,67 @@ public class DBAdapter {
     public void close() {
         mDbHelper.close();
     }
+
+    /*Author*/
+    public long insertAuthor(String id, String name) {
+        ContentValues values = new ContentValues();
+        values.put("ID", id);
+        values.put("name", name);
+        return mDb.insert("author", null, values);
+    }
+
+    public ArrayList<Author> getAllAuthor() {
+        Cursor cursor = mDb.query("author", new String[]{"ID", "name"}, null, null, null, null, "name");
+
+        ArrayList<Author> authorList = new ArrayList<Author>();
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Author author = new Author();
+            author.id = cursor.getString(0);
+            author.name = cursor.getString(1);
+            authorList.add(author);
+            cursor.moveToNext();
+        }
+        if (cursor != null && !cursor.isClosed()) {
+            cursor.close();
+        }
+        System.out.println("???????????????" + authorList.size());
+        return authorList;
+    }
+
+    public int deleteAllAuthor() { return mDb.delete("author", null, null); }
+
+
+    /*Author to paper*/
+    public long insertAuthorToPaper(String authorID, String contentID) {
+        ContentValues values = new ContentValues();
+        values.put("authorID", authorID);
+        values.put("contentID", contentID);
+        return mDb.insert("authorToPaper", null, values);
+    }
+
+//    public ArrayList<String> getAllContentIDByAuthorID(String authorID) {
+//        Cursor cursor = mDb.rawQuery("select a.contentID" + " " +
+//                "from authorToPaper a" + " " +
+//                "where a.contentID = '" + authorID + "'", null);
+//
+//        ArrayList<String> contentIDList = new ArrayList<String>();
+//
+//        cursor.moveToFirst();
+//        while (!cursor.isAfterLast()) {
+//            String contentID = cursor.getString(0);
+//            contentIDList.add(contentID);
+//            cursor.moveToNext();
+//        }
+//        if (cursor != null && !cursor.isClosed()) {
+//            cursor.close();
+//        }
+//        return contentIDList;
+//    }
+
+    public int deleteAuthorToPaper() { return mDb.delete("authorToPaper", null, null); }
+
 
     /*Conference*/
     public long insertConference(String id, String title, String startDate,
@@ -365,7 +438,7 @@ public class DBAdapter {
 
         Cursor cursor = mDb.rawQuery("select p.ID, pc.title,p.date,pc.paperAbstract,pc.contentlink," +
                 "pc.authors,p.starred,p.scheduled, " +
-                "p.exactbeginTime, p.exactendTime,p.type,p.dayid,p.recommended,p.presentationID, s.room" + " " +
+                "p.exactbeginTime, p.exactendTime,pc.type,p.dayid,p.recommended,p.presentationID, s.room" + " " +
                 "from paper p, papercontent pc, myscheduledpaper mp, session s" + " " +
                 "where p.sessionID=" + sID + " and p.ID=mp.paperID and p.ID = pc.ID and p.sessionID = s.ID" + " " +
                 "order by p.dayid, p.exactbeginTime", null);
@@ -412,14 +485,14 @@ public class DBAdapter {
         values.put("date", p.date);
         values.put("room", p.room);
         values.put("day_id", p.day_id);
-        //values.put("room", se.room);
+        values.put("eventSessionID", p.eventSessionID);
         return mDb.insert("poster", null, values);
     }
 
     public ArrayList<Poster> getPoster() {
         ArrayList<Poster> poList = new ArrayList<Poster>();
         Cursor cursor = mDb.query("poster", new String[]{"ID", "name",
-                "beginTime", "endTime", "date", "room", "day_id"}, null, null, null, null, "beginTime");
+                "beginTime", "endTime", "date", "room", "day_id, eventSessionID"}, null, null, null, null, "beginTime");
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -431,6 +504,7 @@ public class DBAdapter {
             t.date = cursor.getString(4);
             t.room = cursor.getString(5);
             t.day_id = cursor.getString(6);
+            t.eventSessionID = cursor.getString(7);
             poList.add(t);
             cursor.moveToNext();
         }
@@ -524,6 +598,7 @@ public class DBAdapter {
         values.put("authors", pc.authors);
         values.put("type", pc.type);
         return mDb.insert("papercontent", null, values);
+
     }
 
     public int deletePaper() {
@@ -541,6 +616,40 @@ public class DBAdapter {
                 "p.exactbeginTime, p.exactendTime,c.type, p.dayid, p.recommended, s.room, p.presentationID" + " "
                 + "from paper p, papercontent c, session s " + " " +
                 "where p.sessionID = s.ID and p.ID = c.ID and c.authors<>'No author information available' and c.type<>'no-paper' order by c.authors", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Paper p = new Paper();
+            p.id = cursor.getString(0);
+            p.title = cursor.getString(1);
+            p.date = cursor.getString(2);
+            p.paperAbstract = cursor.getString(3);
+            p.contentlink = cursor.getString(4);
+            p.authors = cursor.getString(5);
+            p.starred = cursor.getString(6);
+            p.scheduled = cursor.getString(7);
+            p.exactbeginTime = cursor.getString(8);
+            p.exactendTime = cursor.getString(9);
+            p.type = cursor.getString(10);
+            p.day_id = cursor.getString(11);
+            p.recommended = cursor.getString(12);
+            p.room = cursor.getString(13);
+            p.presentationID = cursor.getString(14);
+            papers.add(p);
+            cursor.moveToNext();
+        }
+        if (cursor != null && !cursor.isClosed()) {
+            cursor.close();
+        }
+        return papers;
+    }
+
+    public ArrayList<Paper> getPapersByAuthorID(String authorID) {
+        ArrayList<Paper> papers = new ArrayList<Paper>();
+        Cursor cursor = mDb.rawQuery("select p.ID, c.title," +
+                "p.date,c.paperAbstract,c.contentlink,c.authors,p.starred,p.scheduled, " +
+                "p.exactbeginTime, p.exactendTime,c.type, p.dayid, p.recommended, s.room, p.presentationID" + " "
+                + "from paper p, papercontent c, session s, authorToPaper a " + " " +
+                "where p.sessionID = s.ID and p.ID = c.ID and c.ID = a.contentID and a.authorID = '" + authorID + "' order by p.dayid", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             Paper p = new Paper();
@@ -606,8 +715,41 @@ public class DBAdapter {
         ArrayList<Paper> papers = new ArrayList<Paper>();
         Cursor cursor = mDb.rawQuery("select p.ID, c.title," +
                 "p.date,c.paperAbstract,c.contentlink,c.authors,p.starred,p.scheduled, " +
-                "p.exactbeginTime, p.exactendTime,c.type, p.dayid, p.recommended, s.room, p.presentationID " + " "
+                "p.exactbeginTime, p.exactendTime, c.type, p.dayid, p.recommended, s.room, p.presentationID " + " "
                 + "from paper p, papercontent c, session s where p.sessionID = s.ID and p.ID = c.ID and c.type<>'no-paper' order by c.type", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Paper p = new Paper();
+            p.id = cursor.getString(0);
+            p.title = cursor.getString(1);
+            p.date = cursor.getString(2);
+            p.paperAbstract = cursor.getString(3);
+            p.contentlink = cursor.getString(4);
+            p.authors = cursor.getString(5);
+            p.starred = cursor.getString(6);
+            p.scheduled = cursor.getString(7);
+            p.exactbeginTime = cursor.getString(8);
+            p.exactendTime = cursor.getString(9);
+            p.type = cursor.getString(10);
+            p.day_id = cursor.getString(11);
+            p.recommended = cursor.getString(12);
+            p.room = cursor.getString(13);
+            p.presentationID = cursor.getString(14);
+            papers.add(p);
+            cursor.moveToNext();
+        }
+        if (cursor != null && !cursor.isClosed()) {
+            cursor.close();
+        }
+        return papers;
+    }
+
+    public ArrayList<Paper> getPapersBypresentationType(String type) {
+        ArrayList<Paper> papers = new ArrayList<Paper>();
+        Cursor cursor = mDb.rawQuery("select p.ID, c.title," +
+                "p.date,c.paperAbstract,c.contentlink,c.authors,p.starred,p.scheduled, " +
+                "p.exactbeginTime, p.exactendTime, c.type, p.dayid, p.recommended, s.room, p.presentationID " + " "
+                + "from paper p, papercontent c, session s where p.sessionID = s.ID and p.ID = c.ID and c.type = " + "'" + type + "'" + " order by p.date", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             Paper p = new Paper();
@@ -639,7 +781,7 @@ public class DBAdapter {
         ArrayList<Paper> papers = new ArrayList<Paper>();
         Cursor cursor = mDb.rawQuery("select p.ID, pc.title," +
                 "p.date,pc.paperAbstract,pc.contentlink,pc.authors,p.starred,p.scheduled, " +
-                "p.exactbeginTime, p.exactendTime,pc.type, p.dayid, p.recommended, s.room, p.presentationID " + " "
+                "p.exactbeginTime, p.exactendTime, pc.type, p.dayid, p.recommended, s.room, p.presentationID " + " "
                 + "from paper p, papercontent pc, session s where p.sessionID=" + sessionID + " and p.sessionID = s.ID and p.ID = pc.ID order by p.dayid, p.exactbeginTime", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -654,8 +796,8 @@ public class DBAdapter {
             p.scheduled = cursor.getString(7);
             p.exactbeginTime = cursor.getString(8);
             p.exactendTime = cursor.getString(9);
-            ;
             p.type = cursor.getString(10);
+            System.out.println("+++++++++++++++++++++" + p.type);
             p.day_id = cursor.getString(11);
             p.recommended = cursor.getString(12);
             p.room = cursor.getString(13);
@@ -675,8 +817,8 @@ public class DBAdapter {
 
         Cursor cursor = mDb.rawQuery("select p.ID, pc.title," +
                 "p.date,pc.paperAbstract,pc.contentlink,pc.authors,p.starred,p.scheduled, " +
-                "p.exactbeginTime, p.exactendTime,pc.type, p.dayid, p.recommended, p.presentationID" + " "
-                + "from paper p, papercontent pc, mystarredpaper mp where p.presentationID=mp.presentationID and p.ID = pc.ID order by p.dayid, p.exactbeginTime", null);
+                "p.exactbeginTime, p.exactendTime, pc.type, p.dayid, p.recommended, p.presentationID, s.room" + " "
+                + "from session s, paper p, papercontent pc, mystarredpaper mp where s.ID=p.sessionID and p.presentationID=mp.presentationID and p.ID = pc.ID order by p.dayid, p.exactbeginTime", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             Paper p = new Paper();
@@ -694,6 +836,7 @@ public class DBAdapter {
             p.day_id = cursor.getString(11);
             p.recommended = cursor.getString(12);
             p.presentationID = cursor.getString(13);
+            p.room = cursor.getString(14);
             papers.add(p);
             cursor.moveToNext();
         }
@@ -917,12 +1060,17 @@ public class DBAdapter {
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
 
+        // pleas increase this version num every time changing the structure of database
+        private static final int DB_VERSION = 2;
+
         DatabaseHelper(Context context) {
-            super(context, "iConference", null, 1);
+            super(context, "iConference", null, DB_VERSION);
         }
 
         @Override
         public void onCreate(SQLiteDatabase db) {
+            db.execSQL(CreateAuthor);
+            db.execSQL(CreateAuthorToPaper);
             db.execSQL(CreateConference);
             db.execSQL(CreateSession);
             db.execSQL(CreatePaperContent);
@@ -949,6 +1097,8 @@ public class DBAdapter {
             db.execSQL("DROP TABLE IF EXISTS workshopDes");
             db.execSQL("DROP TABLE IF EXISTS poster");
             db.execSQL("DROP TABLE IF EXISTS myrecommendedpaper");
+            db.execSQL("DROP TABLE IF EXISTS author");
+            db.execSQL("DROP TABLE IF EXISTS authorToPaper");
             onCreate(db);
         }
     }

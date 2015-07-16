@@ -1,10 +1,10 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/RelativeLayout01"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/White"
     android:orientation="vertical">
+
 
     <TextView
         android:id="@+id/TextView01"
@@ -13,8 +13,7 @@
         android:padding="5pt"
         android:textColor="@drawable/darkblue"
         android:textSize="8pt"
-        android:textStyle="bold">
-    </TextView>
+        android:textStyle="bold"></TextView>
 
     <TextView
         android:id="@+id/TextView02"
@@ -22,8 +21,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="5pt"
         android:paddingRight="5pt"
-        android:textColor="@drawable/Gray">
-    </TextView>
+        android:textColor="@drawable/Gray"></TextView>
 
     <LinearLayout
         android:id="@+id/LinearLayout01"
@@ -40,16 +38,14 @@
             android:layout_height="wrap_content"
             android:paddingRight="5pt"
             android:text="AT "
-            android:textColor="@drawable/Gray">
-        </TextView>
+            android:textColor="@drawable/Gray"></TextView>
 
         <TextView
             android:id="@+id/TextView04"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="5pt"
-            android:textColor="@drawable/SteelBlue">
-        </TextView>
+            android:textColor="@drawable/SteelBlue"></TextView>
     </LinearLayout>
 
     <LinearLayout
@@ -66,16 +62,14 @@
             android:layout_height="wrap_content"
             android:paddingRight="5pt"
             android:text="BY "
-            android:textColor="@drawable/Gray">
-        </TextView>
+            android:textColor="@drawable/Gray"></TextView>
 
         <TextView
             android:id="@+id/TextView06"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="5pt"
-            android:textColor="@drawable/SteelBlue">
-        </TextView>
+            android:textColor="@drawable/SteelBlue"></TextView>
     </LinearLayout>
 
     <LinearLayout
@@ -93,16 +87,14 @@
             android:layout_height="wrap_content"
             android:paddingRight="5pt"
             android:text="PDF "
-            android:textColor="@drawable/Gray">
-        </TextView>
+            android:textColor="@drawable/Gray"></TextView>
 
         <TextView
             android:id="@+id/PaperButton"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingRight="5pt"
-            android:textColor="@drawable/SteelBlue">
-        </TextView>
+            android:textColor="@drawable/SteelBlue"></TextView>
     </LinearLayout>
 
     <View
@@ -126,8 +118,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/White"
             android:paddingLeft="5pt"
-            android:src="@drawable/no_schedule">
-        </ImageButton>
+            android:src="@drawable/no_schedule"></ImageButton>
 
         <ImageButton
             android:id="@+id/ImageButton02"
@@ -135,8 +126,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/White"
             android:paddingLeft="5pt"
-            android:src="@drawable/no_star">
-        </ImageButton>
+            android:src="@drawable/no_star"></ImageButton>
 
         <ImageButton
             android:id="@+id/ImageButton03"
@@ -144,8 +134,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/White"
             android:paddingLeft="5pt"
-            android:src="@drawable/share">
-        </ImageButton>
+            android:src="@drawable/share"></ImageButton>
     </LinearLayout>
 
     <View
@@ -158,6 +147,6 @@
         android:id="@+id/WebView01"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:padding="10pt">
-    </WebView>
+        android:padding="10pt"></WebView>
+
 </LinearLayout><!-- From: file:/Users/hongzhang/Desktop/UMAP2015/app/src/main/res/layout/paperdetail.xml -->

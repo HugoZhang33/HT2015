@@ -6,6 +6,7 @@
         <item>UMAP2015</item>
         <item>iConference2015</item>
     </string-array>
+    <declare-styleable name="MyScrollView"><attr format="string" name="exampleString"/><attr format="dimension" name="exampleDimension"/><attr format="color" name="exampleColor"/><attr format="color|reference" name="exampleDrawable"/></declare-styleable>
     <!-- From: file:/Users/hongzhang/Desktop/UMAP2015/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="activity_horizontal_margin">16dp</dimen>
@@ -149,5 +150,8 @@
     <string name="hello">Hello World!</string>
     <string name="hello_world">Hello world!</string>
     <string name="select">Choose a conference</string>
+    <string name="title_activity_author_detail">AuthorDetail</string>
+    <string name="title_activity_authors">Authors</string>
     <string name="title_activity_first_launch_update">firstLaunchUpdate</string>
+    <string name="title_activity_tutorials">Tutorials</string>
 </resources>

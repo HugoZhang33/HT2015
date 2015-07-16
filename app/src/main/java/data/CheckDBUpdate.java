@@ -9,65 +9,91 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CheckDBUpdate {
-	public boolean needUpdate;
-	
+    public boolean needUpdate;
 
-	public boolean compare() {
-		String result = getTimestamp();
-		if (result.compareTo(Conference.timstamp) == 0)
-			needUpdate=false;
-		else {
-			needUpdate = true;
-			Conference.timstamp =result;
-		}
 
-		return needUpdate;
-	}
+    public boolean compare() {
+        String result = getTimestamp();
+        if (result == null || !Character.isDigit(result.charAt(0)) ||
+                result.compareTo(Conference.timstamp) == 0 || !Character.isDigit(Conference.timstamp.charAt(0)))
+            needUpdate = false;
+        else {
+            needUpdate = true;
+            Conference.timstamp = result;
+        }
 
-	public boolean check() {
-		String result = getTimestamp();
-		if (result.compareTo(Conference.timstamp) == 0)
-			needUpdate=false;
-		else {
-			needUpdate = true;
-		}
+        return needUpdate;
+    }
 
-		return needUpdate;
-	}
+    public boolean check() {
+        String result = getTimestamp();
+        System.out.println("+++++++++++++++from server: " + result);
+        System.out.println("+++++++++++++++: " + Conference.timstamp);
+        if (result == null || !Character.isDigit(result.charAt(0)) ||
+                result.compareTo(Conference.timstamp) == 0 || !Character.isDigit(Conference.timstamp.charAt(0)))
+            needUpdate = false;
+        else {
+            needUpdate = true;
+        }
 
-	public String getTimestamp() {
-		String url = ConferenceURL.CheckUpdate;
-		HttpPost httpRequest = new HttpPost(url);
-		String result = null;
+        return needUpdate;
+    }
 
-		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("eventID", Conference.id));
-		try {
+    public String getTimestamp() {
+        String result = null;
+        try {
+            URL url = new URL(ConferenceURL.CheckUpdate + "eventID=" + Conference.id);
+            InputStream in = url.openStream();
+            result = convertToString(in);
+            int start = result.indexOf("<timestamp>");
+            int end = result.indexOf("</timestamp>");
+            result = result.substring(start+11, end);
+            in.close();
 
-			httpRequest.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 
-			HttpResponse httpResponse = new DefaultHttpClient()
-					.execute(httpRequest);
+    private String convertToString(InputStream is) {
+        if (is != null) {
+            StringBuilder sb = new StringBuilder();
+            String line;
+            try {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
 
-			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line).append(" ");
+                }
+            } catch (Exception e) {
+                System.out.print(e.getMessage());
+            } finally {
+                try {
+                    is.close();
+                } catch (Exception e) {
 
-				result = EntityUtils.toString(httpResponse.getEntity());
-				int start = result.indexOf("<timestamp>");
-				int end = result.indexOf("</timestamp>");
-				result = result.substring(start+11, end);
-			} else {
-				// System.out.print("error: status code not 200");
-				needUpdate = false;
-			}
-		} catch (Exception e) {
-			System.out.print("exception" + e);
-		}
-
-		return result;
-	}
+                }
+            }
+            return sb.toString();
+        } else {
+            return "";
+        }
+    }
 }
 

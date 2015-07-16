@@ -30,6 +30,7 @@
 		android:layout_below="@+id/FrameLayout01" 
 		android:textColor="@drawable/darkblue" 
 		android:visibility="gone" 
-		android:text="Star, or Bookmark papers of interest here"></TextView>
+		android:text="Star, or Bookmark papers of interest here">
+	</TextView>
 </RelativeLayout>
 <!-- From: file:/Users/hongzhang/Desktop/UMAP2015/app/src/main/res/layout/mystaredpapers.xml -->

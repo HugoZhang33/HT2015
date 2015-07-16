@@ -2,6 +2,8 @@ package data;
 
 //import UMAP2011.com.R;
 
+import java.util.ArrayList;
+
 public class PaperContent {
 
     public String id;
@@ -10,5 +12,5 @@ public class PaperContent {
     public String title;
     public String type;
     public String contentlink;
-
+    public ArrayList<String> authorIDList = new ArrayList<String>();
 }

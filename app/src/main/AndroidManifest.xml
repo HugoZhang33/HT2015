@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.pitt.is.UMAP2015"
-    android:versionCode="7"
-    android:versionName="4.2" >
+    android:versionCode="19"
+    android:versionName="4.8.4" >
 
     <uses-sdk android:minSdkVersion="4" />
 
@@ -15,7 +15,7 @@
         <activity
             android:name=".iConference2012"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -99,6 +99,18 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".FirstLaunchUpdate"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Tutorials"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Authors"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".AuthorDetail"
             android:screenOrientation="portrait" >
         </activity>
     </application>

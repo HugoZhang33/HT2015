@@ -67,7 +67,6 @@ public class PaperInfo extends Activity implements Runnable, OnClickListener {
 
         us2s = new UserScheduledToServer();
         t1 = (TextView) findViewById(edu.pitt.is.UMAP2015.R.id.TextView01);
-        //t1.setBackgroundResource(tbColor);
         t1.setText(title);
 
 
@@ -123,15 +122,13 @@ public class PaperInfo extends Activity implements Runnable, OnClickListener {
 
 
         bv = (TextView) findViewById(edu.pitt.is.UMAP2015.R.id.PaperButton);
-        //bv.setOnClickListener(this);
 
-
-        if(pContent != null && !"null".equals(pContent)) {
+        if (pContent != null && !"null".equals(pContent)) {
             bv.setText(pContent);
             bv.setOnClickListener(new TextView.OnClickListener() {
                 public void onClick(View v) {
                 /*
-	        	Intent it = new Intent(Intent.ACTION_VIEW, Uri.parse(pContent));
+                Intent it = new Intent(Intent.ACTION_VIEW, Uri.parse(pContent));
 				it.setClassName("com.android.browser", "com.android.browser.BrowserActivity");
 				startActivity(it);**/
 
@@ -196,9 +193,8 @@ public class PaperInfo extends Activity implements Runnable, OnClickListener {
             case edu.pitt.is.UMAP2015.R.id.ImageButton03:
                 Intent connectSocN = new Intent(Intent.ACTION_SEND);
                 connectSocN.setType("text/plain");
-                connectSocN.putExtra(android.content.Intent.EXTRA_SUBJECT, "iConference 2013");
-                connectSocN.putExtra(Intent.EXTRA_TEXT, "The iConference is an annual gathering of a broad spectrum of scholars and researchers from around the world who share a common concern about critical information issues in contemporary society. The iConference pushes the boundaries of information studies, explores core concepts and ideas, and creates new technological and conceptual configurations???all situated in interdisciplinary discourses.<br/>The iConference series is presented by the iSchools organization, a worldwide collective of Information Schools dedicated to advancing the information field, and preparing students to meet the information challenges of the 21st Century. <br/>iConference 2013 is hosted by the University of North Texas College of Information. Presenting Sponsors include Microsoft Research. Additional sponsorships are available; visit our sponsorship page to learn more about sponsorship opportunities.\n" +
-                        "This paper will be presented on iConf:\n" + title + "\n" + "http://halley.exp.sis.pitt.edu/cn3/presentation2.php?conferenceID=98&presentationID=" + presentationID);
+                connectSocN.putExtra(android.content.Intent.EXTRA_SUBJECT, "UMAP 2015");
+                connectSocN.putExtra(Intent.EXTRA_TEXT, "#UMAP2015 " + title + "\n" + "http://halley.exp.sis.pitt.edu/cn3/presentation2.php?conferenceID=134&presentationID=" + presentationID);
                 startActivity(Intent.createChooser(connectSocN, "Share"));
                 break;
             default:
@@ -437,23 +433,34 @@ public class PaperInfo extends Activity implements Runnable, OnClickListener {
                 Intent in = new Intent(this, WorkshopDetail.class);
                 in.putExtra("id", s[0]);
                 in.putExtra("title", s[1]);
-                in.putExtra("bTime", s[2]);
-                in.putExtra("eTime", s[3]);
-                in.putExtra("room", s[4]);
-                in.putExtra("date", s[5]);
-//                in.putExtra("content", s[6]);
-                in.putExtra("eventSessionID", s[6]);
+                in.putExtra("room", s[2]);
+                in.putExtra("eventSessionID", s[3]);
+                in.putExtra("eventSessionIDList", s[4]);
                 startActivity(in);
             } else if (activity.compareToIgnoreCase("PosterDetail") == 0) {
                 this.finish();
-                String[] s = key.split(";");
+                String[] s = key.split("%");
                 Intent in = new Intent(this, PosterDetail.class);
-                in.putExtra("title", s[0]);
-                in.putExtra("id", s[1]);
-                in.putExtra("date", s[2]);
-                in.putExtra("btime", s[3]);
-                in.putExtra("etime", s[4]);
-                in.putExtra("room", s[5]);
+                in.putExtra("id", s[0]);
+                in.putExtra("title", s[1]);
+                in.putExtra("room", s[2]);
+                in.putExtra("eventSessionID", s[3]);
+                in.putExtra("eventSessionIDList", s[4]);
+                startActivity(in);
+            } else if (activity.compareToIgnoreCase("Tutorials") == 0) {
+                this.finish();
+                String[] s = key.split("%");
+                Intent in = new Intent(this, Tutorials.class);
+                in.putExtra("id", s[0]);
+                in.putExtra("title", s[1]);
+                in.putExtra("room", s[2]);
+                startActivity(in);
+            } else if (activity.compareToIgnoreCase("AuthorDetail") == 0) {
+                this.finish();
+                String[] s = key.split("%");
+                Intent in = new Intent(this, AuthorDetail.class);
+                in.putExtra("authorID", s[0]);
+                in.putExtra("authorName", s[1]);
                 startActivity(in);
             } else {
                 return false;
@@ -463,9 +470,7 @@ public class PaperInfo extends Activity implements Runnable, OnClickListener {
         }
 
         return super.onKeyDown(keyCode, event);
-
     }
-
 }
 
 

@@ -87,6 +87,7 @@ public class iConference2012 extends Activity {
         Conference.userID = getUserID();
         db = new DBAdapter(this).open();
         db.getConferenceInfo();
+        db.close();
         if (Conference.title != null && Conference.title.equals("")) { // first launch
             finish();
             Intent intent = new Intent(iConference2012.this, FirstLaunchUpdate.class);

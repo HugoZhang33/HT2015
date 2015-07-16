@@ -9,34 +9,49 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Html;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebView;
+import android.widget.BaseAdapter;
 import android.widget.ImageButton;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import data.Conference;
 import data.DBAdapter;
 import data.Paper;
+import data.Poster;
+import data.Session;
 import data.UserScheduledToServer;
 
-public class PosterDetail extends Activity implements Runnable, OnClickListener {
-    private String wtitle, wid, content, date, btime, etime, room, authors, presentationID, contentLink;
-    private TextView t1, t2, t3, t4, bv;
-    private WebView wv;
-    private ImageButton b1, b2, b, b3;
-    private DBAdapter db;
+public class PosterDetail extends Activity implements Runnable {
+    private String wtitle, wid, room, eventSessionIDList;
+    private TextView t1, t4, tv;
+    private ListView lv;
+    private ListAdapter adapter;
+    private ImageButton ib;
+    private DBAdapter db =  new DBAdapter(this);
     private UserScheduledToServer us2s;
     private String paperStatus;
     private ProgressDialog pd;
     private String paperID;
+    private int pos;
+    private String[] eventSessionIDs;
+    private Session session;
+    private ArrayList<Session> sList = new ArrayList<Session>();
 
     private ArrayList<Paper> pList = new ArrayList<Paper>();
 
@@ -53,59 +68,30 @@ public class PosterDetail extends Activity implements Runnable, OnClickListener 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.paperdetail);
+        setContentView(R.layout.workshopdetail);
 
         Bundle b = getIntent().getExtras();
         if (b != null) {
-            wtitle = b.getString("title");
-            wid = b.getString("id");
-            date = b.getString("date");
-            btime = b.getString("bTime");
-            etime = b.getString("eTime");
-            room = b.getString("room");
+            eventSessionIDList = b.getString("eventSessionIDList");
+            eventSessionIDs = eventSessionIDList.split(";");
+            for (int i = 0; i < eventSessionIDs.length; i++) {
+                session = db.open().getSessionByID(eventSessionIDs[i]);
+                sList.add(session);
+            }
+            db.close();
+            wtitle = session.name;
+            room = session.room;
 
         }
 
-        db = new DBAdapter(this);
-        Paper poster = db.open().getPaperByID(wid);
-        authors = poster.authors;
-        content = poster.paperAbstract;
-        presentationID = poster.presentationID;
-        contentLink = poster.contentlink;
-        pList.add(poster);
-        db.close();
-
+        tv = (TextView) findViewById(edu.pitt.is.UMAP2015.R.id.TextView);
+        tv.setText("Poster");
 
 
         us2s = new UserScheduledToServer();
         t1 = (TextView) findViewById(edu.pitt.is.UMAP2015.R.id.TextView01);
         t1.setText(wtitle);
 
-
-        b1 = (ImageButton) findViewById(edu.pitt.is.UMAP2015.R.id.ImageButton01);
-        if (getPaperScheduled(wid).compareTo("yes") == 0)
-            b1.setImageResource(edu.pitt.is.UMAP2015.R.drawable.yes_schedule);
-        else
-            b1.setImageResource(edu.pitt.is.UMAP2015.R.drawable.no_schedule);
-        b1.setTag(wid);
-        b1.setOnClickListener(this);
-
-        b2 = (ImageButton) findViewById(edu.pitt.is.UMAP2015.R.id.ImageButton02);
-        if (getPaperStarred(presentationID).compareTo("yes") == 0)
-            b2.setImageResource(edu.pitt.is.UMAP2015.R.drawable.yes_star);
-        else
-            b2.setImageResource(edu.pitt.is.UMAP2015.R.drawable.no_star);
-        b2.setTag(presentationID);
-        b2.setOnClickListener(this);
-
-        b3 = (ImageButton) findViewById(edu.pitt.is.UMAP2015.R.id.ImageButton03);
-        b3.setOnClickListener(this);
-
-        t2 = (TextView) findViewById(edu.pitt.is.UMAP2015.R.id.TextView06);
-        //t2.setBackgroundResource(tbColor);
-        t2.setText(authors);
-        t3 = (TextView) findViewById(edu.pitt.is.UMAP2015.R.id.TextView02);
-        t3.setText(date + " " + btime + "-" + etime);
         t4 = (TextView) findViewById(edu.pitt.is.UMAP2015.R.id.TextView04);
         if (room == null || "null".compareToIgnoreCase(room) == 0 || "".compareTo(room) == 0)
             t4.setText("N/A");
@@ -132,87 +118,180 @@ public class PosterDetail extends Activity implements Runnable, OnClickListener 
 
         });
 
-
-        bv = (TextView) findViewById(edu.pitt.is.UMAP2015.R.id.PaperButton);
-        //bv.setOnClickListener(this);
-
-
-        if(contentLink != null && !"null".equals(contentLink)) {
-            bv.setText(contentLink);
-            bv.setOnClickListener(new TextView.OnClickListener() {
-                public void onClick(View v) {
-                /*
-	        	Intent it = new Intent(Intent.ACTION_VIEW, Uri.parse(pContent));
-				it.setClassName("com.android.browser", "com.android.browser.BrowserActivity");
-				startActivity(it);**/
-
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    Uri data = Uri.parse(contentLink);
-                    intent.setData(data);
-                    startActivity(intent);
-                }
-            });
-        } else {
-            bv.setText("N/A");
+        // get paper by session id
+        for (int i = 0; i < eventSessionIDs.length; i++) {
+            pList.addAll(getPaperData(eventSessionIDs[i]));
         }
 
-
-        wv = (WebView) findViewById(edu.pitt.is.UMAP2015.R.id.WebView01);
-        wv.getSettings().setJavaScriptEnabled(true);
-        wv.loadData(content, "text/html", "utf-8");
+        lv = (ListView) findViewById(edu.pitt.is.UMAP2015.R.id.ListView01);
+        adapter = new MyListViewAdapter(pList);
+        lv.setAdapter(adapter);
 
     }
 
-    public void onClick(View v) {
-        // TODO Auto-generated method stub
-        TextView tv;
-        int index;
-        paperID = "";
+    public final class ViewHolder {
+        TextView firstCharHintTextView, title, location;
+        TextView t1, t2, t3, type;
+        ImageButton star, schedule;
 
-        switch (v.getId()) {
-            case edu.pitt.is.UMAP2015.R.id.ImageButton01:
-                b = (ImageButton) v;
-                paperID = b.getTag().toString();
+    }
 
-                Conference.userID = getUserID();
-                if (Conference.userSignin) {
-                    paperStatus = "";
-                    callThread();
-                } else {
-                    CallSignin();
-                }
-                break;
+    private class MyListViewAdapter extends BaseAdapter implements
+            OnClickListener {
+        private ArrayList<Paper> childs;
 
-            case edu.pitt.is.UMAP2015.R.id.ImageButton02:
-                b = (ImageButton) v;
+        public MyListViewAdapter(ArrayList<Paper> child) {
+            this.childs = child;
+        }
 
-                paperID = b.getTag().toString();
+        public int getCount() {
+            return childs.size();
+        }
 
+        public Object getItem(int position) {
+            return position;
+        }
 
-                if (getPaperStarred(paperID).compareTo("no") == 0) {
-                    b.setImageResource(edu.pitt.is.UMAP2015.R.drawable.yes_star);
-                    updateUserPaperStatus(paperID, "yes", "star");
-                    insertMyStarredPaper(paperID);
+        public long getItemId(int position) {
+            return position;
+        }
 
-                } else {
-                    b.setImageResource(edu.pitt.is.UMAP2015.R.drawable.no_star);
-                    updateUserPaperStatus(paperID, "no", "star");
-                    deleteMyStarredPaper(paperID);
+        @Override
+        public View getView(int childPos, View convertView, ViewGroup parent) {
+            // TODO Auto-generated method stub
+            ViewHolder vh = null;
+            SimpleDateFormat sdfSource = new SimpleDateFormat("HH:mm");
+            SimpleDateFormat sdfDestination = new SimpleDateFormat("h:mm a");
+            Date beginDate, endDate;
+            String begTime, endTime;
+            if (convertView == null) {
+                LayoutInflater li = getLayoutInflater();
+                convertView = li.inflate(edu.pitt.is.UMAP2015.R.layout.paperitem, null);
+                vh = new ViewHolder();
+                vh.t1 = (TextView) convertView.findViewById(edu.pitt.is.UMAP2015.R.id.time);
+                vh.t2 = (TextView) convertView.findViewById(edu.pitt.is.UMAP2015.R.id.title);
+                vh.t2.setOnClickListener(this);
+                vh.t3 = (TextView) convertView.findViewById(edu.pitt.is.UMAP2015.R.id.author);
+                vh.type = (TextView) convertView.findViewById(edu.pitt.is.UMAP2015.R.id.type);
+                vh.schedule = (ImageButton) convertView
+                        .findViewById(edu.pitt.is.UMAP2015.R.id.ImageButton01);
+                vh.star = (ImageButton) convertView
+                        .findViewById(edu.pitt.is.UMAP2015.R.id.ImageButton02);
 
+                convertView.setTag(vh);
+            } else {
+                vh = (ViewHolder) convertView.getTag();
+            }
+            try {
+                beginDate = sdfSource.parse(childs.get(childPos).exactbeginTime);
+                endDate = sdfSource.parse(childs.get(childPos).exactendTime);
+                begTime = sdfDestination.format(beginDate);
+                endTime = sdfDestination.format(endDate);
+                vh.t1.setText(childs.get(childPos).date + "\t" + begTime + " - " + endTime);
+            } catch (Exception e) {
+                System.out.println("Date Exception");
+            }
+            if (childs.get(childPos).scheduled.compareTo("yes") == 0)
+                vh.schedule.setImageResource(edu.pitt.is.UMAP2015.R.drawable.yes_schedule);
+            else
+                vh.schedule.setImageResource(edu.pitt.is.UMAP2015.R.drawable.no_schedule);
+            vh.schedule.setFocusable(false);
+            vh.schedule.setOnClickListener(this);
+            vh.schedule.setTag(childs.get(childPos).id + ";" + childPos);
 
-                }
+            if (childs.get(childPos).starred.compareTo("yes") == 0)
+                vh.star.setImageResource(edu.pitt.is.UMAP2015.R.drawable.yes_star);
+            else
+                vh.star.setImageResource(edu.pitt.is.UMAP2015.R.drawable.no_star);
+            vh.star.setFocusable(false);
+            vh.star.setOnClickListener(this);
+            vh.star.setTag(childs.get(childPos).presentationID + ";" + childPos);
 
-                break;
-            case edu.pitt.is.UMAP2015.R.id.ImageButton03:
-                Intent connectSocN = new Intent(Intent.ACTION_SEND);
-                connectSocN.setType("text/plain");
-                connectSocN.putExtra(android.content.Intent.EXTRA_SUBJECT, "iConference 2013");
-                connectSocN.putExtra(Intent.EXTRA_TEXT, "The iConference is an annual gathering of a broad spectrum of scholars and researchers from around the world who share a common concern about critical information issues in contemporary society. The iConference pushes the boundaries of information studies, explores core concepts and ideas, and creates new technological and conceptual configurations???all situated in interdisciplinary discourses.<br/>The iConference series is presented by the iSchools organization, a worldwide collective of Information Schools dedicated to advancing the information field, and preparing students to meet the information challenges of the 21st Century. <br/>iConference 2013 is hosted by the University of North Texas College of Information. Presenting Sponsors include Microsoft Research. Additional sponsorships are available; visit our sponsorship page to learn more about sponsorship opportunities.\n" +
-                        "This paper will be presented on iConf:\n" + wtitle + "\n" + "http://halley.exp.sis.pitt.edu/cn3/presentation2.php?conferenceID=98&presentationID=" + presentationID);
-                startActivity(Intent.createChooser(connectSocN, "Share"));
-                break;
-            default:
-                break;
+            if (childs.get(childPos).recommended.compareTo("yes") == 0)
+                vh.t2.setText(Html.fromHtml(childs.get(childPos).title + "<font color=\"#ff0000\"> &lt;Recommended&gt; </font>"));
+            else
+                vh.t2.setText(childs.get(childPos).title);
+            vh.t2.setTag(childPos);
+            vh.t3.setText(childs.get(childPos).authors);
+            vh.type.setText(childs.get(childPos).type);
+            return convertView;
+        }
+
+        @Override
+        public boolean hasStableIds() {
+            // TODO Auto-generated method stub
+            return false;
+        }
+
+        @Override
+        public void onClick(View v) {
+            // TODO Auto-generated method stub
+            TextView tv;
+            switch (v.getId()) {
+                case edu.pitt.is.UMAP2015.R.id.ImageButton01:
+                    ib = (ImageButton) v;
+                    String s = ib.getTag().toString();
+                    String st[] = s.split(";");
+                    paperID = st[0];
+                    pos = Integer.parseInt(st[1]);
+                    Conference.userID = getUserID();
+                    if (Conference.userSignin) {
+                        paperStatus = "";
+                        callThread();
+                    } else {
+                        CallSignin();
+                    }
+                    break;
+                case edu.pitt.is.UMAP2015.R.id.ImageButton02:
+                    ib = (ImageButton) v;
+                    String s1 = ib.getTag().toString();
+                    String st1[] = s1.split(";");
+                    paperID = st1[0];
+                    pos = Integer.parseInt(st1[1]);
+
+                    if (getPaperStarred(paperID).compareTo("no") == 0) {
+                        ib.setImageResource(edu.pitt.is.UMAP2015.R.drawable.yes_star);
+                        updateUserPaperStatus(paperID, "yes", "star");
+                        insertMyStarredPaper(paperID);
+                        childs.get(pos).starred = "yes";
+//                        this.notifyDataSetChanged();
+
+                    } else {
+                        ib.setImageResource(edu.pitt.is.UMAP2015.R.drawable.no_star);
+                        updateUserPaperStatus(paperID, "no", "star");
+                        deleteMyStarredPaper(paperID);
+                        childs.get(pos).starred = "no";
+//                        this.notifyDataSetChanged();
+
+                    }
+
+                    break;
+                case edu.pitt.is.UMAP2015.R.id.title:
+                    int idx;
+                    tv = (TextView) v;
+                    String s2 = tv.getTag().toString();
+                    String st2[] = s2.split(";");
+                    idx = Integer.parseInt(st2[0]);
+
+                    finish();
+                    Intent in = new Intent(PosterDetail.this, PaperDetail.class);
+                    in.putExtra("id", childs.get(idx).id);
+                    in.putExtra("title", childs.get(idx).title);
+                    in.putExtra("authors", childs.get(idx).authors);
+                    in.putExtra("date", childs.get(idx).date);
+                    in.putExtra("abstract", childs.get(idx).paperAbstract);
+                    in.putExtra("room", room);
+                    in.putExtra("contentlink", childs.get(idx).contentlink);
+                    in.putExtra("bTime", childs.get(idx).exactbeginTime);
+                    in.putExtra("eTime", childs.get(idx).exactendTime);
+                    in.putExtra("presentationID", childs.get(idx).presentationID);
+                    in.putExtra("activity", "PosterDetail");
+                    in.putExtra("key", wid + "%" + wtitle + "%" + room + "%" + sList.get(pos).ID + "%" + eventSessionIDList);
+                    startActivity(in);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -221,14 +300,8 @@ public class PosterDetail extends Activity implements Runnable, OnClickListener 
         in.putExtra("activity", "PaperInfo");
         in.putExtra("paperID", wid);
         in.putExtra("title", wtitle);
-        in.putExtra("bTime", btime);
-        in.putExtra("eTime", etime);
-        in.putExtra("authors", authors);
-        in.putExtra("Abstract", content);
-        in.putExtra("contentlink", contentLink);
         in.putExtra("room", room);
-        in.putExtra("date", date);
-        in.putExtra("presentationID", presentationID);
+        in.putExtra("eventSessionIDList", eventSessionIDList);
         startActivity(in);
     }
 
@@ -286,19 +359,6 @@ public class PosterDetail extends Activity implements Runnable, OnClickListener 
         }
         return false;
     }
-
-//    private void CallSignin() {
-//        Intent in = new Intent(PosterDetail.this, Signin.class);
-//        in.putExtra("activity", "PosterDetail");
-//        in.putExtra("id", wid);
-//        in.putExtra("wtitle", wtitle);
-//        in.putExtra("paperID", paperID);
-//        in.putExtra("date", date);
-//        in.putExtra("room", room);
-//        in.putExtra("wbtime", btime);
-//        in.putExtra("wetime", etime);
-//        startActivity(in);
-//    }
 
     public void updateUserPaperStatus(String paperID, String status,
                                       String which) {
@@ -379,7 +439,7 @@ public class PosterDetail extends Activity implements Runnable, OnClickListener 
             // update interface here
 
             if (paperStatus.compareTo("yes") == 0) {
-                b1.setImageResource(edu.pitt.is.UMAP2015.R.drawable.yes_schedule);
+                ib.setImageResource(edu.pitt.is.UMAP2015.R.drawable.yes_schedule);
                 updateUserPaperStatus(paperID, "yes", "schedule");
                 insertMyScheduledPaper(paperID);
 //                pList.get(pos).scheduled = "yes";
@@ -387,7 +447,7 @@ public class PosterDetail extends Activity implements Runnable, OnClickListener 
 
             }
             if (paperStatus.compareTo("no") == 0) {
-                b1.setImageResource(edu.pitt.is.UMAP2015.R.drawable.no_schedule);
+                ib.setImageResource(edu.pitt.is.UMAP2015.R.drawable.no_schedule);
                 updateUserPaperStatus(paperID, "no", "schedule");
                 deleteMyScheduledPaper(paperID);
 //                pList.get(pos).scheduled = "no";
@@ -397,6 +457,17 @@ public class PosterDetail extends Activity implements Runnable, OnClickListener 
 
         }
     };
+
+    public ArrayList<Paper> getPaperData(String sessionID) {
+        ArrayList<Paper> papers = new ArrayList<Paper>();
+        // get data at local
+        db = new DBAdapter(this);
+        db.open();
+        papers = db.getPapersBysessionID(sessionID);
+        db.close();
+
+        return papers;
+    }
 
     public void callThread() {
 
