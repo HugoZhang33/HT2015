@@ -18,6 +18,14 @@ Credits: Hong Zhang, Kaimin Zheng, Yijin Wu & PAWS Lab
 
 ![](https://github.com/HugoZhang33/HT2015/blob/master/HT2015%20Graphic/screenshots/home%20page.jpeg?raw=true)  
   
-![](https://github.com/HugoZhang33/UMAP2015/blob/master/UMAP2015%20Graphic/screenshots/paperInfo.png)  
+![](https://github.com/HugoZhang33/HT2015/blob/master/HT2015%20Graphic/screenshots/login.jpeg?raw=true)  
+
+![](https://github.com/HugoZhang33/HT2015/blob/master/HT2015%20Graphic/screenshots/sync%20data.jpeg?raw=true)
+
+![](https://github.com/HugoZhang33/HT2015/blob/master/HT2015%20Graphic/screenshots/paper%20detail.jpeg?raw=true)
   
-![](https://github.com/HugoZhang33/UMAP2015/blob/master/UMAP2015%20Graphic/screenshots/paperDetail.png)
+![](https://github.com/HugoZhang33/HT2015/blob/master/HT2015%20Graphic/screenshots/option%20menu.jpeg?raw=true)
+
+![](https://github.com/HugoZhang33/HT2015/blob/master/HT2015%20Graphic/screenshots/recommendation.png?raw=true)
+
+![](https://github.com/HugoZhang33/HT2015/blob/master/HT2015%20Graphic/screenshots/attending%20list%20of%20conference.jpeg?raw=true)
