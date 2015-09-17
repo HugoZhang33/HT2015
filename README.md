@@ -16,7 +16,7 @@ Credits: Hong Zhang, Kaimin Zheng, Yijin Wu & PAWS Lab
 
 ##ScreenShots
 
-![](https://github.com/HugoZhang33/UMAP2015/blob/master/UMAP2015%20Graphic/screenshots/homescreen.png)  
+![](https://github.com/HugoZhang33/HT2015/blob/master/HT2015%20Graphic/screenshots/home%20page.jpeg?raw=true)  
   
 ![](https://github.com/HugoZhang33/UMAP2015/blob/master/UMAP2015%20Graphic/screenshots/paperInfo.png)  
   
